@@ -1,9 +1,11 @@
+import Page from "../../components/Page/Page";
 
 const TrackerPage = () => {
   return (
-    <div>
+    <Page>
+  
       <h1>TrackerPage</h1>
-    </div>
+    </Page>
   );
 };
 

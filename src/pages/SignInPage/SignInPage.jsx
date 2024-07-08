@@ -1,11 +1,11 @@
-
+import Page from "../../components/Page/Page";
 
 const SignInPage = () => {
   return (
-    <div>
+    <Page>
       <h1>SignInPage</h1>
-    </div>
-  )
-}
+    </Page>
+  );
+};
 
-export default SignInPage
+export default SignInPage;

@@ -1,11 +1,11 @@
-
+import Page from "../../components/Page/Page";
 
 const SignUpPage = () => {
   return (
-    <div>
+    <Page>
       <h1>SignUpPage</h1>
-    </div>
-  )
-}
+    </Page>
+  );
+};
 
-export default SignUpPage
+export default SignUpPage;
