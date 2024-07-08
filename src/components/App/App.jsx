@@ -3,6 +3,8 @@ import { lazy } from "react";
 
 import "./App.css";
 import Layout from "../Layout/Layout";
+import PrivateRoute from "../PrivateRoute";
+import RestrictedRoute from "../RestrictedRoute";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -18,9 +20,30 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/tracker" element={<TrackerPage />} />
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute
+                redirectTo="/signin"
+                component={<SignUpPage />}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <RestrictedRoute
+                redirectTo="/tracker"
+                component={<SignInPage />}
+              />
+            }
+          />
+          <Route
+            path="/tracker"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
