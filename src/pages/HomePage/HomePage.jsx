@@ -1,11 +1,12 @@
-
+import Page from "../../components/Page/Page";
 
 const HomePage = () => {
   return (
-    <div>
+    <Page>
+      {" "}
       <h1>HomePage</h1>
-    </div>
-  )
-}
+    </Page>
+  );
+};
 
-export default HomePage
+export default HomePage;
