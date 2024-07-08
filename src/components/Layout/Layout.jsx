@@ -1,17 +1,17 @@
-import {  Suspense } from 'react'
-import PropTypes from 'prop-types';
+import { Suspense } from "react";
+import PropTypes from "prop-types";
+import Container from "../Container/Container";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
-    
-    <Suspense fallback={null}> 
-    {children}
-    </Suspense>
-  )
-}
+    <Container>
+      <Suspense fallback={null}>{children}</Suspense>
+    </Container>
+  );
+};
 
 Layout.propTypes = {
-    children: PropTypes.element
-}
+  children: PropTypes.element,
+};
 
-export default Layout
+export default Layout;
