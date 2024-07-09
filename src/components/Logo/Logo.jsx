@@ -3,7 +3,7 @@ import css from "./Logo.module.css"
 
 const Logo = () => {
   return (
-    <NavLink className={css.logo} to="/" >HomePage</NavLink>
+    <NavLink className={css.logo} to="/" >AquaTrack</NavLink>
   )
 }
 
