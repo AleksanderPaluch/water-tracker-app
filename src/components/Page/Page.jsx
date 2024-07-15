@@ -1,9 +1,10 @@
 import Logo from "../Logo/Logo"
 import PropTypes from "prop-types";
+import css from "./Page.module.css"
 
 const Page = ({children}) => {
   return (
-    <div>
+    <div className={css.page}>
       <Logo />
       {children}
     </div>

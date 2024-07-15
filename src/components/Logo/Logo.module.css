@@ -1,5 +1,18 @@
 .logo {
     text-decoration: none;
-    font-size: 40px;
-    color: blueviolet;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--blue);
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 999;
+    top: 24px;
+    left: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .logo {
+        left: 32px;
+        font-size: 24px;
+    }
 }

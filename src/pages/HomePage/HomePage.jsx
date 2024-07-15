@@ -1,10 +1,11 @@
+import { AdvantagesSection } from "../../components/AdvantagesSection/AdvantagesSection";
 import Page from "../../components/Page/Page";
 
 const HomePage = () => {
   return (
     <Page>
-
-      <h1>HomePage</h1>
+      <AdvantagesSection />
+    
    
     </Page>
   );
