@@ -3,6 +3,10 @@
   max-width: 375px;
   margin: 0 auto;
   padding: 0 16px;
+  background-color: var(--green);
+  margin-top: 16px;
+
+ 
 }
 
 @media screen and (min-width: 768px) {
@@ -15,5 +19,7 @@
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
+    
+    
   }
 }
