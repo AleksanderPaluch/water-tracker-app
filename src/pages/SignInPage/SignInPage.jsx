@@ -1,9 +1,16 @@
 import Page from "../../components/Page/Page";
+import SignInForm from "../../components/SignInForm/SignInForm";
+import css from "./SignInPage.module.css"
+import { AdvantagesSection } from "../../components/AdvantagesSection/AdvantagesSection";
 
 const SignInPage = () => {
   return (
     <Page>
-      <h1>SignInPage</h1>
+      <SignInForm />
+      
+      <div className={css.disabledBox}>
+      <AdvantagesSection />
+      </div>
     </Page>
   );
 };
