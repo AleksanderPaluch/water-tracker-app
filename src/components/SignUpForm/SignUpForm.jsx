@@ -1,4 +1,4 @@
-import css from "./SignInForm.module.css";
+import css from "./SignUpForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
@@ -19,14 +19,18 @@ const validationSchema = Yup.object().shape({
       "Password must contain at least one special character"
     )
     .required("Password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Please confirm your password"),
 });
 
 const INITIAL_FORM_DATA = {
   email: "",
   password: "",
+  confirmPassword: "",
 };
 
-const SignInForm = () => {
+const SignUpForm = () => {
   //   const dispatch = useDispatch();
 
   //   const loginUser = (formData, formActions) => {
@@ -36,16 +40,15 @@ const SignInForm = () => {
 
   return (
     <div className={css.formBox}>
-      
       <Formik
         validationSchema={validationSchema}
         initialValues={INITIAL_FORM_DATA}
-          onSubmit={(formData, formActions) => {
-            console.log(formData);
-            formActions.setSubmitting(false);
-            formActions.resetForm()
-            
-          }}
+        onSubmit={(formData, formActions) => {
+          console.log(formData);
+          formActions.setSubmitting(false);
+          formActions.resetForm()
+          
+        }}
       >
         {({ submitCount }) => (
           <Form className={css.form}>
@@ -83,26 +86,42 @@ const SignInForm = () => {
                 className={css.errorMessage}
               />
             )}
-          
+            <label className={css.label}>
+              <span className={css.labelText}>Repeat password</span>
+              <Field
+                className={css.formInput}
+                type="password"
+                name="confirmPassword"
+                autoComplete="off"
+                placeholder="Repeat password"
+              />
+            </label>
+            {submitCount > 0 && (
+              <ErrorMessage
+                name="confirmPassword"
+                component="span"
+                className={css.errorMessage}
+              />
+            )}
             <button
               className={css.formBtn}
               type="submit"
               title="click to register user"
               aria-label="Register new user"
             >
-              Sign In
+              Sign Up
             </button>
           </Form>
         )}
       </Formik>
       <span className={css.redirectText}>
-        Dont have an account?{" "}
-        <Link className={css.redirectLink} to="/signup">
-          Sign Up
+        Already have account?{" "}
+        <Link className={css.redirectLink} to="/signin">
+          Sign In
         </Link>
       </span>
     </div>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

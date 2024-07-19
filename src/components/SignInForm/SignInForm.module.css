@@ -1,4 +1,5 @@
 .formBox {
+  min-height: 672px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,13 +11,13 @@
 
 .formTitle {
   
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 38px;
-    color: var(--blue);
-    margin-bottom: 32px;
-  }
-  
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 38px;
+  color: var(--blue);
+  margin-bottom: 32px;
+  justify-content: flex-start;
+}
 
 .form {
   width: 311px;
@@ -43,50 +44,69 @@
   border-color: #2f2f2f33;
   background-color: var(--cream);
   color: var(--grey);
+  font-size: 14px;
 }
 
 .formInput:focus {
   border-color: #2f2f2f99;
 }
 
-
-.FormBtn {
-    width: 100%;
-    color: var(--blue);
-    font-weight: 700;
-    font-size: 14px;
-    background-color: var(--green);
-    border: none;
-    cursor: pointer;
-    padding: 16px;
-    border-radius: 15px;
-    margin-top: 16px;
-    margin-bottom: 16px;
+.formBtn {
+  width: 100%;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 14px;
+  background-color: var(--green);
+  border: none;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 15px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
-
 .redirectText {
-font-size: 14px;
-font-weight: 400;
-color: rgba(47, 47, 47, 0.5)
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(47, 47, 47, 0.5);
 }
 
 .redirectLink {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--grey)
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey);
 }
 
 .errorMessage {
-    color: var(--red);
-    font-size: 0.875em;
-    margin-top: 0;
+  color: var(--red);
+  font-size: 0.875em;
+  margin-top: 0;
+}
+@media screen and (min-width: 768px) {
+  .form {
+    width: 436px;
+  }
+
+  .labelText {
+    font-size: 16px;
+  }
+  .formInput {
+    font-size: 16px;
+  }
+  .formBtn {
+    font-size: 16px;
+  }
+  .redirectText {
+    font-size: 16px;
+  }
+  .redirectLink {
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-
-    .formBox{
-        width: 672px;
-        height: 736px;
-    }
+  .formBox {
+    width: 672px;
+    height: 736px;
+  }
 }
