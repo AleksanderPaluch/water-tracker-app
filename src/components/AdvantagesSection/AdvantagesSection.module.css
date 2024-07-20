@@ -34,12 +34,12 @@
 }
 
 .textAdvantage:nth-child(2) {
-  background: var(--green);
+  background: var(--greenHover);
   width: 83px;
 }
 
 .textAdvantage:nth-child(1) {
-  background: var(--grey);
+  background: var(--blue);
   width: 81px;
   gap: 4px;
 }
@@ -66,7 +66,7 @@
 }
 
 .textBlack {
-  color: var(--grey);
+  color: var(--blue);
   text-align: center;
   font-size: 8px;
   font-weight: 700;

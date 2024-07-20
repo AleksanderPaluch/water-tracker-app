@@ -2,6 +2,7 @@
 // import { selectUserCount } from '../../redux/user/selectors';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { useEffect } from 'react';
+import Icon from '../Icon/Icon';
 import css from './AdvantagesSection.module.css';
 
 // import user1 from '../../assets/img/user1.png';
@@ -38,7 +39,7 @@ export const AdvantagesSection = () => {
           Our <span className={css.span}>{totalUsers}</span> happy customers
         </p>
       </div> */}
-
+       <Icon width="28" height="28" iconName="pie-chart-02" styles={css.settings} />
       <div className={css.group}>
         <ul className={css.advantagesGroup}>
           <li className={css.textAdvantage}>

@@ -10,7 +10,6 @@
 }
 
 .formTitle {
-  
   font-weight: 700;
   font-size: 36px;
   line-height: 38px;
@@ -63,8 +62,12 @@
   border-radius: 15px;
   margin-top: 16px;
   margin-bottom: 16px;
+  transition: var(--animation);
 }
 
+.formBtn:hover {
+  background-color: var(--greenHover);
+}
 .redirectText {
   font-size: 14px;
   font-weight: 400;
@@ -75,8 +78,6 @@
   font-size: 14px;
   font-weight: 700;
   color: var(--blue);
-
-  
 }
 
 .forgotLink {
@@ -84,7 +85,6 @@
   font-weight: 700;
   color: var(--blue);
   margin: 8px 0;
-  
 }
 
 .errorMessage {
@@ -115,9 +115,8 @@
 
   .forgotLink {
     font-size: 14px;
- 
+
     margin: 8px 0;
-    
   }
 }
 

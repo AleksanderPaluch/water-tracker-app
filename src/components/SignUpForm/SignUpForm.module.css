@@ -63,8 +63,12 @@
     border-radius: 15px;
     margin-top: 16px;
     margin-bottom: 16px;
+    transition: var(--animation);
   }
-  
+
+  .formBtn:hover {
+    background-color: var(--greenHover);
+  }
   .redirectText {
     font-size: 14px;
     font-weight: 400;
