@@ -13,12 +13,16 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
+const ForgotPasswordPage = lazy(() =>
+  import("../../pages/ForgotPasswordPage/ForgotPasswordPage")
+);
 
 function App() {
   return (
     <>
       <Layout>
         <Routes>
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/" element={<HomePage />} />
           <Route
             path="/signup"
