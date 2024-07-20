@@ -74,7 +74,17 @@
 .redirectLink {
   font-size: 14px;
   font-weight: 700;
-  color: var(--grey);
+  color: var(--blue);
+
+  
+}
+
+.forgotLink {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+  margin: 8px 0;
+  
 }
 
 .errorMessage {
@@ -101,6 +111,13 @@
   }
   .redirectLink {
     font-size: 16px;
+  }
+
+  .forgotLink {
+    font-size: 14px;
+ 
+    margin: 8px 0;
+    
   }
 }
 
