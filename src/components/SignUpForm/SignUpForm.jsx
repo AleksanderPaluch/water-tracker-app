@@ -2,6 +2,8 @@ import css from "./SignUpForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
+import Icon from "../Icon/Icon";
+import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
 
@@ -31,6 +33,15 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignUpForm = () => {
+const [isVisible, setIsVisible] = useState(false)
+const [isRepeatVisible, setIsRepeatVisible] = useState(false)
+const togglePasswordVisibility = () => {
+  setIsVisible(!isVisible)
+}
+const toggleRepeatPasswordVisibility = () => {
+  setIsRepeatVisible(!isRepeatVisible)
+}
+
   //   const dispatch = useDispatch();
 
   //   const loginUser = (formData, formActions) => {
@@ -73,11 +84,14 @@ const SignUpForm = () => {
               <span className={css.labelText}>Password</span>
               <Field
                 className={css.formInput}
-                type="password"
+                type={isVisible ? "string" : "password"}
                 name="password"
                 autoComplete="off"
                 placeholder="Enter your password"
               />
+              <button type="button" className={css.iconBtn} onClick={togglePasswordVisibility}>
+              <Icon width="20" height="20" iconName="eye-off" styles={css.settings} />
+              </button>
             </label>
             {submitCount > 0 && (
               <ErrorMessage
@@ -90,11 +104,14 @@ const SignUpForm = () => {
               <span className={css.labelText}>Repeat password</span>
               <Field
                 className={css.formInput}
-                type="password"
+                type={isRepeatVisible ? "string" : "password"}
                 name="confirmPassword"
                 autoComplete="off"
                 placeholder="Repeat password"
               />
+              <button type="button" className={css.iconBtn} onClick={toggleRepeatPasswordVisibility}>
+              <Icon width="20" height="20" iconName="eye-off" styles={css.settings} />
+              </button>
             </label>
             {submitCount > 0 && (
               <ErrorMessage
