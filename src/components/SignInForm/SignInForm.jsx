@@ -2,6 +2,7 @@ import css from "./SignInForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
+import Icon from "../Icon/Icon";
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
 
@@ -65,6 +66,9 @@ const SignInForm = () => {
                 autoComplete="off"
                 placeholder="Enter your password"
               />
+                     <button type="button" className={css.iconBtn}>
+              <Icon width="20" height="20" iconName="eye-off" styles={css.settings} />
+              </button>
             </label>
             {submitCount > 0 && (
               <ErrorMessage

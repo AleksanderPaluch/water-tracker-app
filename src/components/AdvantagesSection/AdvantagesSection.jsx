@@ -39,7 +39,7 @@ export const AdvantagesSection = () => {
           Our <span className={css.span}>{totalUsers}</span> happy customers
         </p>
       </div> */}
-       <Icon width="28" height="28" iconName="pie-chart-02" styles={css.settings} />
+ 
       <div className={css.group}>
         <ul className={css.advantagesGroup}>
           <li className={css.textAdvantage}>

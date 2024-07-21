@@ -1,0 +1,23 @@
+.waterInfoBox {
+    border-radius: 30px;
+    background-color: var(--cream);
+    width: 343px;
+    height: 415px;
+}
+
+@media screen and (min-width: 768px) {
+
+    .waterInfoBox{
+        width: 704px;
+        min-height: 578px;
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+
+    .waterInfoBox{
+        width: 672px;
+        height: 736px;
+    }
+}
