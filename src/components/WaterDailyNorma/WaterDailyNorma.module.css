@@ -1,0 +1,48 @@
+.dailyNormaBox {
+    position: absolute;
+    left: 16px;
+    top: 116px;
+    padding: 12px;
+    background-color: var(--white);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.amount {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--blue);
+}
+
+.text {
+    font-size: 10px;
+    color: rgb(47, 47, 47, 60%);
+}
+
+@media screen and (min-width: 768px) {
+
+    .dailyNormaBox {
+        left: 32px;
+        top: 124px;
+        padding: 14px 18px;
+        gap: 4px;
+        
+}
+    .amount {
+        font-size: 15px;
+
+}
+    .text {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    .dailyNormaBox{
+        left: 64px;
+    }
+}
