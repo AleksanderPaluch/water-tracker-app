@@ -29,6 +29,11 @@
   align-items: center;
 }
 
+.addWaterBtn:hover {
+    color: var(--greenHover);
+    
+}
+
 
 .plusIcon {
    

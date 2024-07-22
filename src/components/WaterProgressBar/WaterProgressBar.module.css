@@ -1,0 +1,117 @@
+.progressBarContainer {
+  width: 198px;
+  
+  border-radius: 15px;
+  background-color: var(--white);
+
+  position: absolute;
+  top: 220px;
+  left: 72.5px;
+
+  padding: 12px;
+}
+
+.text {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--blue);
+  
+}
+
+.dynamicBox {
+  position: relative;
+  width: 100%;
+  height: 12px;
+}
+
+.dynamicPercentage {
+  position: absolute;
+  color: var(--green);
+  font-size: 9px;
+ 
+}
+
+.progressBarBox {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background-color: var(--cream);
+  border-radius: 9px;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  
+}
+
+.progressBar {
+    position: absolute;
+    height: 6px;
+    border-radius: 9px;
+    
+    background-color: var(--green);
+    
+}
+
+.progressCircle {
+  position: absolute;
+  
+  top: 52%;
+  transform: translateX(-50%) translateY(-50%);
+  transition: left 0.5s ease;
+}
+
+.percentBox {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(47, 47, 47 60%);
+    font-size: 10px;
+}
+
+
+.percent {
+    margin-left: 12px;
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+  .progressBarContainer {
+    width: 295px;
+    
+
+    top: 290px;
+    left: 204.5px;
+
+    padding: 20px;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+
+  .progressBarBox{
+    margin-top: 8px;
+  }
+
+  .dynamicPercentage {
+    font-size: 13px;
+  }
+
+  .percentBox {
+
+    font-size: 14px;
+}
+
+
+.percent {
+    margin-left: 15px;
+}
+
+}
+
+@media screen and (min-width: 1440px) {
+  .progressBarContainer {
+    top: 418px;
+    left: 189.5px;
+  }
+}
