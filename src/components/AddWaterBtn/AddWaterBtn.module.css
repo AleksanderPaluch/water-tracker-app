@@ -1,0 +1,58 @@
+.addWaterBtn {
+  position: absolute;
+  right: 16px;
+  bottom: 32px;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 20px;
+  background-color: var(--blue);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: -0.1px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addWaterBtn:hover {
+  color: var(--greenHover);
+  .plusIcon {
+    stroke: var(--greenHover);
+  }
+}
+
+.plusIcon {
+  stroke: var(--white);
+  margin-right: 10px;
+}
+
+
+.smallAddWaterBtn {
+  border: none;
+  background-color: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: -0.1px;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .addWaterBtn {
+    right: 32px;
+    bottom: 64px;
+    padding: 18px 30px;
+    font-size: 16px;
+  }
+
+  .plusIcon {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+  }
+}

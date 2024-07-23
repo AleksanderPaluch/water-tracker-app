@@ -3,6 +3,16 @@
     background-color: var(--cream);
     width: 343px;
     height: 415px;
+    padding: 30px 20px;
+}
+
+.welcomeText {
+    font-size: 32px;
+    color: var(--blue);
+}
+
+.welcomeName {
+    font-weight: bold;
 }
 
 @media screen and (min-width: 768px) {
@@ -10,7 +20,14 @@
     .waterInfoBox{
         width: 704px;
         min-height: 578px;
+        padding: 32px;
     }
+
+    .welcomeText {
+        font-size: 36px;
+    }
+    
+   
 }
 
 
@@ -20,4 +37,7 @@
         width: 672px;
         height: 736px;
     }
+
+   
+  
 }
