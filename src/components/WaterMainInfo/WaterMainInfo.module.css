@@ -31,12 +31,15 @@
 
 .addWaterBtn:hover {
     color: var(--greenHover);
-    
+    .plusIcon {
+        stroke: var(--greenHover);
+       
+     }
 }
 
 
 .plusIcon {
-   
+   stroke: var(--white);
     margin-right: 10px;
 }
 
