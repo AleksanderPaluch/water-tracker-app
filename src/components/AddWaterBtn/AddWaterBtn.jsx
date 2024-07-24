@@ -25,7 +25,7 @@ const AddWaterBtn = ({ isBig = true }) => {
         {isBig ? (
           <Icon width="16" height="16" iconName="plus" styles={css.plusIcon} />
         ) : (
-          <Icon width="16" height="16" iconName="plus2" styles={css.plusIcon} />
+          <Icon width="16" height="16" iconName="plus" styles={css.plusIconSmall} />
         )}
         Add Water
       </button>

@@ -9,11 +9,19 @@
   color: var(--white);
   font-weight: bold;
   font-size: 14px;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: var(--animation);
+}
+
+.plusIcon {
+  stroke: var(--white);
+  margin-right: 10px;
+  transition: var(--animation);
 }
 
 .addWaterBtn:hover {
@@ -23,15 +31,12 @@
   }
 }
 
-.plusIcon {
-  stroke: var(--white);
-  margin-right: 10px;
-}
 
 
 .smallAddWaterBtn {
   border: none;
   background-color: inherit;
+  color: var(--blue);
   font-size: 16px;
   font-weight: bold;
   letter-spacing: -0.1px;
@@ -40,6 +45,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.plusIconSmall {
+  stroke: var(--blue);
+  background-color: var(--green);
+  border-radius: 15px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  transition: var(--animation);
+}
+
+.smallAddWaterBtn:hover {
+  .plusIconSmall {
+    background-color: var(--blue);
+    stroke: var(--white);
+  }
 }
 
 @media screen and (min-width: 768px) {
