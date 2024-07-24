@@ -1,0 +1,52 @@
+.userPopoverBox {
+  
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 128px;
+  gap: 8px;
+  width: 100%;
+  background-color: var(--white);
+  padding: 14px 20px;
+  border-radius: 15px;
+  margin-top: 4px;
+
+  left: 100%;
+  transform: translate(-100%, -0%);
+}
+
+.userPopoverBtn {
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+ 
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: -0.1px;
+  color: var(--blue);
+  background-color: inherit;
+  border: none;
+
+  
+}
+
+.icon{
+  stroke: var(--blue);
+}
+
+.userPopoverBtn:last-child {
+  color: rgb(47, 47, 47, 60%);
+}
+
+.icon2 {
+  stroke: rgb(47, 47, 47, 60%);
+}
+
+
+@media screen and (min-width: 768px) {
+
+
+    
+}

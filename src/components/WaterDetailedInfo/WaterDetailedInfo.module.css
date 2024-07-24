@@ -6,14 +6,6 @@
     padding: 30px 20px;
 }
 
-.welcomeText {
-    font-size: 32px;
-    color: var(--blue);
-}
-
-.welcomeName {
-    font-weight: bold;
-}
 
 @media screen and (min-width: 768px) {
 
@@ -23,9 +15,6 @@
         padding: 32px;
     }
 
-    .welcomeText {
-        font-size: 36px;
-    }
     
    
 }

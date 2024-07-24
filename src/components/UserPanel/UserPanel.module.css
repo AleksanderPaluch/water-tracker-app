@@ -1,0 +1,97 @@
+.userPopoverContainer {
+  position: relative;
+  width: fit-content
+}
+
+.welcomeBox {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.welcomeText {
+  
+  font-size: 32px;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+
+.welcomeName {
+  
+  
+  font-weight: bold;
+
+}
+
+.userPanelBtn {
+  min-width: 150px;
+  max-width: 300px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: -0.1px;
+  gap: 8px;
+  padding: 6px 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.userName {
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.userImg {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+  transition: transform 0.4s ease-out;
+}
+
+.userPanelBtn.isActive {
+  .icon {
+    transform: rotate(180deg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .userPanelBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .welcomeText {
+    font-size: 36px;
+    margin-bottom: 0;
+  }
+
+  .userPanelBtn {
+    font-size: 16px;
+  }
+
+  .userImg {
+    width: 44px;
+    height: 44px;
+  }
+  .icon {
+  width: 20px;
+  height: 20px;
+  }
+}
