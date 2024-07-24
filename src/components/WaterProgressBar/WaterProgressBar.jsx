@@ -29,6 +29,7 @@ const WaterProgressBar = () => {
           styles={css.progressCircle}
           style={{
             left: `${percentage}%`,
+            color: `red`
           }}
         />
       </div>

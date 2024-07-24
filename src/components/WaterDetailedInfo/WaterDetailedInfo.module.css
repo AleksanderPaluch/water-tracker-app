@@ -3,14 +3,20 @@
     background-color: var(--cream);
     width: 343px;
     height: 415px;
+    padding: 30px 20px;
 }
+
 
 @media screen and (min-width: 768px) {
 
     .waterInfoBox{
         width: 704px;
         min-height: 578px;
+        padding: 32px;
     }
+
+    
+   
 }
 
 
@@ -20,4 +26,7 @@
         width: 672px;
         height: 736px;
     }
+
+   
+  
 }

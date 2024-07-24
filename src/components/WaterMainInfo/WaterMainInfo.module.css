@@ -1,78 +1,27 @@
 .waterInfoBox {
-    position: relative;
-    border-radius: 30px;
-    background-color: var(--green);
-    width: 343px;
-    height: 415px;
-    background-image: url(../../../assets/img/bottle-min.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: calc(75%);
-   
-}
-
-.addWaterBtn {
-    position: absolute;
-    right: 16px;
-    bottom: 32px;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 20px;
-    background-color: var(--blue);
-    color: var(--white);
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: -0.1px;
-
-    display: flex;
-    justify-content: center;
-  align-items: center;
-}
-
-.addWaterBtn:hover {
-    color: var(--greenHover);
-    .plusIcon {
-        stroke: var(--greenHover);
-       
-     }
-}
-
-
-.plusIcon {
-   stroke: var(--white);
-    margin-right: 10px;
+  position: relative;
+  border-radius: 30px;
+  background-color: var(--green);
+  width: 343px;
+  height: 415px;
+  background-image: url(../../../assets/img/bottle-min.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: calc(75%);
 }
 
 @media screen and (min-width: 768px) {
-
-    .waterInfoBox{
-        width: 704px;
-        min-height: 578px;
-        background-size: calc(58%);
-    }
-
-    .addWaterBtn {
-        right: 32px;
-        bottom: 64px;
-        padding: 18px 30px;
-        font-size: 16px;
-
-    }
-
-    .plusIcon {
-   
-        margin-right: 10px;
-        width: 24px;
-        height: 24px;
-    }
+  .waterInfoBox {
+    width: 704px;
+    min-height: 578px;
+    background-size: calc(58%);
+  }
 }
 
-
 @media screen and (min-width: 1440px) {
-
-    .waterInfoBox{
-        width: 672px;
-        height: 736px;
-        background-size: calc(75%);
-    }
+  .waterInfoBox {
+    width: 672px;
+    height: 736px;
+    background-size: calc(75%);
+  }
 }
