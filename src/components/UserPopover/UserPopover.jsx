@@ -6,7 +6,7 @@ import BaseModal from "../BaseModal/BaseModal";
 const UserPopover = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
+  function openModal () {
     setIsOpen(true);
   }
 
@@ -47,6 +47,7 @@ const UserPopover = () => {
           Log out{" "}
         </button>
       </div>
+      <BaseModal isOpen={modalIsOpen} onClose={closeModal}></BaseModal>
       <BaseModal isOpen={modalIsOpen} onClose={closeModal}></BaseModal>
     </>
   );

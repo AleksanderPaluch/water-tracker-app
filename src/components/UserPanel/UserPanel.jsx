@@ -6,7 +6,7 @@ import { useState } from "react";
 import UserPopover from "../UserPopover/UserPopover";
 
 const UserPanel = () => {
-  const user = "Aleksander";
+  const user = "Nadia";
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,7 +14,7 @@ const UserPanel = () => {
     setIsOpen(!isOpen);
   };
 
-  console.log(isOpen);
+  
 
   return (
     <div  className={css.userPanelBox}>
