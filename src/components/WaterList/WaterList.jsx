@@ -3,7 +3,7 @@ import css from "./WaterList.module.css";
 
 const WaterList = () => {
   return (
-    <div>
+    <div className={css.waterListBox}>
       <ul className={css.waterList}>
         <li>
           <WaterItem />
@@ -19,7 +19,7 @@ const WaterList = () => {
         </li>
       </ul>
 
-      <div className={css.waterBar}></div>
+     
     </div>
   );
 };
