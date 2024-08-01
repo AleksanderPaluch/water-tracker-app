@@ -6,8 +6,7 @@
     gap: 10px;
     background-color: var(--white);
     border-radius: 15px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+  
 }
 
 .textBox {
@@ -27,6 +26,15 @@
     font-size: 12px;
     font-weight: normal;
     color: rgb(47, 47, 47, 60%);
+}
+
+.iconBtn {
+    width: 14px;
+    height: 14px;
+    border: none;
+    background-color: inherit;
+    padding: 0;
+    margin: 0;
 }
 
 .iconsBox {
@@ -62,6 +70,11 @@
     }
     
     .icons {
+        width: 16px;
+        height: 16px;
+    }
+
+    .iconBtn {
         width: 16px;
         height: 16px;
     }
