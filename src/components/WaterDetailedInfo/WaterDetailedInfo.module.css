@@ -2,7 +2,7 @@
     border-radius: 30px;
     background-color: var(--cream);
     width: 343px;
-    height: 415px;
+    min-height: 736px;
     padding: 30px 20px;
 }
 
@@ -11,7 +11,7 @@
 
     .waterInfoBox{
         width: 704px;
-        min-height: 578px;
+        
         padding: 32px;
     }
 

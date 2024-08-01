@@ -1,0 +1,33 @@
+.paginationBox {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.arrowBtn {
+    width: 18px;
+    height: 18px;
+    border: none;
+    padding: 0;
+    border-color: inherit;
+}
+
+.text {
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+
+    .text {
+   
+    font-size: 16px;
+ 
+}
+}

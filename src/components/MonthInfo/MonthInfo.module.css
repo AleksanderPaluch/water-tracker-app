@@ -1,0 +1,45 @@
+.monthInfoBox {
+    margin-top: 40px;
+}
+
+.calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.CalendarPaginationBox {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chartBtn {
+    border: none;
+    background-color: inherit;
+    width: 24px;
+    height: 24px;
+}
+
+.title {
+    color: var(--blue);
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.01em;
+}
+
+@media screen and (min-width: 768px) {
+   .CalendarPaginationBox {
+    gap: 20px;
+   }
+
+   .title {
+    font-size: 28px;
+   }
+}
+
+@media screen and (min-width: 1440px) {
+ 
+}
+
