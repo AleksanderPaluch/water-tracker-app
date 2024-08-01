@@ -2,7 +2,7 @@ import Icon from "../Icon/Icon";
 import css from "./WaterProgressBar.module.css";
 
 const WaterProgressBar = () => {
-  const percentage = 33;
+  const percentage = 95;
 
   return (
     <div className={css.progressBarContainer}>

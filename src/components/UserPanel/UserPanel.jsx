@@ -1,12 +1,10 @@
 import css from "./UserPanel.module.css";
-import user3 from "../../../assets/img/user3.png";
-import { IoChevronDown } from "react-icons/io5";
-
 import { useState } from "react";
 import UserPopover from "../UserPopover/UserPopover";
+import UserBar from "../UserBar/UserBar";
 
 const UserPanel = () => {
-  const user = "Nadia";
+  const username = "Nadia";
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,31 +12,22 @@ const UserPanel = () => {
     setIsOpen(!isOpen);
   };
 
-  
-
   return (
-    <div  className={css.userPanelBox}>
+    <div className={css.userPanelBox}>
       <div className={css.welcomeBox}>
-      <p className={css.welcomeText}>
-        Hello <span className={css.welcomeName}>, {user}!</span>
-      </p>
-
+        <p className={css.welcomeText}>
+          Hello <span className={css.welcomeName}>, {username}!</span>
+        </p>
       </div>
-    
+
       <div className={css.userPopoverContainer}>
-        <button
-          onClick={togglePopover}
-          type="button"
-          className={`${css.userPanelBtn}  ${isOpen ? css.isActive : ""}` }
-        ><p className={css.userName}>{user} </p>
-          {" "}
-          <img className={css.userImg} src={user3} alt="user3" />
-         <IoChevronDown className={css.icon} />
-    
-        </button>
+        <UserBar
+          user={username}
+          togglePopover={togglePopover}
+          isOpen={isOpen}
+        />
 
         {isOpen && <UserPopover />}
-      
       </div>
     </div>
   );
