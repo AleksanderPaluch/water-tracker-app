@@ -4,14 +4,16 @@ import css from "./UserPopover.module.css";
 import BaseModal from "../BaseModal/BaseModal";
 
 const UserPopover = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
 
-  function openModal () {
-    setIsOpen(true);
+  const handleButtonClick = (modalName) => {
+    setActiveModal(modalName);
   }
 
+
+
   function closeModal() {
-    setIsOpen(false);
+    setActiveModal(null);
   }
 
   return (
@@ -20,7 +22,7 @@ const UserPopover = () => {
       <div className={css.userPopoverBox}>
         <button
           type="button"
-          onClick={openModal}
+          onClick={() => handleButtonClick("settings")}
           className={css.userPopoverBtn}
         >
           {" "}
@@ -34,7 +36,7 @@ const UserPopover = () => {
         </button>
         <button
           type="button"
-          onClick={openModal}
+          onClick={() => handleButtonClick("log-out")}
           className={css.userPopoverBtn}
         >
           {" "}
@@ -47,8 +49,11 @@ const UserPopover = () => {
           Log out{" "}
         </button>
       </div>
-      <BaseModal isOpen={modalIsOpen} onClose={closeModal}></BaseModal>
-      <BaseModal isOpen={modalIsOpen} onClose={closeModal}></BaseModal>
+
+    {activeModal === "settings" &&   <BaseModal isOpen={true} onClose={closeModal}> settings modal</BaseModal>}
+
+ 
+    {activeModal === "log-out" &&  <BaseModal isOpen={true} onClose={closeModal}> log-out modal</BaseModal>}
     </>
   );
 };
