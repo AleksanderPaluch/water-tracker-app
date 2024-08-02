@@ -1,9 +1,13 @@
 .item {
-    margin-bottom: 20px;
+  margin-bottom: 12px;
+  position: relative;
 }
 
-
 .button {
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
   width: 28px;
   height: 28px;
   border: none;
@@ -11,9 +15,36 @@
   background: rgba(50, 63, 71, 0.2);
 }
 
+.button:focus {
+  border: 1px solid black;
+}
+
+.isToday {
+  background-color: var(--blue);
+  color: var(--greenHover);
+}
+
+.text {
+  position: absolute;
+  top: 32px;
+  left: 5px;
+  font-size: 9px;
+}
+
 @media screen and (min-width: 768px) {
-    .button {
-        width: 38px;
-        height: 38px;
-    }
+  .button {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .item {
+    margin-bottom: 0px;
+  }
+
+  .text {
+    top: 44px;
+    left: 8px;
+    font-size: 12px;
+  }
 }

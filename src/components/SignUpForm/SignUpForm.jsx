@@ -33,14 +33,14 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignUpForm = () => {
-const [isVisible, setIsVisible] = useState(false)
-const [isRepeatVisible, setIsRepeatVisible] = useState(false)
-const togglePasswordVisibility = () => {
-  setIsVisible(!isVisible)
-}
-const toggleRepeatPasswordVisibility = () => {
-  setIsRepeatVisible(!isRepeatVisible)
-}
+  const [isVisible, setIsVisible] = useState(false);
+  const [isRepeatVisible, setIsRepeatVisible] = useState(false);
+  const togglePasswordVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+  const toggleRepeatPasswordVisibility = () => {
+    setIsRepeatVisible(!isRepeatVisible);
+  };
 
   //   const dispatch = useDispatch();
 
@@ -57,8 +57,7 @@ const toggleRepeatPasswordVisibility = () => {
         onSubmit={(formData, formActions) => {
           console.log(formData);
           formActions.setSubmitting(false);
-          formActions.resetForm()
-          
+          formActions.resetForm();
         }}
       >
         {({ submitCount }) => (
@@ -89,8 +88,17 @@ const toggleRepeatPasswordVisibility = () => {
                 autoComplete="off"
                 placeholder="Enter your password"
               />
-              <button type="button" className={css.iconBtn} onClick={togglePasswordVisibility}>
-              <Icon width="20" height="20" iconName="eye-off" styles={css.settings} />
+              <button
+                type="button"
+                className={css.iconBtn}
+                onClick={togglePasswordVisibility}
+              >
+                <Icon
+                  width="20"
+                  height="20"
+                  iconName="eye-off"
+                  styles={css.settings}
+                />
               </button>
             </label>
             {submitCount > 0 && (
@@ -109,8 +117,17 @@ const toggleRepeatPasswordVisibility = () => {
                 autoComplete="off"
                 placeholder="Repeat password"
               />
-              <button type="button" className={css.iconBtn} onClick={toggleRepeatPasswordVisibility}>
-              <Icon width="20" height="20" iconName="eye-off" styles={css.settings} />
+              <button
+                type="button"
+                className={css.iconBtn}
+                onClick={toggleRepeatPasswordVisibility}
+              >
+                <Icon
+                  width="20"
+                  height="20"
+                  iconName="eye-off"
+                  styles={css.settings}
+                />
               </button>
             </label>
             {submitCount > 0 && (

@@ -1,5 +1,12 @@
 .calendarList {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .calendarList {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 44px;
+  }
 }
