@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 import Icon from "../Icon/Icon";
+import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
 
@@ -10,8 +11,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: Yup.string()
-  .required("Password is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 const INITIAL_FORM_DATA = {
@@ -20,6 +20,12 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignInForm = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   //   const dispatch = useDispatch();
 
   //   const loginUser = (formData, formActions) => {
@@ -61,13 +67,22 @@ const SignInForm = () => {
               <span className={css.labelText}>Password</span>
               <Field
                 className={css.formInput}
-                type="password"
+                type={isVisible ? "string" : "password"}
                 name="password"
                 autoComplete="off"
                 placeholder="Enter your password"
               />
-                     <button type="button" className={css.iconBtn}>
-              <Icon width="20" height="20" iconName="eye-off" styles={css.settings} />
+              <button
+                onClick={togglePasswordVisibility}
+                type="button"
+                className={css.iconBtn}
+              >
+                <Icon
+                  width="20"
+                  height="20"
+                  iconName="eye-off"
+                  styles={css.settings}
+                />
               </button>
             </label>
             {submitCount > 0 && (
@@ -78,11 +93,10 @@ const SignInForm = () => {
               />
             )}
             <p className={css.forgotLink}>
-            <Link className={css.forgotLink} to="/forgot-password">
-              Forgot password?
-            </Link>
+              <Link className={css.forgotLink} to="/forgot-password">
+                Forgot password?
+              </Link>
             </p>
-          
 
             <button
               className={css.formBtn}

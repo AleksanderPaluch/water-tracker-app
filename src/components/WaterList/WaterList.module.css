@@ -4,6 +4,7 @@
 }
 
 ::-webkit-scrollbar {
+ 
   height: 8px;
 }
 
@@ -13,6 +14,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
+  cursor: pointer;
     background: rgb(47, 47, 47, 60%);
     border-radius: 9px;
 }

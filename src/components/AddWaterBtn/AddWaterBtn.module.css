@@ -10,7 +10,7 @@
   font-weight: bold;
   font-size: 14px;
   letter-spacing: -0.2px;
-
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,8 +31,6 @@
   }
 }
 
-
-
 .smallAddWaterBtn {
   border: none;
   background-color: inherit;
@@ -41,7 +39,7 @@
   font-weight: bold;
   letter-spacing: -0.1px;
   padding: 0;
-
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
