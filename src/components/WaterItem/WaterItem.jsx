@@ -2,6 +2,7 @@ import { useState } from "react";
 import Icon from "../Icon/Icon";
 import css from "./WaterItem.module.css";
 import BaseModal from "../BaseModal/BaseModal";
+import WaterModal from "../WaterModal/WaterModal";
 
 const WaterItem = () => {
   const [activeModal, setActiveModal] = useState(null);
@@ -41,8 +42,7 @@ const WaterItem = () => {
       </div>
       {activeModal === "edit" && (
         <BaseModal isOpen={true} onClose={closeModal}>
-          {" "}
-          edit modal
+       <WaterModal isEdit={true} />
         </BaseModal>
       )}
       {activeModal === "delete" && (
