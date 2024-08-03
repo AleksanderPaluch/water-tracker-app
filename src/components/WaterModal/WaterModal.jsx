@@ -50,7 +50,7 @@ const WaterModal = ({ isEdit = false, closeModal, editTime, editAmount }) => {
         }}
         onSubmit={(formData, formActions) => {
           console.log(formData);
-          formActions.resetForm();
+          
           closeModal();
         }}
       >
