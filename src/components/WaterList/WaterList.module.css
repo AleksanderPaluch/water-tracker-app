@@ -1,5 +1,6 @@
 .waterListBox {
   padding: 24px 0px;
+ min-height: 130px;
   overflow-x: auto; 
 }
 
@@ -37,6 +38,11 @@
 @media screen and (min-width: 768px) {
   .waterList {
     gap: 32px;
+ 
+  }
+
+  .waterListBox {
+    min-height: 142px;
   }
 }
 

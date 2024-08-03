@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import css from "./WaterModal.module.css";
 import PropTypes from "prop-types";
@@ -8,7 +8,11 @@ import { useState } from "react";
 import Icon from "../Icon/Icon";
 
 const validationSchema = Yup.object().shape({
-  water: Yup.number().required("Please enter a valid number"),
+  water: Yup.number()
+    .required("Please enter a valid number")
+    .typeError("Please enter a valid number")
+    .min(50, "The minimum amount is 50 ml")
+    .max(1000, "The maximum amount is 1000 ml"),
 });
 
 const INITIAL_FORM_DATA = {
@@ -16,8 +20,8 @@ const INITIAL_FORM_DATA = {
   water: "",
 };
 
-const WaterModal = ({ isEdit = false, closeModal }) => {
-  const [amount, setAmount] = useState(250);
+const WaterModal = ({ isEdit = false, closeModal, editTime, editAmount }) => {
+  const [amount, setAmount] = useState(150);
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -41,24 +45,23 @@ const WaterModal = ({ isEdit = false, closeModal }) => {
         validationSchema={validationSchema}
         initialValues={{
           ...INITIAL_FORM_DATA,
-          time: getCurrentTime(),
-          water: amount,
+          time: isEdit ? editTime : new Date(),
+          water: isEdit ? editAmount : amount,
         }}
         onSubmit={(formData, formActions) => {
           console.log(formData);
           formActions.resetForm();
-          closeModal()
+          closeModal();
         }}
       >
         {({ setFieldValue }) => (
           <Form className={css.form}>
-             <p className={css.labelText}>Amount of water:</p>
+            <p className={css.labelText}>Amount of water:</p>
             <div className={css.calcBox}>
-             
               <button
                 type="button"
                 onClick={() => {
-                  const newAmount = amount - 50;
+                  const newAmount = Math.max(amount - 50, 50);
                   setAmount(newAmount);
                   setFieldValue("water", newAmount);
                 }}
@@ -66,11 +69,13 @@ const WaterModal = ({ isEdit = false, closeModal }) => {
               >
                 <CiCircleMinus className={css.icon} />
               </button>
-              <div className={css.waterAmountBox}>{amount}</div>
+              <div className={css.waterAmountBox}>
+                {isEdit ? editAmount : amount}
+              </div>
               <button
                 type="button"
                 onClick={() => {
-                  const newAmount = amount + 50;
+                  const newAmount = Math.min(amount + 50, 1000);
                   setAmount(newAmount);
                   setFieldValue("water", newAmount);
                 }}
@@ -86,6 +91,7 @@ const WaterModal = ({ isEdit = false, closeModal }) => {
                 type="string"
                 name="time"
                 readOnly
+                value={getCurrentTime()}
               />
             </label>
             <label className={css.label}>
@@ -99,6 +105,11 @@ const WaterModal = ({ isEdit = false, closeModal }) => {
                 autoComplete="off"
               />
             </label>
+            <ErrorMessage
+              name="water"
+              component="span"
+              className={css.errorMessage}
+            />
             <button
               className={css.formBtn}
               type="submit"
@@ -116,7 +127,9 @@ const WaterModal = ({ isEdit = false, closeModal }) => {
 
 WaterModal.propTypes = {
   isEdit: PropTypes.bool,
-  closeModal: PropTypes.func
+  closeModal: PropTypes.func,
+  editTime: PropTypes.string,
+  editAmount: PropTypes.number,
 };
 
 export default WaterModal;

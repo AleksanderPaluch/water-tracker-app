@@ -65,8 +65,13 @@
         font-size: 15px;
     }
 
+    .text:last-child {
+        font-size: 15px;
+ 
+    }
+
     .iconsBox {
-        gap: 14px;
+        gap: 10px;
     }
     
     .icons {
