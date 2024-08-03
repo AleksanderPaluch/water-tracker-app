@@ -4,7 +4,7 @@ import css from "./WaterItem.module.css";
 import BaseModal from "../BaseModal/BaseModal";
 import WaterModal from "../WaterModal/WaterModal";
 
-const WaterItem = () => {
+const WaterItem = ({amount, time}) => {
   const [activeModal, setActiveModal] = useState(null);
 
   const handleButtonClick = (modalName) => {
@@ -19,8 +19,8 @@ const WaterItem = () => {
     <div className={css.waterItemBox}>
       <Icon width="38   " height="38" iconName="glass" styles={css.glass} />
       <div className={css.textBox}>
-        <p className={css.text}>250 ml</p>
-        <p className={css.text}>7:00 AM</p>
+        <p className={css.text}>{amount}ml</p>
+        <p className={css.text}>{time} </p>
       </div>
       <div className={css.iconsBox}>
         <button
@@ -42,7 +42,7 @@ const WaterItem = () => {
       </div>
       {activeModal === "edit" && (
         <BaseModal isOpen={true} onClose={closeModal}>
-       <WaterModal isEdit={true} />
+       <WaterModal isEdit={true} editTime={time} editAmount={amount} closeModal={closeModal}/>
         </BaseModal>
       )}
       {activeModal === "delete" && (

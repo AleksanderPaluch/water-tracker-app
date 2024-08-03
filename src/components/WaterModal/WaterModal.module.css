@@ -66,8 +66,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
+
+
 
 .labelText {
   font-weight: 400;
@@ -83,9 +85,11 @@
   letter-spacing: -0.01em;
   color: var(--blue);
   margin-bottom: 6px;
+  margin-top: 20px;
 }
 
 .formInput {
+  
   padding: 14px 16px;
   border-radius: 15px;
   outline: none;
@@ -100,7 +104,16 @@
   border-color: #2f2f2f99;
 }
 
+.errorMessage {
+  position: absolute;
+ color: var(--red);
+ font-weight: 400;
+ font-size: 14px;
+ letter-spacing: -0.04em;
+}
+
 .formBtn {
+  margin-top: 24px;
   width: 100%;
   color: var(--blue);
   font-weight: 700;
@@ -158,10 +171,27 @@
   }
 
   .waterAmountBox {
-    font-size: 15px;
+    font-size: 17px;
+    padding: 11px 20px;
   }
 
  
+  .formInput {
+    padding: 18px;
+    font-size: 17px;
+  }
+
+  .labelText {
+    font-size: 17px;
+  }
+
+  .labelBoldText {
+    font-size: 17px;
+  }
+
+  .errorMessage {
+    font-size: 17px;
+  }
 
   .formBtn {
     padding: 18px;

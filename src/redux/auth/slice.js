@@ -17,10 +17,15 @@ const authSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {},
+  reducers: {
+
+    updateUser(state, action) {
+      state.user = action.payload;
+    },
+  },
 
   
 });
-
+export const { updateUser } = authSlice.actions;
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;
