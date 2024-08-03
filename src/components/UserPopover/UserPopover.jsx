@@ -2,15 +2,14 @@ import { useState } from "react";
 import Icon from "../Icon/Icon";
 import css from "./UserPopover.module.css";
 import BaseModal from "../BaseModal/BaseModal";
+import LogOutModal from "../LogOutModal/LogOutModal";
 
 const UserPopover = () => {
   const [activeModal, setActiveModal] = useState(null);
 
   const handleButtonClick = (modalName) => {
     setActiveModal(modalName);
-  }
-
-
+  };
 
   function closeModal() {
     setActiveModal(null);
@@ -49,11 +48,18 @@ const UserPopover = () => {
           Log out{" "}
         </button>
       </div>
-
-    {activeModal === "settings" &&   <BaseModal isOpen={true} onClose={closeModal}> settings modal</BaseModal>}
-
- 
-    {activeModal === "log-out" &&  <BaseModal isOpen={true} onClose={closeModal}> log-out modal</BaseModal>}
+      {activeModal === "settings" && (
+        <BaseModal isOpen={true} onClose={closeModal}>
+          {" "}
+          settings modal
+        </BaseModal>
+      )}
+      {activeModal === "log-out" && (
+        <BaseModal onClose={closeModal} isOpen={true}>
+          {" "}
+          <LogOutModal closeModal={closeModal} />{" "}
+        </BaseModal>
+      )}
     </>
   );
 };

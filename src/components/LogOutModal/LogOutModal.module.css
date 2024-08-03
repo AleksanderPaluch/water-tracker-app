@@ -1,0 +1,118 @@
+.deleteBox {
+    position: relative;
+    width: 343px;
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .iconExitBtn {
+    position: absolute;
+    right: 18px;
+    top: 20px;
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: #323f47;
+    margin-bottom: 24px;
+  }
+  
+  .text {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #323f47;
+    margin-bottom: 24px;
+  }
+  
+  .buttonsBox  {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+  }
+  
+  .deleteBtn {
+    width: 100%;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    background-color: var(--green);
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 30px;
+  
+    transition: var(--animation);
+  }
+  
+  .deleteBtn:hover {
+    background-color: var(--greenHover);
+  }
+  
+  .cancelBtn {
+    width: 100%;
+    color: rgb(47, 47, 47, 30%);
+    font-weight: 700;
+    font-size: 14px;
+    background-color: var(--cream);
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 30px;
+  
+    transition: var(--animation);
+  }
+  
+  .cancelBtn:hover {
+    color: var(--blue);
+  }
+  
+  @media screen and (min-width: 768px) {
+    .deleteBox {
+      width: 518px;
+      padding: 40px;
+    }
+    .iconExitBtn {
+      width: 28px;
+      height: 28px;
+    }
+  
+    .iconExit {
+      width: 28px;
+      height: 28px;
+    }
+  
+    .title {
+      font-weight: 700;
+      font-size: 28px;
+    }
+  
+    .text {
+      font-size: 18px;
+    }
+  
+    .buttonsBox {
+      width: 356px;
+      flex-direction: row;
+    }
+
+    .cancelBtn {
+        padding: 18px;
+        font-size: 18px;
+      }
+      .deleteBtn {
+        padding: 18px;
+        font-size: 18px;
+      }
+  }
+  
