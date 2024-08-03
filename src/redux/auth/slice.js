@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   user: {
-    name: "alex",
-    email: "BBB@bb.pl",
+    name: null,
+    email: null,
   },
   token: null,
   isLoggedIn: false,
@@ -26,6 +26,6 @@ const authSlice = createSlice({
 
   
 });
-export const { updateUser, updateToken, updateLoginStatus, updateRefreshingStatus } = authSlice.actions;
+export const { updateUser } = authSlice.actions;
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;
