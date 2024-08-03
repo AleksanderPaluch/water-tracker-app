@@ -3,6 +3,7 @@ import Icon from "../Icon/Icon";
 import css from "./WaterItem.module.css";
 import BaseModal from "../BaseModal/BaseModal";
 import WaterModal from "../WaterModal/WaterModal";
+import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
 const WaterItem = ({amount, time}) => {
   const [activeModal, setActiveModal] = useState(null);
@@ -47,8 +48,7 @@ const WaterItem = ({amount, time}) => {
       )}
       {activeModal === "delete" && (
         <BaseModal isOpen={true} onClose={closeModal}>
-          {" "}
-          delete modal
+       <DeleteWaterModal closeModal={closeModal}/>
         </BaseModal>
       )}
       
