@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar {
- 
+width: 1px;
   height: 8px;
 }
 
@@ -21,7 +21,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--blue);
+    background: var(--greenHover);
 
 }
 
@@ -36,6 +36,12 @@
 }
 
 @media screen and (min-width: 768px) {
+
+  ::-webkit-scrollbar {
+    width: 6px;
+      height: 8px;
+    }
+
   .waterList {
     gap: 32px;
  

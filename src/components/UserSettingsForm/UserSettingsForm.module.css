@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  
   margin-bottom: 40px;
 }
 
@@ -64,8 +65,7 @@
   font-size: 14px;
   letter-spacing: -0.01em;
   color: #2f2f2f;
-  margin-bottom: 8px;
-  
+  margin-bottom: 14px;
 }
 
 .labelBoldText {
@@ -76,10 +76,9 @@
   margin-bottom: 14px;
 }
 
-/* .dataBox {
-  display: flex;
-  flex-direction: column;
-} */
+.dataBox {
+margin-bottom: 20px;
+}
 
 .label {
   display: flex;
@@ -111,19 +110,16 @@
   border-color: #2f2f2f99;
 }
 
-
 .explText {
-  border: 1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 15px;
   padding: 16px;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.01em;
   color: #828282;
-  margin-bottom: 8px;
-  
+  margin-bottom: 14px;
 }
-
 
 .errorMessage {
   /* position: absolute; */
@@ -161,10 +157,7 @@
   .text {
     font-size: 16px;
   }
-  .icon {
-    width: 20px;
-    height: 20px;
-  }
+
   .labelText {
     font-size: 17px;
   }
@@ -183,17 +176,14 @@
   }
 
   .span {
-    
-    
     color: var(--green);
     font-weight: bold;
     margin-left: 4px;
-    font-size: 19px;
+    font-size: 16px;
   }
 
   .genderInfoBox {
     display: flex;
-
   }
 
   .explText {
@@ -208,5 +198,25 @@
     width: 141px;
     padding: 18px;
     font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .flexBox {
+    display: flex;
+    gap: 40px;
+  }
+
+  .dataBox {
+    width: 400px;
+  }
+
+  .genderInfoBox {
+    display: flex;
+    gap: 28px;
+  }
+
+  .addInfoBox {
+    padding-top: 75px;
   }
 }
