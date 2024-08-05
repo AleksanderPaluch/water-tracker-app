@@ -1,0 +1,59 @@
+.settingsBox {
+  position: relative;
+  width: 343px;
+  background-color: var(--white);
+  border-radius: 15px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.iconExitBtn {
+  position: absolute;
+  right: 18px;
+  top: 20px;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  margin-bottom: 24px;
+}
+
+.iconExit {
+ 
+  width: 28px;
+  height: 28px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .settingsBox {
+    width: 648px;
+    padding: 40px;
+  }
+  /* .iconExitBtn {
+    width: 28px;
+    height: 28px;
+   
+  } */
+
+
+  .title {
+    font-weight: 700;
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .settingsBox {
+    width: 920px;
+  }
+}
