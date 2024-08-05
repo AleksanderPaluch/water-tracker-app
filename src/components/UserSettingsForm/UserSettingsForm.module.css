@@ -14,15 +14,13 @@
   /* border: 1px solid blue; */
 }
 
-.uploadBox {
+.uploadBtn {
+  display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  
-}
 
-.uploadBtn {
   border: none;
   background-color: inherit;
   padding: 0;
@@ -34,17 +32,181 @@
   color: #323f47;
 }
 
-.genderBox{
+.genderBox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+  /* flex-direction: column; */
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+}
+
+.radioInput {
+  accent-color: var(--blue);
+  width: 20px;
+  height: 20px;
+}
+
+.radioLabelText {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+
+.labelText {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  margin-bottom: 8px;
+  
+}
+
+.labelBoldText {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+
+/* .dataBox {
   display: flex;
   flex-direction: column;
+} */
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.span {
+  display: flex;
+  margin-top: 8px;
+  color: var(--green);
+  font-weight: bold;
+  margin-left: 4px;
+  font-size: 16px;
+}
+
+.formInput {
+  padding: 14px 16px;
+  border-radius: 15px;
+  outline: none;
+  border: solid 1px;
+  border-color: rgba(47, 47, 47, 0.15);
+  background-color: inherit;
+  color: var(--grey);
+  font-size: 14px;
+}
+
+.formInput:focus {
+  border-color: #2f2f2f99;
+}
+
+
+.explText {
+  border: 1px solid #E0E0E0;
+  border-radius: 15px;
+  padding: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: #828282;
+  margin-bottom: 8px;
+  
+}
+
+
+.errorMessage {
+  /* position: absolute; */
+  color: var(--red);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+
+.formBtn {
+  margin-top: 24px;
+  width: 100%;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 14px;
+  background-color: var(--green);
+  border: none;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 30px;
+
+  transition: var(--animation);
+}
+
+.formBtn:hover {
+  background-color: var(--greenHover);
+}
+
+.exclamation {
+  color: var(--green);
+  font-size: 15px;
 }
 
 @media screen and (min-width: 768px) {
-    .text {
-        font-size: 16px;
-    }
-    .icon {
-        width: 20px;
-        height: 20px;
-    }
+  .text {
+    font-size: 16px;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  .labelText {
+    font-size: 17px;
+  }
+
+  .labelBoldText {
+    font-size: 17px;
+  }
+
+  .errorMessage {
+    font-size: 17px;
+  }
+
+  .formInput {
+    padding: 18px;
+    font-size: 17px;
+  }
+
+  .span {
+    
+    
+    color: var(--green);
+    font-weight: bold;
+    margin-left: 4px;
+    font-size: 19px;
+  }
+
+  .genderInfoBox {
+    display: flex;
+
+  }
+
+  .explText {
+    font-size: 17px;
+  }
+
+  .exclamation {
+    font-size: 17px;
+  }
+
+  .formBtn {
+    width: 141px;
+    padding: 18px;
+    font-size: 18px;
+  }
 }
