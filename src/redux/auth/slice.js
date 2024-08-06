@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { apiRegisterUser } from "./operations";
 
 const INITIAL_STATE = {
   user: {
@@ -17,12 +17,20 @@ const authSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {
-
-
-  },
-
-  
+  reducers: {},
+  extraReducers: (builder) =>
+    builder
+      .addCase(apiRegisterUser.pending, (state) => {
+        state.isLoggedIn = false;
+      })
+      .addCase(apiRegisterUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(apiRegisterUser.rejected, (state) => {
+        state.isLoggedIn = false;
+      }),
 });
 
 // Редюсер слайсу
