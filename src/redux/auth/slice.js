@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   user: {
-    name: null,
     email: null,
   },
   token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
+  isSignedIn: false,
+  isLoading: false,
+  isError: null,
 };
 
 const authSlice = createSlice({
@@ -19,13 +19,11 @@ const authSlice = createSlice({
 
   reducers: {
 
-    updateUser(state, action) {
-      state.user = action.payload;
-    },
+
   },
 
   
 });
-export const { updateUser } = authSlice.actions;
+
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;

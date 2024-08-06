@@ -1,4 +1,4 @@
 export const selectWaterDaily = (state) => {
-    console.log('state in selector: ', state.water);
+    console.log('state in selector: ', state);
     return state.water.waterDaily;
   };
