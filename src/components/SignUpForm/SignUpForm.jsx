@@ -38,10 +38,6 @@ const INITIAL_FORM_DATA = {
 const SignUpForm = () => {
   const dispatch = useDispatch();
 
-
-
-
-
   const [isVisible, setIsVisible] = useState(false);
   const [isRepeatVisible, setIsRepeatVisible] = useState(false);
   const togglePasswordVisibility = () => {
@@ -53,12 +49,12 @@ const SignUpForm = () => {
 
   //   const dispatch = useDispatch();
 
-    const registerUser = (formData, formActions) => {
-      dispatch(apiRegisterUser(formData));
-      console.log(formData);
-          formActions.setSubmitting(false);
-          formActions.resetForm();
-    };
+  const registerUser = (formData, formActions) => {
+    dispatch(apiRegisterUser(formData));
+    console.log("form");
+    formActions.setSubmitting(false);
+    formActions.resetForm();
+  };
 
   return (
     <div className={css.formBox}>

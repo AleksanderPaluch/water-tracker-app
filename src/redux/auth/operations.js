@@ -3,13 +3,14 @@ import {
   requestLogIn,
   requestLogOut,
   requestSignUp,
-} from "../services/services";
+} from "../services/instace";
 
 export const apiRegisterUser = createAsyncThunk(
   "auth/register",
   async (formData, thunkAPI) => {
     try {
       const data = await requestSignUp(formData);
+      console.log("sanka");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(

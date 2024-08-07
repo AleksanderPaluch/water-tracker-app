@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "http://localhost:3000/api",
 });
 
 
 
 export const requestSignUp = async (formData) => {
-    console.log(formData);
+    console.log("instance");
   const { data } = await instance.post("/users/register", formData);
   return data;
 };
