@@ -51,7 +51,6 @@ const SignUpForm = () => {
 
   const registerUser = (formData, formActions) => {
     dispatch(apiRegisterUser(formData));
-    console.log("form");
     formActions.setSubmitting(false);
     formActions.resetForm();
   };
@@ -65,7 +64,7 @@ const SignUpForm = () => {
       >
         {({ submitCount }) => (
           <Form className={css.form}>
-            <h1 className={css.formTitle}>Sign In</h1>
+            <h1 className={css.formTitle}>Sign Up</h1>
             <label className={css.label}>
               <span className={css.labelText}>Email</span>
               <Field

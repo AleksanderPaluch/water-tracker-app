@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { selectIsSignedIn } from "../redux/auth/selectors";
+import { selectIsSignedIn, selectIsSignedUp } from "../redux/auth/selectors";
 
 /**
  * - If the route is restricted and the user is logged in,
@@ -11,8 +11,9 @@ import { selectIsSignedIn } from "../redux/auth/selectors";
 
 const RestrictedRoute = ({ component, redirectTo = "/" }) => {
   const isSignedIn = useSelector(selectIsSignedIn);
+  const isSignedUp = useSelector(selectIsSignedUp);
 
-  return isSignedIn ? <Navigate to={redirectTo} /> : component;
+  return isSignedUp || isSignedIn ? <Navigate to={redirectTo} /> : component;
 };
 
 export default RestrictedRoute;

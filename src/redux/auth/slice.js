@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   },
   token: null,
   isSignedIn: false,
+  isSignedUp: false,
   isLoading: false,
   isError: null,
 };
@@ -34,8 +35,8 @@ const authSlice = createSlice({
       .addCase(apiRegisterUser.pending, handlePending)
       .addCase(apiRegisterUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isSignedIn = true;
+
+        state.isSignedUp = true;
         state.isLoading = false;
       })
       .addCase(apiRegisterUser.rejected, handleRejected)
@@ -55,7 +56,7 @@ const authSlice = createSlice({
 
       .addCase(apiLogOutUser.pending, handlePending)
       .addCase(apiLogOutUser.fulfilled, (state) => {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
         state.user = INITIAL_STATE.user;
         state.token = null;
         state.isSignedIn = false;

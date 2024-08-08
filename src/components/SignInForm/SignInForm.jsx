@@ -11,7 +11,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: Yup.string().min(8)
+  password: Yup.string().min(1)
   .required("Password is required"),
 });
 
