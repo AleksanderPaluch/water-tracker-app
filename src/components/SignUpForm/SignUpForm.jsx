@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 
+
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
 
@@ -36,6 +37,8 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignUpForm = () => {
+
+
   const dispatch = useDispatch();
 
   const [isVisible, setIsVisible] = useState(false);
