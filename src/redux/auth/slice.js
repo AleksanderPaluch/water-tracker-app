@@ -36,7 +36,7 @@ const authSlice = createSlice({
       .addCase(apiRegisterUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
 
-        state.isSignedIn = true;
+        
         state.isLoading = false;
       })
       .addCase(apiRegisterUser.rejected, handleRejected)

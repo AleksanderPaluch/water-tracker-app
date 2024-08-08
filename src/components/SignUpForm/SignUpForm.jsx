@@ -1,9 +1,9 @@
 import css from "./SignUpForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Icon from "../Icon/Icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 
@@ -38,7 +38,7 @@ const INITIAL_FORM_DATA = {
 
 const SignUpForm = () => {
 
-
+const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -50,12 +50,13 @@ const SignUpForm = () => {
     setIsRepeatVisible(!isRepeatVisible);
   };
 
-  //   const dispatch = useDispatch();
+
 
   const registerUser = (formData, formActions) => {
     dispatch(apiRegisterUser(formData));
     formActions.setSubmitting(false);
     formActions.resetForm();
+    navigate("/signin");
   };
 
   return (
