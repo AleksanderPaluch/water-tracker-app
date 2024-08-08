@@ -1,4 +1,8 @@
-export const selectUser = (state) => {
-    console.log('state in selector: ', state.auth);
-    return state.auth.user;
-  };
+export const selectIsSignedIn = (state) => {
+  return state.auth.isSignedIn;
+};
+
+
+export const selectToken = (state) => {
+  state.auth.token;
+};

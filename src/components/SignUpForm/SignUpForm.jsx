@@ -1,9 +1,13 @@
 import css from "./SignUpForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Icon from "../Icon/Icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { apiRegisterUser } from "../../redux/auth/operations";
+
+
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
 
@@ -33,6 +37,10 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignUpForm = () => {
+
+const navigate = useNavigate()
+  const dispatch = useDispatch();
+
   const [isVisible, setIsVisible] = useState(false);
   const [isRepeatVisible, setIsRepeatVisible] = useState(false);
   const togglePasswordVisibility = () => {
@@ -42,27 +50,25 @@ const SignUpForm = () => {
     setIsRepeatVisible(!isRepeatVisible);
   };
 
-  //   const dispatch = useDispatch();
 
-  //   const loginUser = (formData, formActions) => {
-  //     dispatch(apiLoginUser(formData));
-  //     formActions.resetForm();
-  //   };
+
+  const registerUser = (formData, formActions) => {
+    dispatch(apiRegisterUser(formData));
+    formActions.setSubmitting(false);
+    formActions.resetForm();
+    navigate("/signin");
+  };
 
   return (
     <div className={css.formBox}>
       <Formik
         validationSchema={validationSchema}
         initialValues={INITIAL_FORM_DATA}
-        onSubmit={(formData, formActions) => {
-          console.log(formData);
-          formActions.setSubmitting(false);
-          formActions.resetForm();
-        }}
+        onSubmit={registerUser}
       >
         {({ submitCount }) => (
           <Form className={css.form}>
-            <h1 className={css.formTitle}>Sign In</h1>
+            <h1 className={css.formTitle}>Sign Up</h1>
             <label className={css.label}>
               <span className={css.labelText}>Email</span>
               <Field

@@ -5,6 +5,7 @@ import "./App.css";
 import Layout from "../Layout/Layout";
 import PrivateRoute from "../PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute";
+import { useRefreshUser } from "../../hooks/RefreshUser";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -18,6 +19,8 @@ const ForgotPasswordPage = lazy(() =>
 );
 
 function App() {
+  useRefreshUser();
+
   return (
     <>
       <Layout>
@@ -48,7 +51,7 @@ function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="users/verify/:verificationToken" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </>

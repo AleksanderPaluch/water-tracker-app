@@ -1,14 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { apiLoginUser, apiLogOutUser, apiRegisterUser } from "./operations";
 
 const INITIAL_STATE = {
   user: {
-    name: null,
     email: null,
   },
   token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
+  isSignedIn: false,
+  
+  isLoading: false,
+  isError: null,
+};
+
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  (state.isLoading = false), (state.error = action.payload);
 };
 
 const authSlice = createSlice({
@@ -17,15 +26,44 @@ const authSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {
+  reducers: {},
+  extraReducers: (builder) =>
+    builder
 
-    updateUser(state, action) {
-      state.user = action.payload;
-    },
-  },
+      // REGISTER USER //
 
-  
+      .addCase(apiRegisterUser.pending, handlePending)
+      .addCase(apiRegisterUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+
+        
+        state.isLoading = false;
+      })
+      .addCase(apiRegisterUser.rejected, handleRejected)
+
+      // LOGIN USER //
+
+      .addCase(apiLoginUser.pending, handlePending)
+      .addCase(apiLoginUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isSignedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(apiLoginUser.rejected, handleRejected)
+
+      // LOG OUT USER //
+
+      .addCase(apiLogOutUser.pending, handlePending)
+      .addCase(apiLogOutUser.fulfilled, (state) => {
+        localStorage.removeItem("token");
+        state.user = INITIAL_STATE.user;
+        state.token = null;
+        state.isSignedIn = false;
+        state.isLoading = false;
+      })
+      .addCase(apiLogOutUser.rejected, handleRejected),
 });
-export const { updateUser } = authSlice.actions;
+
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;
