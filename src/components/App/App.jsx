@@ -5,7 +5,10 @@ import "./App.css";
 import Layout from "../Layout/Layout";
 import PrivateRoute from "../PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute";
-import { useRefreshUser } from "../../hooks/useRefreshUser"
+import {useRefreshUser} from "../../hooks/RefreshUser";
+
+
+
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -19,9 +22,13 @@ const ForgotPasswordPage = lazy(() =>
 );
 
 function App() {
+  useRefreshUser()
+
+
+
   return (
     <>
-      useRefreshUser()
+     
       <Layout>
         <Routes>
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
