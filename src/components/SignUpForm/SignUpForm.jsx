@@ -3,10 +3,11 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import Icon from "../Icon/Icon";
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 
+import toast from "react-hot-toast";
 
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
@@ -37,8 +38,7 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignUpForm = () => {
-
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -50,13 +50,21 @@ const navigate = useNavigate()
     setIsRepeatVisible(!isRepeatVisible);
   };
 
-
-
-  const registerUser = (formData, formActions) => {
-    dispatch(apiRegisterUser(formData));
+  const registerUser = async (formData, formActions) => {
     formActions.setSubmitting(false);
     formActions.resetForm();
-    navigate("/signin");
+
+    try {
+      await dispatch(apiRegisterUser(formData)).unwrap();
+      toast.success("Operation successful!", {
+        duration: 4000,
+      });
+      navigate("/signin");
+    } catch (error) {
+      toast.error(error || "Failed to sign up", {
+        duration: 4000,
+      });
+    }
   };
 
   return (

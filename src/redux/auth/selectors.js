@@ -6,3 +6,7 @@ export const selectIsSignedIn = (state) => {
 export const selectToken = (state) => {
   state.auth.token;
 };
+export const selectError = (state) => {
+
+  return state.auth.isError;
+};
