@@ -4,12 +4,13 @@ import css from "./DeleteWaterModal.module.css";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 
+
 const DeleteWaterModal = ({ closeModal }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleDelete = async () => {
     try {
-      //  await dispatch(apiAddWater(formData)).unwrap();
+      //  await dispatch(apiDeleteWater()).unwrap();
       toast.success("The specified amount of water has been removed.", {
         duration: 4000,
       });
@@ -36,7 +37,7 @@ const DeleteWaterModal = ({ closeModal }) => {
         <button onClick={handleDelete} className={css.deleteBtn}>
           Delete
         </button>
-        <button onClick={closeModal()} className={css.cancelBtn}>
+        <button onClick={closeModal} className={css.cancelBtn}>
           Cancel
         </button>
       </div>
