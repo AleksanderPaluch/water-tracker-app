@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import Icon from "../Icon/Icon";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 
