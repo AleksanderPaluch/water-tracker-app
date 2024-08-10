@@ -5,20 +5,29 @@ import BaseModal from "../BaseModal/BaseModal";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
-const WaterItem = ({amount, time}) => {
-  const [activeModal, setActiveModal] = useState(null);
+const WaterItem = ({ amount, time }) => {
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-  const handleButtonClick = (modalName) => {
-    setActiveModal(modalName);
-  };
+  function openEditModal() {
+    setIsEditOpen(true);
+  }
 
-  function closeModal() {
-    setActiveModal(null);
+  function closeEditModal() {
+    setIsEditOpen(false);
+  }
+
+  function openDeleteModal() {
+    setIsDeleteOpen(true);
+  }
+
+  function closeDeleteModal() {
+    setIsDeleteOpen(false);
   }
 
   return (
     <div className={css.waterItemBox}>
-      <Icon width="38   " height="38" iconName="glass" styles={css.glass} />
+      <Icon width="38" height="38" iconName="glass" styles={css.glass} />
       <div className={css.textBox}>
         <p className={css.text}>{amount}ml</p>
         <p className={css.text}>{time} </p>
@@ -27,7 +36,7 @@ const WaterItem = ({amount, time}) => {
         <button
           className={css.iconBtn}
           type="button"
-          onClick={() => handleButtonClick("edit")}
+          onClick={() => openEditModal()}
         >
           {" "}
           <Icon width="14" height="14" iconName="edit" styles={css.icons} />
@@ -35,23 +44,27 @@ const WaterItem = ({amount, time}) => {
         <button
           className={css.iconBtn}
           type="button"
-          onClick={() => handleButtonClick("delete")}
+          onClick={() => openDeleteModal()}
         >
           {" "}
           <Icon width="14" height="14" iconName="trash" styles={css.icons} />
         </button>
       </div>
-      {activeModal === "edit" && (
-        <BaseModal isOpen={true} onClose={closeModal}>
-       <WaterModal isEdit={true} editTime={time} editAmount={amount} closeModal={closeModal}/>
+      {isEditOpen && (
+        <BaseModal isOpen={true} onClose={closeEditModal}>
+          <WaterModal
+            isEdit={true}
+            editTime={time}
+            editAmount={amount}
+            closeModal={closeEditModal}
+          />
         </BaseModal>
       )}
-      {activeModal === "delete" && (
-        <BaseModal isOpen={true} onClose={closeModal}>
-       <DeleteWaterModal closeModal={closeModal}/>
+      {isDeleteOpen && (
+        <BaseModal isOpen={true} onClose={closeDeleteModal}>
+          <DeleteWaterModal closeModal={closeDeleteModal} />
         </BaseModal>
       )}
-      
     </div>
   );
 };

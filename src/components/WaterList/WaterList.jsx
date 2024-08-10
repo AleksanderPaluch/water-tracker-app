@@ -6,6 +6,7 @@ import { selectWaterDaily } from "../../redux/water/selectors";
 const WaterList = () => {
   const waterList = useSelector(selectWaterDaily);
 
+
   return (
     <div className={css.waterListBox}>
       <ul className={css.waterList}>

@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaExclamation } from "react-icons/fa";
 import PropTypes from "prop-types"
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
   gender: Yup.string().required("Please pick one"),
@@ -26,6 +27,26 @@ const UserSettingsForm = ({ closeModal }) => {
   const userActiveTime = 1.5;
   const waterToDrink = 2;
   const usergender = ""
+
+
+  const handleChanges = async (formData, formActions) => {
+
+    try {
+      //  await dispatch(apiAddWater(formData)).unwrap();
+      toast.success("Profile Updated!, Your changes have been saved successfully.", {
+        duration: 4000,
+      });
+    } catch (error) {
+      toast.error("Failed to update profile", {
+        duration: 4000,
+      });
+    }
+
+
+    formActions.resetForm();
+    closeModal();
+  }
+
 
   return (
     <div className={css.formBox}>
@@ -49,10 +70,7 @@ const UserSettingsForm = ({ closeModal }) => {
           avtiveTime: userActiveTime,
           water: waterToDrink
         }}
-        onSubmit={(formData) => {
-          console.log(formData);
-          closeModal();
-        }}
+        onSubmit={handleChanges}
       >
         <Form className={css.form}>
           <div className={css.flexBox}>

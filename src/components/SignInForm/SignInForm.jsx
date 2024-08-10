@@ -6,6 +6,7 @@ import Icon from "../Icon/Icon";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiLoginUser } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -29,11 +30,26 @@ const SignInForm = () => {
 
   const dispatch = useDispatch();
 
-  const loginUser = (formData, formActions) => {
-    console.log(formData);
-    dispatch(apiLoginUser(formData));
+  const loginUser = async (formData, formActions) => {
+   
+   
     formActions.setSubmitting(false);
     formActions.resetForm();
+
+
+    try {
+      await  dispatch(apiLoginUser(formData));
+      toast.success(
+        "Great to see you! You’ve successfully signed in",
+        {
+          duration: 4000,
+        }
+      );
+    } catch (error) {
+      toast.error(error || "Failed to log in", {
+        duration: 4000,
+      });
+    }
   };
 
   return (

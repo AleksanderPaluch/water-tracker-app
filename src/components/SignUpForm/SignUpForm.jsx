@@ -56,13 +56,16 @@ const SignUpForm = () => {
 
     try {
       await dispatch(apiRegisterUser(formData)).unwrap();
-      toast.success("Operation successful!", {
-        duration: 4000,
-      });
+      toast.success(
+        "Your account has been created! Please check your email and confirm your address to complete the registration process.",
+        {
+          duration: 5000,
+        }
+      );
       navigate("/signin");
     } catch (error) {
       toast.error(error || "Failed to sign up", {
-        duration: 4000,
+        duration: 5000,
       });
     }
   };

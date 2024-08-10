@@ -5,8 +5,8 @@
 .overlay {
   display: flex;
   justify-content: center;
-  align-items: normal;
-  padding-top: 64px;
+  align-items: center;
+
  
   width: 100%;
   height: 100%;
