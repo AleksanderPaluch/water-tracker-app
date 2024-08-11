@@ -8,6 +8,7 @@ import RestrictedRoute from "../RestrictedRoute";
 import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { selectIsLoading } from "../../redux/auth/selectors";
+import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";
 
 // import { useRefreshUser } from "../../hooks/RefreshUser";
 
@@ -32,6 +33,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/" element={<HomePage />} />
           <Route
             path="/signup"

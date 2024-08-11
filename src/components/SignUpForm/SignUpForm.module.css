@@ -26,6 +26,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 22px;
 }
 
 .labelText {
@@ -36,7 +37,7 @@
 }
 
 .formInput {
-  margin-bottom: 16px;
+ 
   padding: 16px;
   border-radius: 15px;
   outline: none;
@@ -91,9 +92,12 @@
 }
 
 .errorMessage {
+  position: absolute;
+  top: 82px;
   color: var(--red);
   font-size: 0.875em;
-  margin-top: 0;
+  font-size: 14px;
+
 }
 @media screen and (min-width: 768px) {
   .form {
@@ -120,6 +124,10 @@
     top: 39px;
     right: 22px;
     cursor: pointer;
+  }
+
+  .errorMessage {
+    font-size: 15px;
   }
 }
 

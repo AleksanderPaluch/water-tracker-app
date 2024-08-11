@@ -35,12 +35,13 @@ const LogOutModal = ({ closeModal }) => {
 
       localStorage.setItem("persist:root", JSON.stringify(parsedState));
     }
-
+    
     navigate("/");
     toast.success("You have been signed out. See you next time!", {
       duration: 5000,
     });
     closeModal();
+    window.location.reload(); // Додано перезавантаження сторінки
   };
 
   return (
