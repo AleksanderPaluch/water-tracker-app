@@ -1,11 +1,12 @@
 import css from "./ResetPasswordForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import Icon from "../Icon/Icon";
 import { useState } from "react";
+import { apiResetPassword } from "../../redux/auth/operations";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -24,13 +25,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const INITIAL_FORM_DATA = {
-    password: "",
+  password: "",
   confirmPassword: "",
 };
 
 const ResetPasswordForm = () => {
-    const [isVisible, setIsVisible] = useState(false);
-    const [isRepeatVisible, setIsRepeatVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isRepeatVisible, setIsRepeatVisible] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,25 +41,23 @@ const ResetPasswordForm = () => {
   const toggleRepeatPasswordVisibility = () => {
     setIsRepeatVisible(!isRepeatVisible);
   };
-
+  const { resetToken } = useParams();
 
   const handleResetPassword = async (formData, formActions) => {
-    formActions.resetForm();
-    formActions.setSubmitting(false);
-
     try {
-      // await dispatch(apiResetPassword(formData)).unwrap();
-      toast.success(
-        "Check your email! We sent you a link to reset your password.",
-        {
-          duration: 5000,
-        }
-      );
+      await dispatch(apiResetPassword({ ...formData, resetToken })).unwrap();
+
+      toast.success("Your password has been successfully updated!", {
+        duration: 5000,
+      });
       navigate("/signin");
     } catch (error) {
       toast.error(error || "Failed  sent you a link to reset your password.", {
         duration: 5000,
       });
+    } finally {
+      formActions.resetForm();
+      formActions.setSubmitting(false);
     }
   };
 
@@ -76,7 +75,7 @@ const ResetPasswordForm = () => {
               <span className={css.labelText}>Password</span>
               <Field
                 className={css.formInput}
-                type={isVisible ? "string" : "password"}
+                type={isVisible ? "text" : "password"}
                 name="password"
                 autoComplete="off"
                 placeholder="Enter your password"
@@ -94,19 +93,19 @@ const ResetPasswordForm = () => {
                 />
               </button>
               {submitCount > 0 && (
-              <ErrorMessage
-                name="password"
-                component="span"
-                className={css.errorMessage}
-              />
-            )}
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className={css.errorMessage}
+                />
+              )}
             </label>
-          
+
             <label className={css.label}>
               <span className={css.labelText}>Repeat password</span>
               <Field
                 className={css.formInput}
-                type={isRepeatVisible ? "string" : "password"}
+                type={isRepeatVisible ? "text" : "password"}
                 name="confirmPassword"
                 autoComplete="off"
                 placeholder="Repeat password"
@@ -124,14 +123,13 @@ const ResetPasswordForm = () => {
                 />
               </button>
               {submitCount > 0 && (
-              <ErrorMessage
-                name="confirmPassword"
-                component="span"
-                className={css.errorMessage}
-              />
-            )}
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="span"
+                  className={css.errorMessage}
+                />
+              )}
             </label>
-          
 
             <button
               className={css.formBtn}

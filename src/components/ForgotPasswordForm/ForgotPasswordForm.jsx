@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { apiSendResetMail } from "../../redux/auth/operations";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,7 +24,7 @@ const navigate = useNavigate();
     formActions.resetForm();
 
     try {
-      // await dispatch(apiSendRestMail(formData)).unwrap();
+      await dispatch(apiSendResetMail(formData)).unwrap();
       toast.success(
         "Check your email! We sent you a link to reset your password.",
         {

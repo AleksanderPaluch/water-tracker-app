@@ -42,3 +42,11 @@ export const requestLogOut = async (formData) => {
   const { data } = await instance.post("/users/logout", formData);
   return data;
 };
+export const requestResetMail = async (formData) => {
+  const { data } = await instance.post("/users/reset-mail", formData);
+  return data;
+};
+export const requestChangePassword = async (formData) => {
+  const { data } = await instance.post("/users/change-password", formData);
+  return data;
+};

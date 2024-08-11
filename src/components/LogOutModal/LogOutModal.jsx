@@ -37,11 +37,13 @@ const LogOutModal = ({ closeModal }) => {
     }
     
     navigate("/");
+ 
+    closeModal();
+    window.location.reload(); 
+    // Додано перезавантаження сторінки
     toast.success("You have been signed out. See you next time!", {
       duration: 5000,
     });
-    closeModal();
-    window.location.reload(); // Додано перезавантаження сторінки
   };
 
   return (

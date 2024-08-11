@@ -32,8 +32,8 @@ function App() {
       {isLoading && <Loader />}
       <Layout>
         <Routes>
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/reset-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password/:resetToken" element={<ResetPasswordPage />} />
           <Route path="/" element={<HomePage />} />
           <Route
             path="/signup"

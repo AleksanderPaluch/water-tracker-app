@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  requestChangePassword,
   requestLogIn,
   requestLogOut,
+  requestResetMail,
   requestSignUp,
 } from "../services/instace";
 
@@ -10,7 +12,7 @@ export const apiRegisterUser = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const data = await requestSignUp(formData);
-      console.log("sanka");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -48,4 +50,32 @@ export const apiLogOutUser = createAsyncThunk(
   }
 );
 
+export const apiSendResetMail = createAsyncThunk(
+  "auth/resetMail",
+  async (formData, thunkAPI) => {
+    try {
+      const data = await requestResetMail(formData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response.data.message || error.message
+      );
+    }
+  }
+);
 
+export const apiResetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (formData, thunkAPI) => {
+    try {
+      console.log(formData);
+      const data = await requestChangePassword(formData);
+  
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response.data.message || error.message
+      );
+    }
+  }
+);

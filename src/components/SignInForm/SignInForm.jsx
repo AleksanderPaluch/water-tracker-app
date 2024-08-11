@@ -119,7 +119,7 @@ const SignInForm = () => {
             </label>
             
             <p className={css.forgotLink}>
-              <Link className={css.forgotLink} to="/forgot-password">
+              <Link className={css.forgotLink} to="/reset-password">
                 Forgot password?
               </Link>
             </p>
