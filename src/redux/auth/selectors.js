@@ -10,3 +10,7 @@ export const selectError = (state) => {
 
   return state.auth.isError;
 };
+
+export const selectIsLoading = (state) => {
+  return state.auth.isLoading;
+}

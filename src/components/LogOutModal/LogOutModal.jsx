@@ -41,8 +41,6 @@ const LogOutModal = ({ closeModal }) => {
       duration: 5000,
     });
     closeModal();
-
-    window.location.reload(); // Додано перезавантаження сторінки для оновлення стану
   };
 
   return (
