@@ -16,27 +16,33 @@ const LogOutModal = ({ closeModal }) => {
     } catch (error) {
       console.log(error);
     }
-    const persistedState = localStorage.getItem("persist:root");
-    console.log('persistedState: ', persistedState);
 
-   
+    const persistedState = localStorage.getItem("persist:root");
+
     if (persistedState) {
       const parsedState = JSON.parse(persistedState);
-      console.log(parsedState.auth);
-      if (parsedState.auth) {
-        parsedState.auth = JSON.stringify({
-          ...JSON.parse(parsedState.auth),
-          token: null,
-        });
-        localStorage.setItem("persist:root", JSON.stringify(parsedState));
-        console.log("User logged out, token set to null");
-      }
+
+      const updatedAuthState = {
+        ...JSON.parse(parsedState.auth),
+        token: null,
+        isSignedIn: false,
+        isLoading: false,
+        isError: false,
+        error: null,
+      };
+
+      parsedState.auth = JSON.stringify(updatedAuthState);
+
+      localStorage.setItem("persist:root", JSON.stringify(parsedState));
     }
+
     navigate("/");
     toast.success("You have been signed out. See you next time!", {
       duration: 5000,
     });
     closeModal();
+
+    window.location.reload(); // Додано перезавантаження сторінки для оновлення стану
   };
 
   return (
