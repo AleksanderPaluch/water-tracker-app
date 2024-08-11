@@ -7,9 +7,9 @@ const INITIAL_STATE = {
   },
   token: null,
   isSignedIn: false,
-  
   isLoading: false,
   isError: null,
+  error: null,
 };
 
 const handlePending = (state) => {
@@ -35,9 +35,7 @@ const authSlice = createSlice({
       .addCase(apiRegisterUser.pending, handlePending)
       .addCase(apiRegisterUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-
-        
-        state.isLoading = false;
+        (state.isError = false), (state.isLoading = false);
       })
       .addCase(apiRegisterUser.rejected, handleRejected)
 
@@ -49,6 +47,8 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isSignedIn = true;
         state.isLoading = false;
+        state.isError = false;
+        state.error = null;
       })
       .addCase(apiLoginUser.rejected, handleRejected)
 
@@ -61,6 +61,7 @@ const authSlice = createSlice({
         state.token = null;
         state.isSignedIn = false;
         state.isLoading = false;
+        state.isError = false;
       })
       .addCase(apiLogOutUser.rejected, handleRejected),
 });

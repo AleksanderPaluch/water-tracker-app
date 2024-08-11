@@ -3,10 +3,11 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import Icon from "../Icon/Icon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 
+import toast from "react-hot-toast";
 
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
@@ -37,8 +38,7 @@ const INITIAL_FORM_DATA = {
 };
 
 const SignUpForm = () => {
-
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -50,13 +50,24 @@ const navigate = useNavigate()
     setIsRepeatVisible(!isRepeatVisible);
   };
 
-
-
-  const registerUser = (formData, formActions) => {
-    dispatch(apiRegisterUser(formData));
+  const registerUser = async (formData, formActions) => {
     formActions.setSubmitting(false);
     formActions.resetForm();
-    navigate("/signin");
+
+    try {
+      await dispatch(apiRegisterUser(formData)).unwrap();
+      toast.success(
+        "Your account has been created! Please check your email and confirm your address to complete the registration process.",
+        {
+          duration: 5000,
+        }
+      );
+      navigate("/signin");
+    } catch (error) {
+      toast.error(error || "Failed to sign up", {
+        duration: 5000,
+      });
+    }
   };
 
   return (
@@ -102,7 +113,7 @@ const navigate = useNavigate()
                 <Icon
                   width="20"
                   height="20"
-                  iconName="eye-off"
+                  iconName={!isVisible ? "eye-off" : "eye"}
                   styles={css.settings}
                 />
               </button>

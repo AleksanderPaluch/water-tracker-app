@@ -6,6 +6,9 @@ import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { useState } from "react";
 import Icon from "../Icon/Icon";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+
 
 const validationSchema = Yup.object().shape({
   water: Yup.number()
@@ -22,10 +25,26 @@ const INITIAL_FORM_DATA = {
 
 const WaterModal = ({ isEdit = false, closeModal, editTime, editAmount }) => {
   const [amount, setAmount] = useState(150);
-
+  const dispatch = useDispatch();
   const getCurrentTime = () => {
     const now = new Date();
     return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  };
+
+  const handleAddingWater = async (formData, formActions) => {
+  
+    try {
+      //  await dispatch(apiAddWater(formData)).unwrap();
+      toast.success("Amount of water has been added", {
+        duration: 4000,
+      });
+    } catch (error) {
+      toast.error("Failed to add water", {
+        duration: 4000,
+      });
+    }
+    formActions.resetForm();
+    closeModal();
   };
 
   return (
@@ -48,11 +67,7 @@ const WaterModal = ({ isEdit = false, closeModal, editTime, editAmount }) => {
           time: isEdit ? editTime : new Date(),
           water: isEdit ? editAmount : amount,
         }}
-        onSubmit={(formData, formActions) => {
-          console.log(formData);
-          
-          closeModal();
-        }}
+        onSubmit={handleAddingWater}
       >
         {({ setFieldValue }) => (
           <Form className={css.form}>

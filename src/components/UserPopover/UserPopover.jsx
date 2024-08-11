@@ -6,14 +6,23 @@ import LogOutModal from "../LogOutModal/LogOutModal";
 import UserSettingsModal from "../UserSettingsModal/UserSettingsModal";
 
 const UserPopover = () => {
-  const [activeModal, setActiveModal] = useState(null);
+  const [settingsModalActive, setSettingsModalActive] = useState(false);
+  const [logoutModalActive, setlogoutModalActive] = useState(false);
 
-  const handleButtonClick = (modalName) => {
-    setActiveModal(modalName);
+  const openSettingsModal = () => {
+    setSettingsModalActive(true);
   };
 
-  function closeModal() {
-    setActiveModal(null);
+  function closeSettingsModal() {
+    setSettingsModalActive(false);
+  }
+
+  const openLogoutModal = () => {
+    setlogoutModalActive(true);
+  };
+
+  function closeLogoutModal() {
+    setlogoutModalActive(false);
   }
 
   return (
@@ -22,7 +31,7 @@ const UserPopover = () => {
       <div className={css.userPopoverBox}>
         <button
           type="button"
-          onClick={() => handleButtonClick("settings")}
+          onClick={openSettingsModal}
           className={css.userPopoverBtn}
         >
           {" "}
@@ -36,7 +45,7 @@ const UserPopover = () => {
         </button>
         <button
           type="button"
-          onClick={() => handleButtonClick("log-out")}
+          onClick={openLogoutModal}
           className={css.userPopoverBtn}
         >
           {" "}
@@ -49,17 +58,13 @@ const UserPopover = () => {
           Log out{" "}
         </button>
       </div>
-      {activeModal === "settings" && (
-        <BaseModal isOpen={true} onClose={closeModal}>
-       <UserSettingsModal closeModal={closeModal} />
-        </BaseModal>
-      )}
-      {activeModal === "log-out" && (
-        <BaseModal onClose={closeModal} isOpen={true}>
-          {" "}
-          <LogOutModal closeModal={closeModal} />{" "}
-        </BaseModal>
-      )}
+      <BaseModal isOpen={settingsModalActive} onClose={closeSettingsModal}>
+        <UserSettingsModal closeModal={closeSettingsModal} />
+      </BaseModal>
+      <BaseModal onClose={closeLogoutModal} isOpen={logoutModalActive}>
+        {" "}
+        <LogOutModal closeModal={closeLogoutModal} />{" "}
+      </BaseModal>
     </>
   );
 };

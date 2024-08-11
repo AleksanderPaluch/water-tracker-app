@@ -1,5 +1,8 @@
 .settingsBox {
   position: relative;
+  align-items: center;
+  top: 300px;
+
   width: 343px;
   background-color: var(--white);
   border-radius: 15px;
@@ -27,12 +30,9 @@
 }
 
 .iconExit {
- 
   width: 28px;
   height: 28px;
 }
-
-
 
 @media screen and (min-width: 768px) {
   .settingsBox {
@@ -45,7 +45,6 @@
    
   } */
 
-
   .title {
     font-weight: 700;
     font-size: 28px;
@@ -55,5 +54,6 @@
 @media screen and (min-width: 1440px) {
   .settingsBox {
     width: 920px;
+    top: 100px;
   }
 }
