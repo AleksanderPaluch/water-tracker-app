@@ -38,7 +38,7 @@ const SignInForm = () => {
 
 
     try {
-      await  dispatch(apiLoginUser(formData));
+      await  dispatch(apiLoginUser(formData)).unwrap();
       toast.success(
         "Great to see you! You’ve successfully signed in",
         {
@@ -95,7 +95,7 @@ const SignInForm = () => {
                 <Icon
                   width="20"
                   height="20"
-                  iconName="eye-off"
+                  iconName={!isVisible ? "eye-off" : "eye"}
                   styles={css.settings}
                 />
               </button>

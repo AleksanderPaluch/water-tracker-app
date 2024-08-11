@@ -11,23 +11,31 @@ const LogOutModal = ({ closeModal }) => {
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
-
     try {
-      await    dispatch(apiLogOutUser());
-      navigate("/");
-      toast.success(
-        "You have been signed out. See you next time!",
-        {
-          duration: 5000,
-        }
-      );
+      await dispatch(apiLogOutUser()).unwrap();
     } catch (error) {
-      toast.error(error || "Failed to log out", {
-        duration: 5000,
-      });
+      console.log(error);
     }
-  
+    const persistedState = localStorage.getItem("persist:root");
+    console.log('persistedState: ', persistedState);
+
    
+    if (persistedState) {
+      const parsedState = JSON.parse(persistedState);
+      console.log(parsedState.auth);
+      if (parsedState.auth) {
+        parsedState.auth = JSON.stringify({
+          ...JSON.parse(parsedState.auth),
+          token: null,
+        });
+        localStorage.setItem("persist:root", JSON.stringify(parsedState));
+        console.log("User logged out, token set to null");
+      }
+    }
+    navigate("/");
+    toast.success("You have been signed out. See you next time!", {
+      duration: 5000,
+    });
     closeModal();
   };
 

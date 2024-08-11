@@ -113,7 +113,7 @@ const SignUpForm = () => {
                 <Icon
                   width="20"
                   height="20"
-                  iconName="eye-off"
+                  iconName={!isVisible ? "eye-off" : "eye"}
                   styles={css.settings}
                 />
               </button>
