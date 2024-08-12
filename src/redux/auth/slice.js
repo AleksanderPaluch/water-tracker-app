@@ -26,7 +26,17 @@ const authSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {},
+  reducers: {
+
+    logOutUserLocally: (state) => {
+      state.user = null;
+      state.token = null;
+      state.isSignedIn = false;
+      state.isLoading = false;
+      state.isError = false;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) =>
     builder
 
@@ -65,6 +75,6 @@ const authSlice = createSlice({
       })
       .addCase(apiLogOutUser.rejected, handleRejected),
 });
-
+export const { logOutUserLocally } = authSlice.actions;
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;
