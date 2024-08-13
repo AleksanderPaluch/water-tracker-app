@@ -5,6 +5,7 @@ import { apiLogOutUser } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
+import { logOutUserLocally } from "../../redux/auth/slice";
 
 const LogOutModal = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -15,32 +16,21 @@ const LogOutModal = ({ closeModal }) => {
       await dispatch(apiLogOutUser()).unwrap();
     } catch (error) {
       console.log(error);
+      try {
+        await dispatch(logOutUserLocally());
+        console.log("local Log-Out");
+
+      } catch (error) {
+        console.log(error);
+        console.log("failed to logout locally");
+      }
     }
 
-    const persistedState = localStorage.getItem("persist:root");
-
-    if (persistedState) {
-      const parsedState = JSON.parse(persistedState);
-
-      const updatedAuthState = {
-        ...JSON.parse(parsedState.auth),
-        token: null,
-        isSignedIn: false,
-        isLoading: false,
-        isError: false,
-        error: null,
-      };
-
-      parsedState.auth = JSON.stringify(updatedAuthState);
-
-      localStorage.setItem("persist:root", JSON.stringify(parsedState));
-    }
-
+    closeModal();
     navigate("/");
     toast.success("You have been signed out. See you next time!", {
-      duration: 5000,
+      duration: 4000,
     });
-    closeModal();
   };
 
   return (

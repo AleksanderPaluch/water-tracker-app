@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiLoginUser, apiLogOutUser, apiRegisterUser } from "./operations";
+import { apiLoginUser, apiLogOutUser, apiRegisterUser, apiTokenRefresh } from "./operations";
 
 const INITIAL_STATE = {
   user: {
@@ -26,7 +26,17 @@ const authSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {},
+  reducers: {
+
+    logOutUserLocally: (state) => {
+      state.user = null;
+      state.token = null;
+      state.isSignedIn = false;
+      state.isLoading = false;
+      state.isError = false;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) =>
     builder
 
@@ -63,8 +73,19 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(apiLogOutUser.rejected, handleRejected),
-});
+      .addCase(apiLogOutUser.rejected, handleRejected)
 
+      .addCase(apiTokenRefresh.pending, handlePending)
+      .addCase(apiTokenRefresh.fulfilled, (state, action) => {
+        localStorage.setItem("token", action.payload.token);
+      
+        state.token = action.payload.token;
+        console.log(state.token);
+        state.isLoading = false;
+        state.isError = false;
+      })
+      .addCase(apiTokenRefresh.rejected, handleRejected),
+});
+export const { logOutUserLocally } = authSlice.actions;
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;

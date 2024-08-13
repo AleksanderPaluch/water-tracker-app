@@ -45,12 +45,24 @@ const SignInForm = () => {
           duration: 4000,
         }
       );
-    } catch (error) {
-      toast.error(error || "Failed to log in", {
-        duration: 4000,
-      });
+    }   catch (error) {
+
+      console.log(error);
+      console.log(error.message);
+      if (error.message) {
+        // Network error or server is down
+        toast.error("Network error: Unable to reach the server", {
+          duration: 4000,
+        });
+      } else  {
+        // Handle other types of errors (e.g., wrong credentials)
+        toast.error(error || "Failed to log in", {
+          duration: 4000,
+        });
+      }
     }
   };
+
 
   return (
     <div className={css.formBox}>
@@ -70,19 +82,20 @@ const SignInForm = () => {
                 name="email"
                 placeholder="Enter your email"
               />
-            </label>
-            {submitCount > 0 && (
+               {submitCount > 0 && (
               <ErrorMessage
                 name="email"
                 component="span"
                 className={css.errorMessage}
               />
             )}
+            </label>
+           
             <label className={css.label}>
               <span className={css.labelText}>Password</span>
               <Field
                 className={css.formInput}
-                type={isVisible ? "string" : "password"}
+                type={isVisible ? "text" : "password"}
                 name="password"
                 autoComplete="off"
                 placeholder="Enter your password"
@@ -99,16 +112,17 @@ const SignInForm = () => {
                   styles={css.settings}
                 />
               </button>
-            </label>
-            {submitCount > 0 && (
+              {submitCount > 0 && (
               <ErrorMessage
                 name="password"
                 component="span"
                 className={css.errorMessage}
               />
             )}
+            </label>
+            
             <p className={css.forgotLink}>
-              <Link className={css.forgotLink} to="/forgot-password">
+              <Link className={css.forgotLink} to="/reset-password">
                 Forgot password?
               </Link>
             </p>

@@ -1,21 +1,14 @@
-import css from "./SignUpForm.module.css";
+import css from "./ResetPasswordForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 import Icon from "../Icon/Icon";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { apiRegisterUser } from "../../redux/auth/operations";
-
-import toast from "react-hot-toast";
-
-// import { useDispatch } from "react-redux";
-// import { apiLoginUser } from "../../redux/auth/operations";
+import { apiResetPassword } from "../../redux/auth/operations";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters long")
     .matches(/[a-z]/, "Password must contain at least one lowercase letter")
@@ -32,49 +25,42 @@ const validationSchema = Yup.object().shape({
 });
 
 const INITIAL_FORM_DATA = {
-  email: "",
   password: "",
   confirmPassword: "",
 };
 
-const SignUpForm = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
+const ResetPasswordForm = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isRepeatVisible, setIsRepeatVisible] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setIsVisible(!isVisible);
   };
   const toggleRepeatPasswordVisibility = () => {
     setIsRepeatVisible(!isRepeatVisible);
   };
+  const { verificationToken } = useParams();
 
-  const registerUser = async (formData, formActions) => {
-    formActions.setSubmitting(false);
-    formActions.resetForm();
 
+  const handleResetPassword = async (formData, formActions) => {
     try {
-      await dispatch(apiRegisterUser(formData)).unwrap();
-      toast.success(
-        "Your account has been created! Please check your email and confirm your address to complete the registration process.",
-        {
-          duration: 5000,
-        }
-      );
+      await dispatch(
+        apiResetPassword({ ...formData, verificationToken })
+      ).unwrap();
+
+      toast.success("Your password has been successfully updated!", {
+        duration: 5000,
+      });
       navigate("/signin");
-    }  catch (error) {
-      if (error.message) {
-        // Network error or server is down
-        toast.error("Network error: Unable to reach the server", {
-          duration: 4000,
-        });
-      } else {
-        // Handle other types of errors (e.g., wrong credentials)
-        toast.error(error || "Failed to log in", {
-          duration: 4000,
-        });
-      }
+    } catch (error) {
+      toast.error(error || "Failed  sent you a link to reset your password.", {
+        duration: 5000,
+      });
+    } finally {
+      formActions.resetForm();
+      formActions.setSubmitting(false);
     }
   };
 
@@ -83,33 +69,16 @@ const SignUpForm = () => {
       <Formik
         validationSchema={validationSchema}
         initialValues={INITIAL_FORM_DATA}
-        onSubmit={registerUser}
+        onSubmit={handleResetPassword}
       >
         {({ submitCount }) => (
           <Form className={css.form}>
-            <h1 className={css.formTitle}>Sign Up</h1>
-            <label className={css.label}>
-              <span className={css.labelText}>Email</span>
-              <Field
-                className={css.formInput}
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-              />
-              {submitCount > 0 && (
-                <ErrorMessage
-                  name="email"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              )}
-            </label>
-
+            <h1 className={css.formTitle}>Change password</h1>
             <label className={css.label}>
               <span className={css.labelText}>Password</span>
               <Field
                 className={css.formInput}
-                type={isVisible ? "string" : "password"}
+                type={isVisible ? "text" : "password"}
                 name="password"
                 autoComplete="off"
                 placeholder="Enter your password"
@@ -139,7 +108,7 @@ const SignUpForm = () => {
               <span className={css.labelText}>Repeat password</span>
               <Field
                 className={css.formInput}
-                type={isRepeatVisible ? "string" : "password"}
+                type={isRepeatVisible ? "text" : "password"}
                 name="confirmPassword"
                 autoComplete="off"
                 placeholder="Repeat password"
@@ -168,16 +137,23 @@ const SignUpForm = () => {
             <button
               className={css.formBtn}
               type="submit"
-              title="click to register user"
-              aria-label="Register new user"
+              title="click to reset password"
+              aria-label="reset password"
             >
-              Sign Up
+              Send
             </button>
           </Form>
         )}
       </Formik>
+
       <span className={css.redirectText}>
-        Already have account?{" "}
+        Dont have an account?{" "}
+        <Link className={css.redirectLink} to="/signup">
+          Sign Up
+        </Link>
+      </span>
+      <span className={css.redirectText}>
+        Already registered?{" "}
         <Link className={css.redirectLink} to="/signin">
           Sign In
         </Link>
@@ -186,4 +162,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default ResetPasswordForm;

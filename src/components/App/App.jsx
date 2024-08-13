@@ -8,22 +8,19 @@ import RestrictedRoute from "../RestrictedRoute";
 import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { selectIsLoading } from "../../redux/auth/selectors";
-
-// import { useRefreshUser } from "../../hooks/RefreshUser";
+import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";
+import { useRefreshUser } from "../../hooks/RefreshUser";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
-const NotFoundPage = lazy(() =>
-  import("../../pages/NotFoundPage/NotFoundPage")
-);
 const ForgotPasswordPage = lazy(() =>
   import("../../pages/ForgotPasswordPage/ForgotPasswordPage")
 );
 
 function App() {
-  // useRefreshUser();
+  useRefreshUser();
   const isLoading = useSelector(selectIsLoading);
 
   return (
@@ -31,7 +28,11 @@ function App() {
       {isLoading && <Loader />}
       <Layout>
         <Routes>
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ForgotPasswordPage />} />
+          <Route
+            path="/reset-password/:verificationToken"
+            element={<ResetPasswordPage />}
+          />
           <Route path="/" element={<HomePage />} />
           <Route
             path="/signup"
@@ -56,10 +57,6 @@ function App() {
             element={
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
-          />
-          <Route
-            path="users/verify/:verificationToken"
-            element={<NotFoundPage />}
           />
         </Routes>
       </Layout>

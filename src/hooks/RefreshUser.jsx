@@ -1,57 +1,80 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { selectIsSignedIn } from "../redux/auth/selectors";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsSignedIn } from "../redux/auth/selectors";
+import { apiTokenRefresh } from "../redux/auth/operations";
 
 
 
-// // import { userInfo } from '../redux/user/operations';
-// // import { tokenRefresh } from '../redux/auth/operations';
-// // import { useSearchParams } from 'react-router-dom';
-// // import jwtDecode from 'jwt-decode';
+// import { userInfo } from '../redux/user/operations';
+// import { tokenRefresh } from '../redux/auth/operations';
+// import { useSearchParams } from 'react-router-dom';
+import { jwtDecode }  from 'jwt-decode';
 
-// export const useRefreshUser = () => {
-//   const dispatch = useDispatch();
-//   const isSignedIn = useSelector(selectIsSignedIn);
+const isTokenValid = (token) => {
+  if (!token) return false;
 
-//   useEffect(() => {
-//     //   const [searchParams] = useSearchParams();
-//     //   const gToken = searchParams.get('token');
+  try {
+    const { exp } = jwtDecode(token);
+    if (!exp) return false;
 
-//     //   if (gToken) {
-//     //     const decoded = jwtDecode(gToken);
-//     //     const current = new Date();
-//     //     if (decoded.exp * 1000 > current.getTime()) {
-//     //       localStorage.setItem('token', gToken);
-//     //     }
-//     //   }
+ 
+    const expInMillis = exp * 1000;
+    console.log(expInMillis);  // Перевіримо, чи перетворення правильне
+console.log( Date.now());
 
-//     const persistedState = localStorage.getItem("persist:root");
-//     if (persistedState) {
-//       const parsedState = JSON.parse(persistedState);
+console.log(Date.now() < expInMillis);
+    // Перевіряємо, чи строк дії токена ще не минув
+    return Date.now() < expInMillis;
+  } catch (error) {
+    console.error('Invalid token:', error);
+    return false;
+  }
+};
 
-//       if (parsedState.auth) {
-//         const authState = JSON.parse(parsedState.auth);
-//         const token = authState.token;
-//         console.log('token: ', token);
 
-//         if (token) {
-//           const dispatchRefreshToken = async () => {
-//             try {
-//             //   await dispatch(tokenRefresh()).unwrap();
-//             //   await dispatch(userInfo()).unwrap();
-//             } catch (err) {
-//               console.error(
-//                 "Error refreshing token or fetching user info:",
-//                 err
-//               );
-//             }
-//           };
-//           dispatchRefreshToken();
-//         }
-//       }
-//     }
-//   }, [dispatch]);
+export const useRefreshUser = () => {
+  const dispatch = useDispatch();
+  const isSignedIn = useSelector(selectIsSignedIn);
 
-//   return [isSignedIn];
-// };
+  useEffect(() => {
+    //   const [searchParams] = useSearchParams();
+    //   const gToken = searchParams.get('token');
+
+    //   if (gToken) {
+    //     const decoded = jwtDecode(gToken);
+    //     const current = new Date();
+    //     if (decoded.exp * 1000 > current.getTime()) {
+    //       localStorage.setItem('token', gToken);
+    //     }
+    //   }
+
+    const persistedState = localStorage.getItem("persist:root");
+    if (persistedState) {
+      const parsedState = JSON.parse(persistedState);
+
+      if (parsedState.auth) {
+        const authState = JSON.parse(parsedState.auth);
+        const token = authState.token;
+        console.log('token: ', token);
+
+        if (!isTokenValid(token)) {
+          const dispatchRefreshToken = async () => {
+            try {
+              await dispatch(apiTokenRefresh()).unwrap();
+            //   await dispatch(userInfo()).unwrap();
+            } catch (err) {
+              console.error(
+                "Error refreshing token or fetching user info:",
+                err
+              );
+            }
+          };
+          dispatchRefreshToken();
+        }
+      }
+    }
+  }, [dispatch]);
+
+  return [isSignedIn];
+};
 
