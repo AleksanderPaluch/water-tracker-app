@@ -12,7 +12,8 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: Yup.string().min(8).required("Password is required"),
+  password: Yup.string().min(8)
+  .required("Password is required"),
 });
 
 const INITIAL_FORM_DATA = {
@@ -30,22 +31,30 @@ const SignInForm = () => {
   const dispatch = useDispatch();
 
   const loginUser = async (formData, formActions) => {
+   
+   
     formActions.setSubmitting(false);
     formActions.resetForm();
 
-    try {
-      await dispatch(apiLoginUser(formData)).unwrap();
-      toast.success("Great to see you! You’ve successfully signed in", {
-        duration: 4000,
-      });
-    } catch (error) {
 
+    try {
+      await  dispatch(apiLoginUser(formData)).unwrap();
+      toast.success(
+        "Great to see you! You’ve successfully signed in",
+        {
+          duration: 4000,
+        }
+      );
+    }   catch (error) {
+
+      console.log(error);
+      console.log(error.message);
       if (error.message) {
         // Network error or server is down
         toast.error("Network error: Unable to reach the server", {
           duration: 4000,
         });
-      } else {
+      } else  {
         // Handle other types of errors (e.g., wrong credentials)
         toast.error(error || "Failed to log in", {
           duration: 4000,
@@ -53,6 +62,7 @@ const SignInForm = () => {
       }
     }
   };
+
 
   return (
     <div className={css.formBox}>
@@ -72,15 +82,15 @@ const SignInForm = () => {
                 name="email"
                 placeholder="Enter your email"
               />
-              {submitCount > 0 && (
-                <ErrorMessage
-                  name="email"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              )}
+               {submitCount > 0 && (
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={css.errorMessage}
+              />
+            )}
             </label>
-
+           
             <label className={css.label}>
               <span className={css.labelText}>Password</span>
               <Field
@@ -103,14 +113,14 @@ const SignInForm = () => {
                 />
               </button>
               {submitCount > 0 && (
-                <ErrorMessage
-                  name="password"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              )}
+              <ErrorMessage
+                name="password"
+                component="span"
+                className={css.errorMessage}
+              />
+            )}
             </label>
-
+            
             <p className={css.forgotLink}>
               <Link className={css.forgotLink} to="/reset-password">
                 Forgot password?

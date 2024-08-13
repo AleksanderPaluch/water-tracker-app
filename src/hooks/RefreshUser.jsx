@@ -1,13 +1,36 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsSignedIn } from "../redux/auth/selectors";
+import { apiTokenRefresh } from "../redux/auth/operations";
 
 
 
 // import { userInfo } from '../redux/user/operations';
 // import { tokenRefresh } from '../redux/auth/operations';
 // import { useSearchParams } from 'react-router-dom';
-// import jwtDecode from 'jwt-decode';
+import { jwtDecode }  from 'jwt-decode';
+
+const isTokenValid = (token) => {
+  if (!token) return false;
+
+  try {
+    const { exp } = jwtDecode(token);
+    if (!exp) return false;
+
+ 
+    const expInMillis = exp * 1000;
+    console.log(expInMillis);  // Перевіримо, чи перетворення правильне
+console.log( Date.now());
+
+console.log(Date.now() < expInMillis);
+    // Перевіряємо, чи строк дії токена ще не минув
+    return Date.now() < expInMillis;
+  } catch (error) {
+    console.error('Invalid token:', error);
+    return false;
+  }
+};
+
 
 export const useRefreshUser = () => {
   const dispatch = useDispatch();
@@ -34,10 +57,10 @@ export const useRefreshUser = () => {
         const token = authState.token;
         console.log('token: ', token);
 
-        if (token) {
+        if (!isTokenValid(token)) {
           const dispatchRefreshToken = async () => {
             try {
-            //   await dispatch(tokenRefresh()).unwrap();
+              await dispatch(apiTokenRefresh()).unwrap();
             //   await dispatch(userInfo()).unwrap();
             } catch (err) {
               console.error(

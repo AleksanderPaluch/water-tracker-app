@@ -9,22 +9,18 @@ import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { selectIsLoading } from "../../redux/auth/selectors";
 import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";
-
-// import { useRefreshUser } from "../../hooks/RefreshUser";
+import { useRefreshUser } from "../../hooks/RefreshUser";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
-const NotFoundPage = lazy(() =>
-  import("../../pages/NotFoundPage/NotFoundPage")
-);
 const ForgotPasswordPage = lazy(() =>
   import("../../pages/ForgotPasswordPage/ForgotPasswordPage")
 );
 
 function App() {
-  // useRefreshUser();
+  useRefreshUser();
   const isLoading = useSelector(selectIsLoading);
 
   return (
@@ -33,7 +29,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/reset-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password/:verificationToken" element={<ResetPasswordPage />} />
+          <Route
+            path="/reset-password/:verificationToken"
+            element={<ResetPasswordPage />}
+          />
           <Route path="/" element={<HomePage />} />
           <Route
             path="/signup"
@@ -59,7 +58,6 @@ function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
-         
         </Routes>
       </Layout>
     </>
