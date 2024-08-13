@@ -64,14 +64,14 @@ const SignUpForm = () => {
       );
       navigate("/signin");
     }  catch (error) {
-      if (!error.response) {
+      if (error.message) {
         // Network error or server is down
         toast.error("Network error: Unable to reach the server", {
           duration: 4000,
         });
       } else {
         // Handle other types of errors (e.g., wrong credentials)
-        toast.error(error.response.data.message || "Failed to log in", {
+        toast.error(error || "Failed to log in", {
           duration: 4000,
         });
       }
