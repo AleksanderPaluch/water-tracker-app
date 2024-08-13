@@ -41,11 +41,14 @@ const ResetPasswordForm = () => {
   const toggleRepeatPasswordVisibility = () => {
     setIsRepeatVisible(!isRepeatVisible);
   };
-  const { resetToken } = useParams();
+  const { verificationToken } = useParams();
+
 
   const handleResetPassword = async (formData, formActions) => {
     try {
-      await dispatch(apiResetPassword({ ...formData, resetToken })).unwrap();
+      await dispatch(
+        apiResetPassword({ ...formData, verificationToken })
+      ).unwrap();
 
       toast.success("Your password has been successfully updated!", {
         duration: 5000,

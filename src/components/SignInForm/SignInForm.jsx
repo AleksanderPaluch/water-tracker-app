@@ -92,7 +92,7 @@ const SignInForm = () => {
               <span className={css.labelText}>Password</span>
               <Field
                 className={css.formInput}
-                type={isVisible ? "string" : "password"}
+                type={isVisible ? "text" : "password"}
                 name="password"
                 autoComplete="off"
                 placeholder="Enter your password"

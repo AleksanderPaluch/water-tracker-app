@@ -33,7 +33,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/reset-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password/:resetToken" element={<ResetPasswordPage />} />
+          <Route path="/reset-password/:verificationToken" element={<ResetPasswordPage />} />
           <Route path="/" element={<HomePage />} />
           <Route
             path="/signup"
@@ -59,10 +59,7 @@ function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
-          <Route
-            path="users/verify/:verificationToken"
-            element={<NotFoundPage />}
-          />
+         
         </Routes>
       </Layout>
     </>

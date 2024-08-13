@@ -99,6 +99,14 @@
   font-size: 14px;
 
 }
+
+.forgotLink {
+  text-decoration: none;
+  color: var(--grey);
+  font-weight: 700;
+  font-size: 14px;
+ 
+}
 @media screen and (min-width: 768px) {
   .form {
     width: 436px;
@@ -107,6 +115,11 @@
   .labelText {
     font-size: 16px;
   }
+
+  .forgotLink {
+    font-size: 16px;
+  }
+
   .formInput {
     font-size: 16px;
   }
@@ -130,6 +143,7 @@
     font-size: 15px;
   }
 }
+
 
 @media screen and (min-width: 1440px) {
   .formBox {
