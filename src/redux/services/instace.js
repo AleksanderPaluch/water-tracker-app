@@ -52,9 +52,11 @@ export const requestChangePassword = async (formData) => {
   return data;
 };
 
-
 export const requestTokenRefresh = async () => {
   const { data } = await instance.post("/users/token-refresh");
-  console.log(data);
+  return data;
+};
+export const requestCurrentUser = async () => {
+  const { data } = await instance.get("/users/current");
   return data;
 };

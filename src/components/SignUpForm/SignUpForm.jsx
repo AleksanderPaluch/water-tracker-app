@@ -66,7 +66,7 @@ const SignUpForm = () => {
     }  catch (error) {
       if (error.message) {
         // Network error or server is down
-        toast.error("Network error: Unable to reach the server", {
+        toast.error("Unable to reach the server, please try again later", {
           duration: 4000,
         });
       } else {

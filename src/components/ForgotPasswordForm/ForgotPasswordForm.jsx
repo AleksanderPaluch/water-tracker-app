@@ -34,13 +34,22 @@ const navigate = useNavigate();
       );
       navigate("/signin");
     } catch (error) {
-      toast.error(error || "Failed  sent you a link to reset your password.", {
-        duration: 5000,
-      });
+      if (error.message) {
+        // Network error or server is down
+        toast.error("Unable to reach the server, please try again later", {
+          duration: 4000,
+        });
+      } else {
+        // Handle other types of errors (e.g., wrong credentials)
+        toast.error(error || "Failed  sent you a link to reset your password.", {
+          duration: 4000,
+        });
+      }
     }
-  }
+  };
 
 
+ 
 
 
 
