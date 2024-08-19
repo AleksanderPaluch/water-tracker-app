@@ -9,7 +9,7 @@ export const apiGetCurrentUser = createAsyncThunk(
       try {
      
         const data = await requestCurrentUser();
-  
+  console.log(data);
         return data;
       } catch (error) {
         return thunkAPI.rejectWithValue(

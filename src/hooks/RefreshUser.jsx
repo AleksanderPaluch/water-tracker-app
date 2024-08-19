@@ -33,6 +33,18 @@ export const useRefreshUser = () => {
   const dispatch = useDispatch();
   const isSignedIn = useSelector(selectIsSignedIn);
 
+
+  const getUser = async () => {
+    try {
+      await dispatch(apiGetCurrentUser()).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getUser()
+
+
   useEffect(() => {
     //   const [searchParams] = useSearchParams();
     //   const gToken = searchParams.get('token');
@@ -58,7 +70,7 @@ export const useRefreshUser = () => {
           const dispatchRefreshToken = async () => {
             try {
               await dispatch(apiTokenRefresh()).unwrap();
-              await dispatch(apiGetCurrentUser()).unwrap();
+              // await dispatch(apiGetCurrentUser()).unwrap();
             } catch (err) {
               console.error(
                 "Error refreshing token or fetching user info:",

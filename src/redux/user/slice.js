@@ -41,7 +41,7 @@ const userSlice = createSlice({
       .addCase(apiGetCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isError = false;
-        state.error = null
+       
         state.isLoading = false;
       })
       .addCase(apiGetCurrentUser.rejected, handleRejected),
