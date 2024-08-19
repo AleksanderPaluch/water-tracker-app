@@ -36,7 +36,7 @@ export const useRefreshUser = () => {
       if (parsedState.auth) {
         const authState = JSON.parse(parsedState.auth);
         const token = authState.token;
-        if (!isTokenValid) {
+        if (!isTokenValid(token)) {
           const dispatchRefreshToken = async () => {
             try {
               await dispatch(apiTokenRefresh()).unwrap();

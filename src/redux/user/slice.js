@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiGetCurrentUser } from "./operations";
+import { apiGetCurrentUser, apiUpdateUser } from "./operations";
 
 const INITIAL_STATE = {
   user: {
@@ -35,8 +35,6 @@ const userSlice = createSlice({
 
     logOutUser: (state) => {
       state.user = null;
-   
-      
       state.isLoading = false;
       state.isError = false;
       state.error = null;
@@ -54,7 +52,18 @@ const userSlice = createSlice({
        
         state.isLoading = false;
       })
-      .addCase(apiGetCurrentUser.rejected, handleRejected),
+      .addCase(apiGetCurrentUser.rejected, handleRejected)
+      
+      // GET UPDATE USER //
+
+      .addCase(apiUpdateUser.pending, handlePending)
+      .addCase(apiUpdateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isError = false;
+       
+        state.isLoading = false;
+      })
+      .addCase(apiUpdateUser.rejected, handleRejected),
 });
 export const { logOutUser } = userSlice.actions;
 // Редюсер слайсу
