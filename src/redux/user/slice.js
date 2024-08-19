@@ -31,7 +31,17 @@ const userSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {},
+  reducers: {
+
+    logOutUser: (state) => {
+      state.user = null;
+   
+      
+      state.isLoading = false;
+      state.isError = false;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) =>
     builder
 
@@ -46,6 +56,6 @@ const userSlice = createSlice({
       })
       .addCase(apiGetCurrentUser.rejected, handleRejected),
 });
-
+export const { logOutUser } = userSlice.actions;
 // Редюсер слайсу
 export const userReducer = userSlice.reducer;

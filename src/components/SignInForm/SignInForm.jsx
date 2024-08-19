@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiLoginUser } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
+import { apiGetCurrentUser } from "../../redux/user/operations";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,6 +40,7 @@ const SignInForm = () => {
 
     try {
       await  dispatch(apiLoginUser(formData)).unwrap();
+      await dispatch(apiGetCurrentUser()).unwrap();
       toast.success(
         "Great to see you! You’ve successfully signed in",
         {

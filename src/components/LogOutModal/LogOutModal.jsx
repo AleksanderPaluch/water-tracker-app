@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 import { logOutUserLocally } from "../../redux/auth/slice";
+import { logOutUser } from "../../redux/user/slice";
 
 const LogOutModal = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const LogOutModal = ({ closeModal }) => {
         console.log("failed to logout locally");
       }
     }
-
+    dispatch(logOutUser())
     closeModal();
     navigate("/");
     toast.success("You have been signed out. See you next time!", {
