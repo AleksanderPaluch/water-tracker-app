@@ -99,7 +99,7 @@ const UserSettingsForm = ({ closeModal }) => {
           email: user.email || "",
           weight: user.weight || "",
           activeTime: user.timeActivity || "",
-          water: user.dailyNorma ? user.dailyNorma / 1000 : "", // Convert to liters if needed
+          water: user.dailyNorma ? user.dailyNorma / 1000 : "2", // Convert to liters if needed
         }}
         onSubmit={handleChanges}
       >
@@ -110,10 +110,6 @@ const UserSettingsForm = ({ closeModal }) => {
             parseFloat(values.activeTime) || 0,
             values.gender
           );
-
-          // Update water value if it's not the default value
-
-          // setFieldValue('water', suggestedAmount);
 
           return (
             <Form className={css.form}>
@@ -179,11 +175,11 @@ const UserSettingsForm = ({ closeModal }) => {
                   <div className={css.genderInfoBox}>
                     <p className={css.labelText}>
                       For woman:{" "}
-                      <span className={css.span}>V=(M*0,03) + (T*0,0066)</span>{" "}
+                      <span className={css.span}>V=(M*0,03) + (T*0,4)</span>{" "}
                     </p>
                     <p className={css.labelText}>
                       For man:{" "}
-                      <span className={css.span}>V=(M*0,04) + (T*0,0066)</span>{" "}
+                      <span className={css.span}>V=(M*0,03) + (T*0,6)</span>{" "}
                     </p>
                   </div>
                   <p className={css.explText}>
@@ -227,7 +223,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   </label>
                   <p className={css.labelText}>
                     The required amount of water in liters per day:{" "}
-                    <span className={css.span}>{suggestedAmount} L</span>
+                    <span className={css.spanLiters}>{suggestedAmount} L</span>
                   </p>
                   <label className={css.label}>
                     <span className={css.labelBoldText}>
