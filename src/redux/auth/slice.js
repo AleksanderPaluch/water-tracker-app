@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiLoginUser, apiLogOutUser, apiRegisterUser, apiTokenRefresh } from "./operations";
+import {
+  apiLoginUser,
+  apiLogOutUser,
+  apiRegisterUser,
+  apiTokenRefresh,
+} from "./operations";
 
 const INITIAL_STATE = {
   user: {
@@ -27,7 +32,6 @@ const authSlice = createSlice({
   initialState: INITIAL_STATE,
 
   reducers: {
-
     logOutUserLocally: (state) => {
       state.user = null;
       state.token = null;
@@ -75,12 +79,12 @@ const authSlice = createSlice({
       })
       .addCase(apiLogOutUser.rejected, handleRejected)
 
+      // ACCESS TOKEN REFRESH //
+
       .addCase(apiTokenRefresh.pending, handlePending)
       .addCase(apiTokenRefresh.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
-      
         state.token = action.payload.token;
-        console.log(state.token);
         state.isLoading = false;
         state.isError = false;
       })

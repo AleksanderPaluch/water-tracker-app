@@ -11,6 +11,7 @@ import { selectIsLoading } from "../../redux/auth/selectors";
 import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";
 import { useRefreshUser } from "../../hooks/RefreshUser";
 
+
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
@@ -25,41 +26,47 @@ function App() {
 
   return (
     <>
-      {isLoading && <Loader />}
-      <Layout>
-        <Routes>
-          <Route path="/reset-password" element={<ForgotPasswordPage />} />
-          <Route
-            path="/reset-password/:verificationToken"
-            element={<ResetPasswordPage />}
-          />
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/signup"
-            element={
-              <RestrictedRoute
-                redirectTo="/signin"
-                component={<SignUpPage />}
-              />
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <RestrictedRoute
-                redirectTo="/tracker"
-                component={<SignInPage />}
-              />
-            }
-          />
-          <Route
-            path="/tracker"
-            element={
-              <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
-            }
-          />
-        </Routes>
-      </Layout>
+      {isLoading  ? (
+        <Loader />
+      ) : (
+        <Layout>
+          <Routes>
+            <Route path="/reset-password" element={<ForgotPasswordPage />} />
+            <Route
+              path="/reset-password/:verificationToken"
+              element={<ResetPasswordPage />}
+            />
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/signup"
+              element={
+                <RestrictedRoute
+                  redirectTo="/signin"
+                  component={<SignUpPage />}
+                />
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                <RestrictedRoute
+                  redirectTo="/tracker"
+                  component={<SignInPage />}
+                />
+              }
+            />
+            <Route
+              path="/tracker"
+              element={
+                <PrivateRoute
+                  redirectTo="/signin"
+                  component={<TrackerPage />}
+                />
+              }
+            />
+          </Routes>
+        </Layout>
+      )}
     </>
   );
 }

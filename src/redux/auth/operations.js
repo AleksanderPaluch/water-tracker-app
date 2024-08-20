@@ -88,7 +88,7 @@ export const apiTokenRefresh = createAsyncThunk(
     try {
    
       const data = await requestTokenRefresh();
-  console.log(data);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
