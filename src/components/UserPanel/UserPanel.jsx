@@ -29,7 +29,7 @@ const UserPanel = () => {
 
       <div className={css.userPopoverContainer}>
         <UserBar
-          user={username}
+          username={username}
           togglePopover={togglePopover}
           isOpen={isOpen}
           avatar={userAvatar}

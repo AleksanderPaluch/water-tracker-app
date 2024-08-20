@@ -1,5 +1,4 @@
 import css from "./UserSettingsForm.module.css";
-import user1 from "../../../assets/img/user1.png";
 import Icon from "../Icon/Icon";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,7 +7,7 @@ import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
-import { apiGetCurrentUser, apiUpdateUser } from "../../redux/user/operations";
+import { apiGetCurrentUser, apiUpdateUser, apiUploadPhoto } from "../../redux/user/operations";
 
 const validationSchema = Yup.object({
   gender: Yup.string().required("Please pick one"),
@@ -42,9 +41,31 @@ const INITIAL_FORM_DATA = {
   water: "",
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
 const UserSettingsForm = ({ closeModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+
+  const handleUpload =  () => {
+    try {
+      console.log("here");
+       dispatch(apiUploadPhoto())
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // Function to calculate water intake
   const calculateWaterIntake = (weight, activeTime, gender) => {
@@ -84,8 +105,8 @@ const UserSettingsForm = ({ closeModal }) => {
   return (
     <div className={css.formBox}>
       <div className={css.avatarBox}>
-        <img className={css.userImg} src={user1} alt="user2" />
-        <button type="button" className={css.uploadBtn}>
+        <img className={css.userImg} src={user.avatarURL} alt="user2" />
+        <button type="button" className={css.uploadBtn} onClick={handleUpload}> 
           <Icon width="18" height="18" iconName="upload" styles={css.icon} />
           <p className={css.text}>Upload a photo</p>
         </button>
