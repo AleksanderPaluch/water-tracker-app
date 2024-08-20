@@ -3,6 +3,8 @@ export const selectUser = (state) => {
 };
 
 
-export const selectIsRefreshing = (state) => {
-  return state.user.isLoading;
+
+
+export const selectUserCount = (state) => {
+  return state.user.totalUsers;
 };

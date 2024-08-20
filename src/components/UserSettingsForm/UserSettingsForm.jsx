@@ -114,7 +114,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   <ErrorMessage
                     name="gender"
                     component="span"
-                    className={css.errorMessage}
+                    className={css.errorMessageRadio}
                   />
                 </label>
               </div>

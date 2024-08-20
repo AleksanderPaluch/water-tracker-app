@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { selectIsLoading } from "../../redux/auth/selectors";
 import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";
 import { useRefreshUser } from "../../hooks/RefreshUser";
-import { selectIsRefreshing } from "../../redux/user/selectors";
+
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -23,10 +23,10 @@ const ForgotPasswordPage = lazy(() =>
 function App() {
   useRefreshUser();
   const isLoading = useSelector(selectIsLoading);
-  const isRefreshing = useSelector(selectIsRefreshing);
+
   return (
     <>
-      {isLoading || isRefreshing ? (
+      {isLoading  ? (
         <Loader />
       ) : (
         <Layout>

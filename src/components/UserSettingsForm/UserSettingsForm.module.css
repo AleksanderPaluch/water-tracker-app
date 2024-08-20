@@ -42,6 +42,7 @@
 }
 
 .radioLabel {
+  /* position: relative; */
   display: flex;
   align-items: center;
 }
@@ -132,6 +133,15 @@ margin-bottom: 20px;
   letter-spacing: -0.04em;
 }
 
+.errorMessageRadio {
+  
+  margin-left: 8px;
+  color: var(--red);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.04em;
+}
+
 .formBtn {
   margin-top: 24px;
   width: 100%;
@@ -162,6 +172,10 @@ margin-bottom: 20px;
   }
 
   .radioLabelText {
+    font-size: 17px;
+  }
+  
+  .errorMessageRadio {
     font-size: 17px;
   }
 

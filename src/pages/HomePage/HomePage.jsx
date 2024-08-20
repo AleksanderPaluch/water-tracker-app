@@ -6,7 +6,6 @@ const HomePage = () => {
   return (
     <Page>
       <WelcomeSection />
-
       <AdvantagesSection />
     </Page>
   );

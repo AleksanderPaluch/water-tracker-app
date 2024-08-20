@@ -3,13 +3,12 @@ import css from "./WaterDailyNorma.module.css";
 import { selectUser } from "../../redux/user/selectors";
 
 const WaterDailyNorma = () => {
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  const userAmount = user?.dailyNorma
 
   return (
     <div className={css.dailyNormaBox}>
-      <p className={css.amount}>
-2L
-      </p>
+      <p className={css.amount}>{userAmount / 1000} L</p>
       <p className={css.text}>My daily norma</p>
     </div>
   );

@@ -27,7 +27,6 @@ export const useRefreshUser = () => {
   const dispatch = useDispatch();
   const isSignedIn = useSelector(selectIsSignedIn);
 
-
   useEffect(() => {
     const persistedState = localStorage.getItem("persist:root");
     if (persistedState) {
@@ -36,7 +35,7 @@ export const useRefreshUser = () => {
       if (parsedState.auth) {
         const authState = JSON.parse(parsedState.auth);
         const token = authState.token;
-        if (!isTokenValid(token)) {
+        if (token && !isTokenValid(token)) {
           const dispatchRefreshToken = async () => {
             try {
               await dispatch(apiTokenRefresh()).unwrap();

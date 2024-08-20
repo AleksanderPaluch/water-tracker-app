@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { requestCurrentUser, requestUpdateUser } from "../services/instace";
+import { requestCurrentUser, requestTotalUsers, requestUpdateUser } from "../services/instace";
 
 
 
@@ -37,4 +37,19 @@ export const apiUpdateUser = createAsyncThunk(
   }
 );
 
-  
+export const apiGetTotalUsers = createAsyncThunk(
+  "user/total",
+  async (formData, thunkAPI) => {
+    try {
+   
+      const data = await requestTotalUsers();
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response.data.message || error.message
+      );
+    }
+  }
+);
+

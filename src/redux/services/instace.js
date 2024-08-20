@@ -66,3 +66,7 @@ export const requestUpdateUser = async (formData) => {
   const { data } = await instance.patch("/users/update", formData);
   return data;
 };
+export const requestTotalUsers = async () => {
+  const { data } = await instance.get("/users/total");
+  return data;
+};

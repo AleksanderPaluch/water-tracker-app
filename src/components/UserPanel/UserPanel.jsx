@@ -2,9 +2,16 @@ import css from "./UserPanel.module.css";
 import { useState } from "react";
 import UserPopover from "../UserPopover/UserPopover";
 import UserBar from "../UserBar/UserBar";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/user/selectors";
 
 const UserPanel = () => {
-  const username = "Nadia";
+  const user = useSelector(selectUser);
+
+  const username = user?.name; // Перевірка на наявність user
+  const userEmail = user?.email ? user.email.split('@')[0] : ''; // Перевірка на наявність email
+
+  
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,7 +23,7 @@ const UserPanel = () => {
     <div className={css.userPanelBox}>
       <div className={css.welcomeBox}>
         <p className={css.welcomeText}>
-          Hello <span className={css.welcomeName}>, {username}!</span>
+          Hello <span className={css.welcomeName}>{username ? username : userEmail}!</span>
         </p>
       </div>
 

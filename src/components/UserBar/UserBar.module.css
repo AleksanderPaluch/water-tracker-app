@@ -43,6 +43,7 @@
 
 @media screen and (min-width: 768px) {
   .userPanelBtn {
+    min-width: 140px;
     font-size: 16px;
   }
   .userImg {

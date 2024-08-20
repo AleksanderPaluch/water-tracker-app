@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiGetCurrentUser, apiUpdateUser } from "./operations";
+import {
+  apiGetCurrentUser,
+  apiUpdateUser,
+  apiGetTotalUsers,
+} from "./operations";
 
 const INITIAL_STATE = {
   user: {
@@ -32,7 +36,6 @@ const userSlice = createSlice({
   initialState: INITIAL_STATE,
 
   reducers: {
-
     logOutUser: (state) => {
       state.user = null;
       state.isLoading = false;
@@ -49,21 +52,29 @@ const userSlice = createSlice({
       .addCase(apiGetCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isError = false;
-       
+
         state.isLoading = false;
       })
       .addCase(apiGetCurrentUser.rejected, handleRejected)
-      
-      // GET UPDATE USER //
+
+      // UPDATE USER //
 
       .addCase(apiUpdateUser.pending, handlePending)
       .addCase(apiUpdateUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isError = false;
-       
         state.isLoading = false;
       })
-      .addCase(apiUpdateUser.rejected, handleRejected),
+      .addCase(apiUpdateUser.rejected, handleRejected)
+      // GET USER COUNT //
+
+      .addCase(apiGetTotalUsers.pending, handlePending)
+      .addCase(apiGetTotalUsers.fulfilled, (state, action) => {
+        state.totalUsers = action.payload.totalUsers;
+        state.isError = false;
+        state.isLoading = false;
+      })
+      .addCase(apiGetTotalUsers.rejected, handleRejected),
 });
 export const { logOutUser } = userSlice.actions;
 // Редюсер слайсу
