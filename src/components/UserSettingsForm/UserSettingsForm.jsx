@@ -131,7 +131,7 @@ const UserSettingsForm = ({ closeModal }) => {
 
               <label className={css.label}>
                 <span className={css.labelBoldText}>Email</span>
-                <Field className={css.formInput} type="email" name="email" />
+                <Field className={css.formInput} type="email" name="email" readOnly />
                 <ErrorMessage
                   name="email"
                   component="span"

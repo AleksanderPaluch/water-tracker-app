@@ -82,6 +82,7 @@ margin-bottom: 20px;
 }
 
 .label {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
@@ -123,7 +124,8 @@ margin-bottom: 20px;
 }
 
 .errorMessage {
-  /* position: absolute; */
+  top: 80px;
+  position: absolute;
   color: var(--red);
   font-weight: 400;
   font-size: 14px;
@@ -173,6 +175,7 @@ margin-bottom: 20px;
   }
 
   .errorMessage {
+    top: 92px;
     font-size: 17px;
   }
 
