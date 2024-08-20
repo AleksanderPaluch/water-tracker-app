@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { IoChevronDown } from "react-icons/io5";
 import user3 from "../../../assets/img/user3.png";
 
-const UserBar = ({ user, togglePopover, isOpen }) => {
+const UserBar = ({ user, togglePopover, isOpen, avatar }) => {
   return (
     <button
       onClick={togglePopover}
@@ -11,7 +11,7 @@ const UserBar = ({ user, togglePopover, isOpen }) => {
       className={`${css.userPanelBtn}  ${isOpen ? css.isActive : ""}`}
     >
       <p className={css.userName}>{user} </p>{" "}
-      <img className={css.userImg} src={user3} alt="user3" />
+      <img className={css.userImg} src={avatar} alt="user3" />
       <IoChevronDown className={css.icon} />
     </button>
   );
@@ -23,4 +23,5 @@ UserBar.propTypes = {
   user: PropTypes.string,
   togglePopover: PropTypes.func,
   isOpen: PropTypes.bool,
+  avatar: PropTypes.string
 };

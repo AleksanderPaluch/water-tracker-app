@@ -10,7 +10,7 @@ const UserPanel = () => {
 
   const username = user?.name; // Перевірка на наявність user
   const userEmail = user?.email ? user.email.split('@')[0] : ''; // Перевірка на наявність email
-
+  const userAvatar = user?.avatarURL
   
 
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,7 @@ const UserPanel = () => {
     <div className={css.userPanelBox}>
       <div className={css.welcomeBox}>
         <p className={css.welcomeText}>
-          Hello <span className={css.welcomeName}>{username ? username : userEmail}!</span>
+          Hello, <span className={css.welcomeName}>{username ? username : userEmail}!</span>
         </p>
       </div>
 
@@ -32,6 +32,7 @@ const UserPanel = () => {
           user={username}
           togglePopover={togglePopover}
           isOpen={isOpen}
+          avatar={userAvatar}
         />
 
         {isOpen && <UserPopover />}

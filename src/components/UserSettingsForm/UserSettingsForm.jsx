@@ -143,7 +143,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <div className={css.genderInfoBox}>
                 <p className={css.labelText}>
                   For woman:{" "}
-                  <span className={css.span}>V=(M*0,03) + (T*0,4)</span>{" "}
+                  <span className={css.span}>V=(M*0,03) + (T *0,4)</span>{" "}
                 </p>
                 <p className={css.labelText}>
                   For man:{" "}
@@ -175,6 +175,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   className={css.formInput}
                   type="number"
                   name="activeTime"
+                  step="10"
                 />
                 <ErrorMessage
                   name="activeTime"

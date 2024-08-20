@@ -17,7 +17,6 @@
 
 .userPopoverBtn {
   display: flex;
-  
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -25,23 +24,21 @@
   font-size: 14px;
   font-weight: bold;
   letter-spacing: -0.1px;
-  color: var(--blue);
+  color: rgba(47, 47, 47, 0.6);
   background-color: inherit;
   border: none;
-
-  
 }
 
-.icon{
+.icon {
+  stroke: rgba(47, 47, 47, 0.6);
+}
+
+.userPopoverBtn:hover {
+  color: var(--blue);
+}
+
+.userPopoverBtn:hover .icon {
   stroke: var(--blue);
-}
-
-.userPopoverBtn:last-child {
-  color: rgb(47, 47, 47, 60%);
-}
-
-.icon2 {
-  stroke: rgb(47, 47, 47, 60%);
 }
 
 

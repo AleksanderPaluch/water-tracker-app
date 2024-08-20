@@ -202,11 +202,12 @@ margin-bottom: 20px;
     color: var(--green);
     font-weight: bold;
     margin-left: 4px;
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .genderInfoBox {
     display: flex;
+    gap: 28px;
   }
 
   .explText {
@@ -236,7 +237,7 @@ margin-bottom: 20px;
 
   .genderInfoBox {
     display: flex;
-    gap: 28px;
+    gap: 14px;
   }
 
   .addInfoBox {
