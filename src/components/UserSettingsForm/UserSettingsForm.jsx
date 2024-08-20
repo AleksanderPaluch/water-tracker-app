@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
 import { apiGetCurrentUser, apiUpdateUser } from "../../redux/user/operations";
+import { useState } from "react";
 
 const validationSchema = Yup.object({
   gender: Yup.string().required("Please pick one"),
@@ -45,6 +46,30 @@ const INITIAL_FORM_DATA = {
 const UserSettingsForm = ({ closeModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const [waterAmount, setWaterAmount] = useState(2); // Default water amount
+
+  // Функція обчислення кількості води
+  const calculateWaterIntake = (weight, activeTime, gender) => {
+    let waterIntake = 2; // Default value
+    if (gender === "man") {
+      waterIntake = weight * 0.03 + (activeTime / 60) * 0.6;
+    } else if (gender === "woman") {
+      waterIntake = weight * 0.03 + (activeTime / 60) * 0.4;
+    }
+    return parseFloat(waterIntake.toFixed(1)); // Округлюємо до 1 десяткової
+  };
+
+  const handleFieldChange = (values) => {
+    const { weight, activeTime, gender } = values;
+    if (weight && activeTime !== "" && gender) {
+      const calculatedWater = calculateWaterIntake(
+        parseFloat(weight),
+        parseFloat(activeTime),
+        gender
+      );
+      setWaterAmount(calculatedWater);
+    }
+  };
 
   const handleChanges = async (formData, formActions) => {
     try {
@@ -88,142 +113,170 @@ const UserSettingsForm = ({ closeModal }) => {
           water: user.dailyNorma ? user.dailyNorma / 1000 : "2",
         }}
         onSubmit={handleChanges}
+        validateOnChange
+        onChange={handleFieldChange}
       >
-        <Form className={css.form}>
-          <div className={css.flexBox}>
-            <div className={css.dataBox}>
-              <p className={css.labelBoldText}>Your gender identity</p>
-              <div className={css.genderBox}>
-                <label className={css.radioLabel}>
-                  <Field
-                    className={css.radioInput}
-                    type="radio"
-                    name="gender"
-                    value="woman"
-                  />
-                  <span className={css.radioLabelText}>Woman</span>
-                </label>
-                <label className={css.radioLabel}>
-                  <Field
-                    className={css.radioInput}
-                    type="radio"
-                    name="gender"
-                    value="man"
-                  />
-                  <span className={css.radioLabelText}>Man</span>
+        {({ values, handleChange }) => (
+          <Form className={css.form}>
+            <div className={css.flexBox}>
+              <div className={css.dataBox}>
+                <p className={css.labelBoldText}>Your gender identity</p>
+                <div className={css.genderBox}>
+                  <label className={css.radioLabel}>
+                    <Field
+                      className={css.radioInput}
+                      type="radio"
+                      name="gender"
+                      value="woman"
+                    />
+                    <span className={css.radioLabelText}>Woman</span>
+                  </label>
+                  <label className={css.radioLabel}>
+                    <Field
+                      className={css.radioInput}
+                      type="radio"
+                      name="gender"
+                      value="man"
+                    />
+                    <span className={css.radioLabelText}>Man</span>
+                    <ErrorMessage
+                      name="gender"
+                      component="span"
+                      className={css.errorMessageRadio}
+                    />
+                  </label>
+                </div>
+
+                <label className={css.label}>
+                  <span className={css.labelBoldText}>Your name</span>
+                  <Field className={css.formInput} type="string" name="name" />
                   <ErrorMessage
-                    name="gender"
+                    name="name"
                     component="span"
-                    className={css.errorMessageRadio}
+                    className={css.errorMessage}
                   />
                 </label>
+
+                <label className={css.label}>
+                  <span className={css.labelBoldText}>Email</span>
+                  <Field
+                    className={css.formInput}
+                    type="email"
+                    name="email"
+                    readOnly
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="span"
+                    className={css.errorMessage}
+                  />
+                </label>
+
+                <p className={css.labelBoldText}>My daily norma</p>
+                <div className={css.genderInfoBox}>
+                  <p className={css.labelText}>
+                    For woman:{" "}
+                    <span className={css.span}>V=(M*0.03) + (T *0.4)</span>{" "}
+                  </p>
+                  <p className={css.labelText}>
+                    For man:{" "}
+                    <span className={css.span}>V=(M*0.03) + (T*0.6)</span>{" "}
+                  </p>
+                </div>
+                <p className={css.explText}>
+                  * V is the volume of the water norm in liters per day, M is
+                  your body weight, T is the time of active sports, or another
+                  type of activity commensurate in terms of loads (in the
+                  absence of these, you must set 0)
+                </p>
               </div>
-
-              <label className={css.label}>
-                <span className={css.labelBoldText}>Your name</span>
-                <Field className={css.formInput} type="string" name="name" />
-                <ErrorMessage
-                  name="name"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              </label>
-
-              <label className={css.label}>
-                <span className={css.labelBoldText}>Email</span>
-                <Field className={css.formInput} type="email" name="email" readOnly />
-                <ErrorMessage
-                  name="email"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              </label>
-
-              <p className={css.labelBoldText}>My daily norma</p>
-              <div className={css.genderInfoBox}>
+              <div className={css.addInfoBox}>
+                <label className={css.label}>
+                  <span className={css.labelText}>
+                    Your weight in kilograms:
+                  </span>
+                  <Field
+                    className={css.formInput}
+                    type="number"
+                    name="weight"
+                    onChange={(e) => {
+                      handleChange(e);
+                      handleFieldChange(values);
+                    }}
+                  />
+                  <ErrorMessage
+                    name="weight"
+                    component="span"
+                    className={css.errorMessage}
+                  />
+                </label>{" "}
+                <label className={css.label}>
+                  <span className={css.labelText}>
+                    The time of active participation in sports:
+                  </span>
+                  <Field
+                    className={css.formInput}
+                    type="number"
+                    name="activeTime"
+                    step="10"
+                    onChange={(e) => {
+                      handleChange(e);
+                      handleFieldChange(values);
+                    }}
+                  />
+                  <ErrorMessage
+                    name="activeTime"
+                    component="span"
+                    className={css.errorMessage}
+                  />
+                </label>{" "}
                 <p className={css.labelText}>
-                  For woman:{" "}
-                  <span className={css.span}>V=(M*0,03) + (T *0,4)</span>{" "}
+                  The required amount of water in liters per day:{" "}
+                  <span className={css.span}>{waterAmount} L</span>
+                </p>
+                <label className={css.label}>
+                  <span className={css.labelBoldText}>
+                    Write down how much water you will drink:
+                  </span>
+                  <Field
+                    className={css.formInput}
+                    type="number"
+                    name="water"
+                    step="0.1"
+                  />
+                  <ErrorMessage
+                    name="water"
+                    component="span"
+                    className={css.errorMessage}
+                  />
+                </label>
+                <p className={css.labelText}>
+                  {" "}
+                  <span className={css.exclamation}>
+                    <FaExclamation />
+                  </span>{" "}
+                  Fill your active time in minutes
                 </p>
                 <p className={css.labelText}>
-                  For man:{" "}
-                  <span className={css.span}>V=(M*0,04) + (T*0,6)</span>{" "}
+                  {" "}
+                  <span className={css.exclamation}>
+                    <FaExclamation />
+                  </span>{" "}
+                  Amount of water in liters
                 </p>
               </div>
-              <p className={css.explText}>
-                * V is the volume of the water norm in liters per day, M is your
-                body weight, T is the time of active sports, or another type of
-                activity commensurate in terms of loads (in the absence of
-                these, you must set 0)
-              </p>
             </div>
-            <div className={css.addInfoBox}>
-              <label className={css.label}>
-                <span className={css.labelText}>Your weight in kilograms:</span>
-                <Field className={css.formInput} type="number" name="weight" />
-                <ErrorMessage
-                  name="weight"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              </label>{" "}
-              <label className={css.label}>
-                <span className={css.labelText}>
-                  The time of active participation in sports:
-                </span>
-                <Field
-                  className={css.formInput}
-                  type="number"
-                  name="activeTime"
-                  step="10"
-                />
-                <ErrorMessage
-                  name="activeTime"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              </label>{" "}
-              <p className={css.labelText}>
-                The required amount of water in liters per day:{" "}
-                <span className={css.span}>{user.dailyNorma / 1000} L</span>
-              </p>
-              <label className={css.label}>
-                <span className={css.labelBoldText}>
-                  Write down how much water you will drink:
-                </span>
-                <Field className={css.formInput} type="number" name="water"  step="0.1" />
-                <ErrorMessage
-                  name="water"
-                  component="span"
-                  className={css.errorMessage}
-                />
-              </label>
-              <p className={css.labelText}>
-                {" "}
-                <span className={css.exclamation}>
-                  <FaExclamation />
-                </span>{" "}
-                Fill your active time in minutes
-              </p>
-              <p className={css.labelText}>
-                {" "}
-                <span className={css.exclamation}>
-                  <FaExclamation />
-                </span>{" "}
-                Amount of water in liters
-              </p>
-            </div>
-          </div>
 
-          <button
-            className={css.formBtn}
-            type="submit"
-            title="click to edit personal info"
-            aria-label="edit personal info"
-          >
-            Save
-          </button>
-        </Form>
+            <button
+              className={css.formBtn}
+              type="submit"
+              title="click to edit personal info"
+              aria-label="edit personal info"
+            >
+              Save
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
