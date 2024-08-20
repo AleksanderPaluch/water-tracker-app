@@ -70,3 +70,9 @@ export const requestTotalUsers = async () => {
   const { data } = await instance.get("/users/total");
   return data;
 };
+
+export const requestUploadPhoto = async () => {
+  const { data } = await instance.post("/users/avatars");
+  return data;
+};
+

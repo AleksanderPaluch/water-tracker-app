@@ -53,7 +53,7 @@ const UserPopover = () => {
             width="16"
             height="16"
             iconName="log-out"
-            styles={css.icon2}
+            styles={css.icon}
           />{" "}
           Log out{" "}
         </button>

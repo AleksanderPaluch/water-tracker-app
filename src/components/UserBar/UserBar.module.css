@@ -1,6 +1,6 @@
 .userPanelBtn {
   min-width: 150px;
-  max-width: 300px;
+  max-width: 170px;
   border: none;
   border-radius: 30px;
   background-color: var(--blue);
@@ -9,7 +9,7 @@
   font-weight: bold;
   letter-spacing: -0.1px;
   gap: 8px;
-  padding: 6px 12px;
+  padding: 6px 8px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -44,7 +44,9 @@
 @media screen and (min-width: 768px) {
   .userPanelBtn {
     min-width: 140px;
+    max-width: 200px;
     font-size: 16px;
+    padding: 6px 12px;
   }
   .userImg {
     width: 44px;

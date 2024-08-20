@@ -91,11 +91,20 @@ margin-bottom: 20px;
 
 .span {
   display: flex;
-  margin-top: 8px;
+  margin-top: 12px;
   color: var(--green);
   font-weight: bold;
   margin-left: 4px;
   font-size: 16px;
+}
+
+.spanLiters {
+  display: flex;
+  margin-top: 8px;
+  color: var(--green);
+  font-weight: bold;
+  margin-left: 4px;
+  font-size: 26px;
 }
 
 .formInput {
@@ -202,14 +211,24 @@ margin-bottom: 20px;
     color: var(--green);
     font-weight: bold;
     margin-left: 4px;
-    font-size: 16px;
+    font-size: 17px;
+  }
+
+  .spanLiters {
+    
+    color: var(--green);
+    font-weight: bold;
+    margin-left: 16px;
+    font-size: 22px;
   }
 
   .genderInfoBox {
     display: flex;
+    gap: 28px;
   }
 
   .explText {
+    margin-top: 3px;
     font-size: 17px;
   }
 
@@ -236,7 +255,7 @@ margin-bottom: 20px;
 
   .genderInfoBox {
     display: flex;
-    gap: 28px;
+    gap: 14px;
   }
 
   .addInfoBox {

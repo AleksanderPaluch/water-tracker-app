@@ -4,11 +4,11 @@ import { selectUser } from "../../redux/user/selectors";
 
 const WaterDailyNorma = () => {
   const user = useSelector(selectUser);
-  const userAmount = user?.dailyNorma
+  const userAmount = user.dailyNorma
 
   return (
     <div className={css.dailyNormaBox}>
-      <p className={css.amount}>{userAmount / 1000} L</p>
+      <p className={css.amount}>{userAmount ? userAmount / 1000 : 2} L</p>
       <p className={css.text}>My daily norma</p>
     </div>
   );
