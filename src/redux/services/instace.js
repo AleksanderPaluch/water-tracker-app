@@ -71,8 +71,8 @@ export const requestTotalUsers = async () => {
   return data;
 };
 
-export const requestUploadPhoto = async () => {
-  const { data } = await instance.post("/users/avatars");
+export const requestUploadPhoto = async (formData) => {
+  const { data } = await instance.patch("/users/avatars", formData);
   return data;
 };
 

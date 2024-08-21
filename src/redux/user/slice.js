@@ -3,6 +3,7 @@ import {
   apiGetCurrentUser,
   apiUpdateUser,
   apiGetTotalUsers,
+  apiUploadPhoto,
 } from "./operations";
 
 const INITIAL_STATE = {
@@ -74,7 +75,16 @@ const userSlice = createSlice({
         state.isError = false;
         state.isLoading = false;
       })
-      .addCase(apiGetTotalUsers.rejected, handleRejected),
+      .addCase(apiGetTotalUsers.rejected, handleRejected)
+       // AVATER UPDATE //
+
+       .addCase(apiUploadPhoto.pending, handlePending)
+       .addCase(apiUploadPhoto.fulfilled, (state, action) => {
+         state.user.avatarURL = action.payload.avatarURL;
+         state.isError = false;
+         state.isLoading = false;
+       })
+       .addCase(apiUploadPhoto.rejected, handleRejected),
 });
 export const { logOutUser } = userSlice.actions;
 // Редюсер слайсу

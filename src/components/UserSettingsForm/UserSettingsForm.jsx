@@ -45,26 +45,6 @@ const UserSettingsForm = ({ closeModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  // const fileInputRef = useRef(null);
-
-  // const handleUploadClick = () => {
-  //   // Симулюємо клік на прихований інпут для вибору файлу
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.click();
-  //   }
-  // };
-
-  // const handleFileChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     try {
-  //       dispatch(apiUploadPhoto(file)); // Замінити на свою дію
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  // };
-  // Function to calculate water intake
   const calculateWaterIntake = (weight, activeTime, gender) => {
     let waterIntake;
     if (gender === "man") {
