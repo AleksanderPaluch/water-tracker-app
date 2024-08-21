@@ -15,15 +15,18 @@
   background: rgba(50, 63, 71, 0.2);
 }
 
-.isSelected {
-  border: 3px solid var(--blue);
-  background-color: var(--cream);
-  color: var(--blue);
-}
+
 
 .isToday {
   background-color: var(--blue);
   color: var(--greenHover);
+  
+}
+
+.isSelected {
+  border: 3px solid var(--blue);
+  background-color: var(--cream);
+  color: var(--blue);
   
 }
 

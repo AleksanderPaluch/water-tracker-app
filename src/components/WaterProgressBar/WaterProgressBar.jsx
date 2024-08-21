@@ -1,8 +1,7 @@
 import Icon from "../Icon/Icon";
 import css from "./WaterProgressBar.module.css";
 
-const WaterProgressBar = () => {
-  const percentage = 95;
+const WaterProgressBar = ({progress}) => {
 
   return (
     <div className={css.progressBarContainer}>
@@ -11,16 +10,16 @@ const WaterProgressBar = () => {
         <div
           className={css.dynamicPercentage}
           style={{
-            left: percentage < 20 ? `${percentage - 2}%` : `${percentage - 4}%`,
+            left: progress < 20 ? `${progress - 2}%` : `${progress - 4}%`,
           }}
         >
           {" "}
-          {percentage}%
+          {progress}%
         </div>
       </div>
       <div className={css.progressBarBox} >
         <div className={css.progressBar} style={{
-            width: `${percentage}%`
+            width: `${progress}%`
         }}></div>
         <Icon
           width="12"
@@ -28,7 +27,7 @@ const WaterProgressBar = () => {
           iconName="circle"
           styles={css.progressCircle}
           style={{
-            left: `${percentage}%`,
+            left: `${progress}%`,
             color: `red`
           }}
         />

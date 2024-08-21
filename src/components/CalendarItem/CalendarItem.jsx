@@ -2,7 +2,7 @@ import css from "./CalendarItem.module.css";
 import PropTypes from "prop-types";
 
 const CalendarItem = ({ day, handleDayClick, isToday, isSelected }) => {
-  console.log('isSelected: ', isSelected);
+
 
   
   const amount = "100%";

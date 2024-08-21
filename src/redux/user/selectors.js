@@ -6,6 +6,10 @@ export const selectIsLoading = (state) => {
   return state.user.isLoading;
 };
 
+export const selectDailyNorma = (state) => {
+  return state.user.user.dailyNorma;
+};
+
 
 
 export const selectUserCount = (state) => {
