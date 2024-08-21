@@ -1,7 +1,9 @@
 import css from "./CalendarItem.module.css";
 import PropTypes from "prop-types";
 
-const CalendarItem = ({ day, isToday, handleDayClick }) => {
+const CalendarItem = ({ day, handleDayClick, isToday }) => {
+
+  
   const amount = "100%";
 
 
@@ -23,6 +25,6 @@ export default CalendarItem;
 
 CalendarItem.propTypes = {
   day: PropTypes.number.isRequired,
-  isToday: PropTypes.bool,
   handleDayClick: PropTypes.func.isRequired,
+  isToday: PropTypes.bool.isRequired
 };

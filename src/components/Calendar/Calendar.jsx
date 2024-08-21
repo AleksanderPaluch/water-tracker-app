@@ -1,29 +1,39 @@
-import css from "./Calendar.module.css"
+import css from "./Calendar.module.css";
 import PropTypes from "prop-types";
-import CalendarItem from "../CalendarItem/CalendarItem"
+import CalendarItem from "../CalendarItem/CalendarItem";
 
-const Calendar = ({daysArray, handleDayClick}) => {
-
-  
-  const today = new Date().getDate();
-  
+const Calendar = ({ daysArray, handleDayClick, date }) => {
+  const today = new Date();
 
   return (
     <div>
-     <ul className={css.calendarList}>
-      {daysArray.map((day) => (
-      <CalendarItem day={day} key={day} isToday={day === today} handleDayClick={handleDayClick} />
-      ))}
-     </ul>
+      <ul className={css.calendarList}>
+        {daysArray.map((day) => {
+          const currentDayDate = new Date(date.year, date.month - 1, day);
+
+          const isToday =
+            today.getDate() === currentDayDate.getDate() &&
+            today.getMonth() === currentDayDate.getMonth() &&
+            today.getFullYear() === currentDayDate.getFullYear();
+
+          return (
+            <CalendarItem
+              day={day}
+              key={day}
+              handleDayClick={handleDayClick}
+              isToday={isToday}
+            />
+          );
+        })}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Calendar
-
-
+export default Calendar;
 
 Calendar.propTypes = {
   daysArray: PropTypes.array.isRequired,
-  handleDayClick: PropTypes.func.isRequired
+  handleDayClick: PropTypes.func.isRequired,
+  date: PropTypes.object.isRequired,
 };

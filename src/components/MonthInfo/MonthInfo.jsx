@@ -24,14 +24,14 @@ const MonthInfo = ({ date, setDate }) => {
       currentDate.getMonth() - 3,
       1
     );
-    const prevMonthDate = new Date(date.year, date.month - 2, 1);
+    const prevMonthDate = new Date(date.year, date.month - 2);
 
     if (threeMontAgo <= prevMonthDate) {
       setDate(getDateObject(prevMonthDate));
     }
   };
   const handleNextMonth = () => {
-    const nextMonthDate = new Date(date.year, date.month, 1);
+    const nextMonthDate = new Date(date.year, date.month);
 
     if (nextMonthDate <= currentDate) {
       setDate(getDateObject(nextMonthDate));
@@ -67,7 +67,7 @@ const MonthInfo = ({ date, setDate }) => {
         </div>
       </div>
       {!isStatsShown && (
-        <Calendar daysArray={daysArray} handleDayClick={handleDayClick} />
+        <Calendar daysArray={daysArray} handleDayClick={handleDayClick} date={date} />
       )}
       {isStatsShown && <CalendarStats />}
     </div>
