@@ -10,36 +10,51 @@ import PropTypes from "prop-types";
 const MonthInfo = ({ date, setDate }) => {
   const [isStatsShown, setIsStatsShown] = useState(false);
   const currentDate = new Date();
-  const daysArray = Array.from(
-    { length: date.dayInMonth },
-    (_, index) => index + 1
-  );
 
-  const hadleClick = () => {
+  // Стан для відображення місяця і року
+  const [displayedMonth, setDisplayedMonth] = useState(currentDate.getMonth() + 1);
+  const [displayedYear, setDisplayedYear] = useState(currentDate.getFullYear());
+
+  // Генеруємо кількість днів для відображуваного місяця
+  const daysInMonth = new Date(displayedYear, displayedMonth, 0).getDate();
+  const daysArray = Array.from({ length: daysInMonth }, (_, index) => index + 1);
+
+  const handleClickStats = () => {
     setIsStatsShown(!isStatsShown);
   };
-  const handlePrevMonth = () => {
-    const threeMontAgo = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() - 3,
-      1
-    );
-    const prevMonthDate = new Date(date.year, date.month - 2);
 
-    if (threeMontAgo <= prevMonthDate) {
-      setDate(getDateObject(prevMonthDate));
+  // Обробник для попереднього місяця
+  const handlePrevMonth = () => {
+    const threeMonthsAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - 3);
+    const prevMonthDate = new Date(displayedYear, displayedMonth - 2);
+
+    if (prevMonthDate >= threeMonthsAgo) {
+      if (displayedMonth === 1) {
+        setDisplayedMonth(12);
+        setDisplayedYear((prevYear) => prevYear - 1);
+      } else {
+        setDisplayedMonth((prevMonth) => prevMonth - 1);
+      }
     }
   };
+
+  // Обробник для наступного місяця
   const handleNextMonth = () => {
-    const nextMonthDate = new Date(date.year, date.month);
+    const nextMonthDate = new Date(displayedYear, displayedMonth);
 
     if (nextMonthDate <= currentDate) {
-      setDate(getDateObject(nextMonthDate));
+      if (displayedMonth === 12) {
+        setDisplayedMonth(1);
+        setDisplayedYear((prevYear) => prevYear + 1);
+      } else {
+        setDisplayedMonth((prevMonth) => prevMonth + 1);
+      }
     }
   };
+
   const handleDayClick = (day) => {
-    const newDate = new Date(date.year, date.month - 1, day); // Оновлюємо лише день
-    setDate(getDateObject(newDate)); // Оновлюємо стан з новою датою
+    const newDate = new Date(displayedYear, displayedMonth - 1, day);
+    setDate(getDateObject(newDate)); // Оновлюємо тільки активну дату
   };
 
   return (
@@ -48,13 +63,13 @@ const MonthInfo = ({ date, setDate }) => {
         <p className={css.title}>{!isStatsShown ? "Month" : "Statistics"}</p>
         <div className={css.CalendarPaginationBox}>
           <CalendarPagination
-            month={date.monthName}
+            month={new Date(displayedYear, displayedMonth - 1).toLocaleString("en", { month: "long" })}
             handlePrevMonth={handlePrevMonth}
             handleNextMonth={handleNextMonth}
           />
           <button
             type="button"
-            onClick={() => hadleClick()}
+            onClick={handleClickStats}
             className={css.chartBtn}
           >
             <Icon
@@ -66,9 +81,17 @@ const MonthInfo = ({ date, setDate }) => {
           </button>
         </div>
       </div>
+
       {!isStatsShown && (
-        <Calendar daysArray={daysArray} handleDayClick={handleDayClick} date={date} />
+        <Calendar
+          daysArray={daysArray}
+          handleDayClick={handleDayClick}
+          activeDate={new Date(date.year, date.month - 1, date.day)}
+          displayedYear={displayedYear}
+          displayedMonth={displayedMonth}
+        />
       )}
+
       {isStatsShown && <CalendarStats />}
     </div>
   );

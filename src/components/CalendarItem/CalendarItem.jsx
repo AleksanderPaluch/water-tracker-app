@@ -1,7 +1,8 @@
 import css from "./CalendarItem.module.css";
 import PropTypes from "prop-types";
 
-const CalendarItem = ({ day, handleDayClick, isToday }) => {
+const CalendarItem = ({ day, handleDayClick, isToday, isSelected }) => {
+  console.log('isSelected: ', isSelected);
 
   
   const amount = "100%";
@@ -12,7 +13,7 @@ const CalendarItem = ({ day, handleDayClick, isToday }) => {
     <li className={css.item}>
       <button
         onClick={() => handleDayClick(day)}
-        className={`${css.button} ${isToday ? css.isToday : ""}`}
+        className={`${css.button} ${isToday ? css.isToday : ""}  ${isSelected ? css.isSelected : ""}`}
       >
         {day}
       </button>
@@ -26,5 +27,6 @@ export default CalendarItem;
 CalendarItem.propTypes = {
   day: PropTypes.number.isRequired,
   handleDayClick: PropTypes.func.isRequired,
-  isToday: PropTypes.bool.isRequired
+  isToday: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool.isRequired
 };
