@@ -5,22 +5,19 @@ import Icon from "../Icon/Icon";
 import CalendarStats from "../CalendarStats/CalendarStats";
 import { useState } from "react";
 import { getDateObject } from "../../helpers/getDate";
+import PropTypes from "prop-types";
 
-const MonthInfo = ({date, setDate}) => {
+const MonthInfo = ({ date, setDate }) => {
   const [isStatsShown, setIsStatsShown] = useState(false);
-
-  console.log("date: ", date);
   const currentDate = new Date();
-
-  const hadleClick = () => {
-    setIsStatsShown(!isStatsShown);
-  };
-
   const daysArray = Array.from(
     { length: date.dayInMonth },
     (_, index) => index + 1
   );
 
+  const hadleClick = () => {
+    setIsStatsShown(!isStatsShown);
+  };
   const handlePrevMonth = () => {
     const threeMontAgo = new Date(
       currentDate.getFullYear(),
@@ -33,8 +30,6 @@ const MonthInfo = ({date, setDate}) => {
       setDate(getDateObject(prevMonthDate));
     }
   };
-
-  // Функція для переходу до наступного місяця
   const handleNextMonth = () => {
     const nextMonthDate = new Date(date.year, date.month, 1);
 
@@ -42,7 +37,6 @@ const MonthInfo = ({date, setDate}) => {
       setDate(getDateObject(nextMonthDate));
     }
   };
-
   const handleDayClick = (day) => {
     const newDate = new Date(date.year, date.month - 1, day); // Оновлюємо лише день
     setDate(getDateObject(newDate)); // Оновлюємо стан з новою датою
@@ -78,6 +72,11 @@ const MonthInfo = ({date, setDate}) => {
       {isStatsShown && <CalendarStats />}
     </div>
   );
+};
+
+MonthInfo.propTypes = {
+  date: PropTypes.object.isRequired,
+  setDate: PropTypes.func.isRequired,
 };
 
 export default MonthInfo;

@@ -24,5 +24,6 @@ export default Calendar
 
 
 Calendar.propTypes = {
-  daysArray: PropTypes.array
+  daysArray: PropTypes.array.isRequired,
+  handleDayClick: PropTypes.func.isRequired
 };
