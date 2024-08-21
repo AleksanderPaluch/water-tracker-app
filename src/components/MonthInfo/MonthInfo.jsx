@@ -6,11 +6,11 @@ import CalendarStats from "../CalendarStats/CalendarStats";
 import { useState } from "react";
 import { getDateObject } from "../../helpers/getDate";
 
-const MonthInfo = () => {
+const MonthInfo = ({date, setDate}) => {
   const [isStatsShown, setIsStatsShown] = useState(false);
-  const [date, setDate] = useState(getDateObject());
+
+  console.log("date: ", date);
   const currentDate = new Date();
-  console.log(date);
 
   const hadleClick = () => {
     setIsStatsShown(!isStatsShown);
@@ -43,6 +43,11 @@ const MonthInfo = () => {
     }
   };
 
+  const handleDayClick = (day) => {
+    const newDate = new Date(date.year, date.month - 1, day); // Оновлюємо лише день
+    setDate(getDateObject(newDate)); // Оновлюємо стан з новою датою
+  };
+
   return (
     <div className={css.monthInfoBox}>
       <div className={css.calendarHeader}>
@@ -67,7 +72,9 @@ const MonthInfo = () => {
           </button>
         </div>
       </div>
-      {!isStatsShown && <Calendar daysArray={daysArray} />}
+      {!isStatsShown && (
+        <Calendar daysArray={daysArray} handleDayClick={handleDayClick} />
+      )}
       {isStatsShown && <CalendarStats />}
     </div>
   );

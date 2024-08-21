@@ -2,7 +2,7 @@ import css from "./Calendar.module.css"
 import PropTypes from "prop-types";
 import CalendarItem from "../CalendarItem/CalendarItem"
 
-const Calendar = ({daysArray}) => {
+const Calendar = ({daysArray, handleDayClick}) => {
 
   
   const today = new Date().getDate();
@@ -12,7 +12,7 @@ const Calendar = ({daysArray}) => {
     <div>
      <ul className={css.calendarList}>
       {daysArray.map((day) => (
-        <CalendarItem day={day} key={day} isToday={day === today} />
+      <CalendarItem day={day} key={day} isToday={day === today} handleDayClick={handleDayClick} />
       ))}
      </ul>
     </div>
