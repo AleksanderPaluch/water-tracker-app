@@ -5,6 +5,7 @@ import { apiGetCurrentUser, apiUploadPhoto } from "../../redux/user/operations";
 import { selectIsLoading } from "../../redux/user/selectors";
 import Loader from "../Loader/Loader";
 import toast from "react-hot-toast";
+import PropTypes from "prop-types";
 
 const UserAvatar = ({ user }) => {
   const isLoading = useSelector(selectIsLoading);
@@ -15,36 +16,19 @@ const UserAvatar = ({ user }) => {
 
     if (file) {
       try {
-        await dispatch(apiUploadPhoto(file)).unwrap(); // Замінити на свою дію
+        await dispatch(apiUploadPhoto(file)).unwrap();
         await dispatch(apiGetCurrentUser()).unwrap();
+        toast.success("Avatar updated successfully!", {
+          duration: 4000,
+        });
       } catch (error) {
-        console.error(error);
+        console.log(error);
+        toast.error("Unable to reach the server, please try again later", {
+          duration: 4000,
+        });
       }
     }
   };
-
-  //     if (file) {
-  //       try {
-  //         console.log(file);
-  //         dispatch(apiUploadPhoto(file).unwrap()); // Замінити на свою дію
-  //         toast.success("Avatar updated successfully!", {
-  //           duration: 4000,
-  //         });
-  //       } catch (error) {
-  //         if (error.message) {
-  //           // Network error or server is down
-  //           toast.error("Unable to reach the server, please try again later", {
-  //             duration: 4000,
-  //           });
-  //         } else {
-  //           // Handle other types of errors (e.g., wrong credentials)
-  //           toast.error(error || "Failed update photo", {
-  //             duration: 4000,
-  //           });
-  //         }
-  //       }
-  //     }
-  //   };
 
   return (
     <>
@@ -67,6 +51,10 @@ const UserAvatar = ({ user }) => {
       )}
     </>
   );
+};
+
+UserAvatar.propTypes = {
+  user: PropTypes.object,
 };
 
 export default UserAvatar;
