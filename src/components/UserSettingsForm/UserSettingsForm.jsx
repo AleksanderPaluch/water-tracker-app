@@ -1,5 +1,4 @@
 import css from "./UserSettingsForm.module.css";
-import Icon from "../Icon/Icon";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaExclamation } from "react-icons/fa";
@@ -7,7 +6,8 @@ import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
-import { apiGetCurrentUser, apiUpdateUser, apiUploadPhoto } from "../../redux/user/operations";
+import { apiGetCurrentUser, apiUpdateUser } from "../../redux/user/operations";
+import UserAvatar from "../UserAvatar/UserAvatar";
 
 const validationSchema = Yup.object({
   gender: Yup.string().required("Please pick one"),
@@ -41,32 +41,29 @@ const INITIAL_FORM_DATA = {
   water: "",
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 const UserSettingsForm = ({ closeModal }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+  // const fileInputRef = useRef(null);
 
-  const handleUpload =  () => {
-    try {
-      console.log("here");
-       dispatch(apiUploadPhoto())
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // const handleUploadClick = () => {
+  //   // Симулюємо клік на прихований інпут для вибору файлу
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.click();
+  //   }
+  // };
 
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     try {
+  //       dispatch(apiUploadPhoto(file)); // Замінити на свою дію
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // };
   // Function to calculate water intake
   const calculateWaterIntake = (weight, activeTime, gender) => {
     let waterIntake;
@@ -104,13 +101,7 @@ const UserSettingsForm = ({ closeModal }) => {
 
   return (
     <div className={css.formBox}>
-      <div className={css.avatarBox}>
-        <img className={css.userImg} src={user.avatarURL} alt="user2" />
-        <button type="button" className={css.uploadBtn} onClick={handleUpload}> 
-          <Icon width="18" height="18" iconName="upload" styles={css.icon} />
-          <p className={css.text}>Upload a photo</p>
-        </button>
-      </div>
+      <UserAvatar user={user} />
       <Formik
         validationSchema={validationSchema}
         initialValues={{
