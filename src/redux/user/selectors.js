@@ -7,7 +7,7 @@ export const selectIsLoading = (state) => {
 };
 
 export const selectDailyNorma = (state) => {
-  return state.user.user.dailyNorma;
+  return state.user.user.dailyNorma || 0;
 };
 
 

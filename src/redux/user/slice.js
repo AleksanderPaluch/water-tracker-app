@@ -13,7 +13,7 @@ const INITIAL_STATE = {
     gender: null,
     weight: null,
     timeActivity: null,
-    dailyNorma: null,
+    dailyNorma: "",
     avatarURL: null,
   },
   totalUsers: null,
