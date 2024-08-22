@@ -1,0 +1,207 @@
+.waterModalBox {
+    position: relative;
+    width: 343px;
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .iconExitBtn {
+    position: absolute;
+    right: 18px;
+    top: 20px;
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: #323f47;
+    margin-bottom: 24px;
+  }
+  
+  .text {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: #323f47;
+    margin-bottom: 20px;
+  }
+  
+  .calcBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .calcBtn {
+    border: none;
+    background-color: inherit;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .waterAmountBox {
+    padding: 11px 20px;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 30px;
+  }
+  
+  .label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+  
+  
+  
+  .labelText {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #2f2f2f;
+    margin-bottom: 8px;
+  }
+  
+  .labelBoldText {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: var(--blue);
+    margin-bottom: 6px;
+    margin-top: 20px;
+  }
+  
+  .formInput {
+    
+    padding: 14px 16px;
+    border-radius: 15px;
+    outline: none;
+    border: solid 1px;
+    border-color: rgba(47, 47, 47, 0.15);
+    background-color: inherit;
+    color: var(--grey);
+    font-size: 14px;
+  }
+  
+  .formInput:focus {
+    border-color: #2f2f2f99;
+  }
+  
+  .errorMessage {
+    position: absolute;
+   color: var(--red);
+   font-weight: 400;
+   font-size: 14px;
+   letter-spacing: -0.04em;
+  }
+  
+  .formBtn {
+    margin-top: 24px;
+    width: 100%;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    background-color: var(--green);
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 30px;
+  
+    transition: var(--animation);
+  }
+  
+  .formBtn:hover {
+    background-color: var(--greenHover);
+  }
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+   height: 24px;
+   width: 24px;
+   right: 20px;
+  }
+  
+  @media screen and (min-width: 768px) {
+  
+  
+    .waterModalBox {
+      width: 518px;
+      padding: 40px;
+    }
+  
+    .iconExitBtn {
+      width: 28px;
+      height: 28px;
+    }
+  
+    .iconExit {
+      width: 28px;
+      height: 28px;
+    }
+  
+  
+  
+    .title {
+      font-weight: 700;
+      font-size: 28px;
+    }
+  
+    .text {
+      font-size: 18px;
+    }
+  
+    .calcBtn {
+      width: 43px;
+      height: 43px;
+    }
+  
+    .icon{
+      width: 43px;
+      height: 43px;
+    }
+  
+    .waterAmountBox {
+      font-size: 17px;
+      padding: 11px 20px;
+    }
+  
+   
+    .formInput {
+      padding: 18px;
+      font-size: 17px;
+    }
+  
+    .labelText {
+      font-size: 17px;
+    }
+  
+    .labelBoldText {
+      font-size: 17px;
+    }
+  
+    .errorMessage {
+      font-size: 17px;
+    }
+  
+    .formBtn {
+      padding: 18px;
+      font-size: 18px;
+    }
+  }
+  
