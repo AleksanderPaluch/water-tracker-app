@@ -38,6 +38,7 @@ export const apiEditWater = createAsyncThunk(
   "water/editWater",
   async (formData, thunkAPI) => {
     try {
+      console.log(formData);
       const data = await requestEditWater(formData);
       return data;
     } catch (error) {

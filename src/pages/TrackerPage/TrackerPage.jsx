@@ -10,7 +10,7 @@ const TrackerPage = () => {
   console.log('date: ', date);
   return (
     <Page>
-      <WaterMainInfo />
+      <WaterMainInfo date={date}/>
       <WaterDetailedInfo date={date} setDate={setDate}  />
     </Page>
   );

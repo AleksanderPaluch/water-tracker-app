@@ -18,6 +18,7 @@ const WaterForm = ({
   initialValues,
   onSubmit,
   editAmount,
+  date
 }) => {
   const [amount, setAmount] = useState(editAmount || 150);
 

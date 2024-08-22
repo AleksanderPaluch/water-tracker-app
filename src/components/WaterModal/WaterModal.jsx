@@ -18,6 +18,7 @@ const WaterModal = ({
   editTime,
   editAmount,
   id,
+  date
 }) => {
   const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ const WaterModal = ({
   const handleAddingWater = async (formData, formActions) => {
     if (isEdit) {
       try {
-        await dispatch(apiEditWater({ ...formData, id })).unwrap();
+        await dispatch(apiEditWater({ ...formData, id, date })).unwrap();
         toast.success("Amount of water has been edited", {
           duration: 4000,
         });
@@ -40,7 +41,7 @@ const WaterModal = ({
       }
     } else {
       try {
-        await dispatch(apiAddWater(formData)).unwrap();
+        await dispatch(apiAddWater(...formData, date)).unwrap();
         toast.success("Amount of water has been added", {
           duration: 4000,
         });
@@ -77,6 +78,7 @@ const WaterModal = ({
         }}
         onSubmit={handleAddingWater}
         editAmount={editAmount}
+        date={date}
       />
     </div>
   );

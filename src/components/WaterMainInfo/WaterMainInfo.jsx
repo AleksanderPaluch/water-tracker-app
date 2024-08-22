@@ -6,7 +6,8 @@ import {  selectUser } from "../../redux/user/selectors";
 import { useSelector } from "react-redux";
 import { selectWaterDaily } from "../../redux/water/selectors";
 
-const WaterMainInfo = () => {
+const WaterMainInfo = ({date}) => {
+
   const user = useSelector(selectUser);
   const userDailyNorma = user?.dailyNorma
   // const userDailyNorma = useSelector(selectDailyNorma);
@@ -24,7 +25,7 @@ const WaterMainInfo = () => {
     <div className={css.waterInfoBox}>
       {userDailyNorma && <WaterDailyNorma userDailyNorma={userDailyNorma} />}
       <WaterProgressBar progress={progress} />
-      <AddWaterBtn />
+      <AddWaterBtn date={date} />
     </div>
   );
 };
