@@ -12,7 +12,7 @@ const DeleteWaterModal = ({ closeModal, id }) => {
   const handleDelete = async () => {
     try {
       await dispatch(apiDeleteWater({id})).unwrap();
-      toast.success("The specified amount of water has been removed.", {
+      toast.success("Amount of water has been removed", {
         duration: 4000,
       });
     } catch (error) {

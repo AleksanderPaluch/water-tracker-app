@@ -8,7 +8,7 @@ import { useState } from "react";
 import Icon from "../Icon/Icon";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-
+import { apiAddWater, apiEditWater } from "../../redux/water/operations";
 
 const validationSchema = Yup.object().shape({
   water: Yup.number()
@@ -23,7 +23,13 @@ const INITIAL_FORM_DATA = {
   water: "",
 };
 
-const WaterModal = ({ isEdit = false, closeModal, editTime, editAmount }) => {
+const WaterModal = ({
+  isEdit = false,
+  closeModal,
+  editTime,
+  editAmount,
+  id,
+}) => {
   const [amount, setAmount] = useState(150);
   const dispatch = useDispatch();
   const getCurrentTime = () => {
@@ -32,17 +38,30 @@ const WaterModal = ({ isEdit = false, closeModal, editTime, editAmount }) => {
   };
 
   const handleAddingWater = async (formData, formActions) => {
-  
-    try {
-      //  await dispatch(apiAddWater(formData)).unwrap();
-      toast.success("Amount of water has been added", {
-        duration: 4000,
-      });
-    } catch (error) {
-      toast.error("Failed to add water", {
-        duration: 4000,
-      });
+    if (isEdit) {
+      try {
+        await dispatch(apiEditWater({ ...formData, id })).unwrap();
+        toast.success("Amount of water has been edited", {
+          duration: 4000,
+        });
+      } catch (error) {
+        toast.error("Failed to edit water", {
+          duration: 4000,
+        });
+      }
+    } else {
+      try {
+        await dispatch(apiAddWater(formData)).unwrap();
+        toast.success("Amount of water has been added", {
+          duration: 4000,
+        });
+      } catch (error) {
+        toast.error("Failed to add water", {
+          duration: 4000,
+        });
+      }
     }
+
     formActions.resetForm();
     closeModal();
   };

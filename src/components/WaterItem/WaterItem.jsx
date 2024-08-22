@@ -50,6 +50,7 @@ const WaterItem = ({ amount, time, id }) => {
           editTime={time}
           editAmount={amount}
           closeModal={closeEditModal}
+          id={id}
         />
       </BaseModal>
 
