@@ -2,12 +2,14 @@ import AddWaterBtn from "../AddWaterBtn/AddWaterBtn";
 import WaterDailyNorma from "../WaterDailyNorma/WaterDailyNorma";
 import WaterProgressBar from "../WaterProgressBar/WaterProgressBar";
 import css from "./WaterMainInfo.module.css";
-import { selectDailyNorma } from "../../redux/user/selectors";
+import {  selectUser } from "../../redux/user/selectors";
 import { useSelector } from "react-redux";
 import { selectWaterDaily } from "../../redux/water/selectors";
 
 const WaterMainInfo = () => {
-  const userDailyNorma = useSelector(selectDailyNorma);
+  const user = useSelector(selectUser);
+  const userDailyNorma = user?.dailyNorma
+  // const userDailyNorma = useSelector(selectDailyNorma);
   const waterList = useSelector(selectWaterDaily);
 
   const waterDayAmount = waterList
