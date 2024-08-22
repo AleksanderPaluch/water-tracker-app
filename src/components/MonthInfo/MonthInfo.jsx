@@ -6,8 +6,12 @@ import CalendarStats from "../CalendarStats/CalendarStats";
 import { useState } from "react";
 import { getDateObject } from "../../helpers/getDate";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { apiGetWater } from "../../redux/water/operations";
 
 const MonthInfo = ({ date, setDate }) => {
+
+  const dispatch = useDispatch()
   const [isStatsShown, setIsStatsShown] = useState(false);
   const currentDate = new Date();
 
@@ -52,9 +56,14 @@ const MonthInfo = ({ date, setDate }) => {
     }
   };
 
-  const handleDayClick = (day) => {
+  const handleDayClick = async (day) => {
     const newDate = new Date(displayedYear, displayedMonth - 1, day);
     setDate(getDateObject(newDate)); // Оновлюємо тільки активну дату
+    try {
+      await dispatch(apiGetWater())
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

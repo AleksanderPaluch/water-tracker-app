@@ -1,7 +1,7 @@
 import { instance } from "./instace";
 
 export const requestGetWater = async () => {
-    const {data} = await instance.post("/water/get")
+    const {data} = await instance.get("/water/get")
     return data;
 }
 
