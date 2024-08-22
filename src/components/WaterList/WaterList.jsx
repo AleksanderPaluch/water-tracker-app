@@ -5,14 +5,14 @@ import { selectWaterDaily } from "../../redux/water/selectors";
 
 const WaterList = () => {
   const waterList = useSelector(selectWaterDaily);
-  console.log('waterList: ', waterList);
+
 
   return (
     <div className={css.waterListBox}>
       {waterList && (
         <ul className={css.waterList}>
           {waterList.map((water) => (
-            <WaterItem amount={water.amount} time={water.time} key={water.id} />
+            <WaterItem amount={water.amount} time={water.time} key={water.id} id={water.id}/>
           ))}
         </ul>
       )}

@@ -6,7 +6,7 @@ import {
   requestResetMail,
   requestSignUp,
   requestTokenRefresh,
-} from "../services/instace";
+} from "../services/auth";
 
 export const apiRegisterUser = createAsyncThunk(
   "auth/register",
@@ -71,7 +71,7 @@ export const apiResetPassword = createAsyncThunk(
     try {
       console.log(formData);
       const data = await requestChangePassword(formData);
-  
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -81,12 +81,10 @@ export const apiResetPassword = createAsyncThunk(
   }
 );
 
-
 export const apiTokenRefresh = createAsyncThunk(
   "auth/tokenRefresh",
   async (formData, thunkAPI) => {
     try {
-   
       const data = await requestTokenRefresh();
 
       return data;

@@ -4,7 +4,7 @@ import {
   requestTotalUsers,
   requestUpdateUser,
   requestUploadPhoto,
-} from "../services/instace";
+} from "../services/user";
 
 export const apiGetCurrentUser = createAsyncThunk(
   "user/current",
