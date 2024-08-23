@@ -5,7 +5,8 @@ import css from "./AddWaterBtn.module.css";
 import PropTypes from "prop-types";
 import WaterModal from "../WaterModal/WaterModal";
 
-const AddWaterBtn = ({ isBig = true }) => {
+const AddWaterBtn = ({ isBig = true, date }) => {
+  // console.log(date);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -26,13 +27,18 @@ const AddWaterBtn = ({ isBig = true }) => {
         {isBig ? (
           <Icon width="16" height="16" iconName="plus" styles={css.plusIcon} />
         ) : (
-          <Icon width="16" height="16" iconName="plus" styles={css.plusIconSmall} />
+          <Icon
+            width="16"
+            height="16"
+            iconName="plus"
+            styles={css.plusIconSmall}
+          />
         )}
         Add Water
       </button>
       <BaseModal isOpen={modalIsOpen} onClose={closeModal}>
-      <WaterModal closeModal={closeModal}/>
-        </BaseModal>
+        <WaterModal closeModal={closeModal} date={date} />
+      </BaseModal>
     </>
   );
 };

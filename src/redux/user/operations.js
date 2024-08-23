@@ -4,7 +4,7 @@ import {
   requestTotalUsers,
   requestUpdateUser,
   requestUploadPhoto,
-} from "../services/instace";
+} from "../services/user";
 
 export const apiGetCurrentUser = createAsyncThunk(
   "user/current",
@@ -53,14 +53,15 @@ export const apiGetTotalUsers = createAsyncThunk(
 
 export const apiUploadPhoto = createAsyncThunk(
   "user/upload",
-  async (formData, thunkAPI) => {
+  async (file, thunkAPI) => {
     try {
-      const data = await requestUploadPhoto();
-      console.log(data);
+      const formData = new FormData();
+      formData.append("avatar", file); // Додаємо файл до FormData
+      const data = await requestUploadPhoto(formData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response.data.message || error.message
+        error.response?.data?.message || error.message
       );
     }
   }

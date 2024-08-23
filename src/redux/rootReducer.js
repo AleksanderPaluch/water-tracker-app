@@ -9,7 +9,7 @@ import { waterReducer } from './water/slice';
 const rootReducer = combineReducers({
 auth: authReducer,
 user: userReducer,
-// water: waterReducer
+water: waterReducer
 })
 
 

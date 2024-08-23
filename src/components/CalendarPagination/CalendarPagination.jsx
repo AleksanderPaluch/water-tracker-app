@@ -3,26 +3,15 @@ import PropTypes from "prop-types";
 import { IoChevronBack } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
 
-const CalendarPagination = ({ currentDate }) => {
 
-  const formatDate = (date) => {
-    const month = date.toLocaleString("en-Us", { month: "long" });
-    const year = date.getFullYear()
-
-    return `${month}, ${year}`;
-  };
-
-
-  const  currentMonth = formatDate(currentDate)
-
-
+const CalendarPagination = ({ month, handlePrevMonth, handleNextMonth }) => {
   return (
     <div className={css.paginationBox}>
-      <button type="button" className={css.arrowBtn}>
+      <button type="button" className={css.arrowBtn} onClick={handlePrevMonth}>
         <IoChevronBack className={css.icon} />
       </button>
-      <p className={css.text}>{currentMonth}</p>
-      <button type="button" className={css.arrowBtn}>
+      <p className={css.text}>{month}</p>
+      <button type="button" className={css.arrowBtn} onClick={handleNextMonth}>
         <IoChevronForward className={css.icon} />
       </button>
     </div>
@@ -32,5 +21,7 @@ const CalendarPagination = ({ currentDate }) => {
 export default CalendarPagination;
 
 CalendarPagination.propTypes = {
-  currentDate: PropTypes.instanceOf(Date).isRequired,
+  month: PropTypes.string.isRequired,
+  handleNextMonth: PropTypes.func.isRequired,
+  handlePrevMonth: PropTypes.func.isRequired
 };

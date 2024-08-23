@@ -1,18 +1,24 @@
 import css from "./DailyInfo.module.css";
 import AddWaterBtn from "../AddWaterBtn/AddWaterBtn";
-import ChooseDate from "../ChooseDate/ChooseDate";
+import PropTypes from "prop-types";
 import WaterList from "../WaterList/WaterList";
 
-const DailyInfo = () => {
+const DailyInfo = ({ date }) => {
   return (
     <>
       <div className={css.dailyInfoBox}>
-        <ChooseDate />
+        <p className={css.date}>
+          {" "}
+          {date.day}, {date.monthName}{" "}
+        </p>
         <AddWaterBtn isBig={false} />
       </div>
-      <WaterList />
+      <WaterList date={date} />
     </>
   );
 };
 
+DailyInfo.propTypes = {
+  date: PropTypes.object.isRequired,
+};
 export default DailyInfo;

@@ -1,4 +1,4 @@
-// export const selectWaterDaily = (state) => {
-  
-//     return state.water.waterDaily;
-//   };
+export const selectWaterDaily = (state) => {
+
+   return  state.water.waterDaily;
+  };

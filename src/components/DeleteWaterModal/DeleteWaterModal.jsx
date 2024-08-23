@@ -3,15 +3,22 @@ import Icon from "../Icon/Icon";
 import css from "./DeleteWaterModal.module.css";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
+import { apiDeleteWater, apiGetDailyWater } from "../../redux/water/operations";
 
+const DeleteWaterModal = ({ closeModal, id, date }) => {
 
-const DeleteWaterModal = ({ closeModal }) => {
+  const day = date?.day;
+  const month = date?.month;
+  const year = date?.year;
+  const fullDate = date?.fullDate;
+
   const dispatch = useDispatch();
 
   const handleDelete = async () => {
     try {
-      //  await dispatch(apiDeleteWater()).unwrap();
-      toast.success("The specified amount of water has been removed.", {
+      await dispatch(apiDeleteWater(id)).unwrap();
+      await dispatch(apiGetDailyWater({ day, month, year, fullDate })).unwrap();
+      toast.success("Amount of water has been removed", {
         duration: 4000,
       });
     } catch (error) {
