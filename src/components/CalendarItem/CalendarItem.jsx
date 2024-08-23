@@ -21,7 +21,7 @@ const CalendarItem = ({
       >
         {day}
       </button>
-      <p className={css.text}>{progress}</p>
+      <p className={css.text}>{progress > 0 ? `${progress}%` : ""}</p>
     </li>
   );
 };

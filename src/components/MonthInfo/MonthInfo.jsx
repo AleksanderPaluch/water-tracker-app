@@ -8,7 +8,7 @@ import { getDateObject } from "../../helpers/getDate";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { apiGetDailyWater } from "../../redux/water/operations";
-import { apiGetCurrentUser } from "../../redux/user/operations";
+
 
 const MonthInfo = ({ date, setDate }) => {
  
@@ -116,6 +116,7 @@ const MonthInfo = ({ date, setDate }) => {
           activeDate={new Date(date.year, date.month - 1, date.day)}
           displayedYear={displayedYear}
           displayedMonth={displayedMonth}
+        fullDate={fullDate}
         />
       )}
 
