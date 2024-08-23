@@ -7,6 +7,6 @@
 @media screen and (min-width: 768px) {
   .calendarList {
     grid-template-columns: repeat(8, 1fr);
-    gap: 44px;
+    gap: 24px;
   }
 }
