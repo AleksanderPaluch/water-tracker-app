@@ -11,6 +11,22 @@ export const apiGetDailyWater = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const data = await requestGetWater(formData);
+      
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
+export const apiGetDailyWaterBtn = createAsyncThunk(
+  "water/getWaterBtn",
+  async (formData, thunkAPI) => {
+    try {
+      const data = await requestGetWater(formData);
+      
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
