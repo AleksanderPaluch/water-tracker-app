@@ -11,7 +11,7 @@ const DailyInfo = ({ date }) => {
           {" "}
           {date.day}, {date.monthName}{" "}
         </p>
-        <AddWaterBtn isBig={false} />
+        <AddWaterBtn date={date} isBig={false} />
       </div>
       <WaterList date={date} />
     </>

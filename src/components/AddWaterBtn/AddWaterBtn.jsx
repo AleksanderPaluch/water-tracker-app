@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import WaterModal from "../WaterModal/WaterModal";
 
 const AddWaterBtn = ({ isBig = true, date }) => {
-  // console.log(date);
+  console.log(date);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
