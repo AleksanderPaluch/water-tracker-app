@@ -18,7 +18,7 @@ const WaterForm = ({
   initialValues,
   onSubmit,
   editAmount,
-  date
+  
 }) => {
   const [amount, setAmount] = useState(editAmount || 150);
 
@@ -28,7 +28,7 @@ const WaterForm = ({
       initialValues={initialValues}
       onSubmit={onSubmit}
     >
-      {({ setFieldValue, values }) => (
+      {({ setFieldValue }) => (
         <Form className={css.form}>
           <p className={css.labelText}>Amount of water:</p>
           <div className={css.calcBox}>

@@ -11,15 +11,17 @@ const WaterMainInfo = ({date}) => {
   const user = useSelector(selectUser);
   const userDailyNorma = user?.dailyNorma
   // const userDailyNorma = useSelector(selectDailyNorma);
-  const waterList = useSelector(selectWaterDaily);
+  const waterList = [];
+const progress = 100
+  // const waterList = useSelector(selectWaterDaily);
 
-  const waterDayAmount = waterList
-    ? waterList.reduce((sum, water) => sum + water.amount, 0)
-    : 0;
+  // const waterDayAmount = waterList 
+  //   ? waterList.reduce((sum, water) => sum + water.amount, 0)
+  //   : 0;
 
-  const progress = userDailyNorma
-    ? Math.min(Math.floor((waterDayAmount / userDailyNorma) * 100), 100)
-    : 0;
+  // const progress = userDailyNorma
+  //   ? Math.min(Math.floor((waterDayAmount / userDailyNorma) * 100), 100)
+  //   : 0;
 
   return (
     <div className={css.waterInfoBox}>

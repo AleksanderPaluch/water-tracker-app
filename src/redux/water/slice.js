@@ -3,18 +3,11 @@ import {
   apiAddWater,
   apiDeleteWater,
   apiEditWater,
-  apiGetWater,
+  apiGetDailyWater,
 } from "./operations";
 
 const INITIAL_STATE = {
-  waterDaily: [
-    { id: 1, time: "07:00", amount: 500 },
-    { id: 2, time: "08:00", amount: 100 },
-    { id: 3, time: "09:00", amount: 200 },
-    { id: 4, time: "07:00", amount: 500 },
-    { id: 5, time: "08:00", amount: 100 },
-    { id: 6, time: "09:00", amount: 200 },
-  ],
+  waterDaily: [],
   waterMonthly: [],
   waterWeekly: [],
   isLoading: false,
@@ -41,12 +34,12 @@ const waterSlice = createSlice({
 
       // GET WATER DAILY //
 
-      .addCase(apiGetWater.pending, handlePending)
-      .addCase(apiGetWater.fulfilled, (state, action) => {
-        // state.waterDaily = action.payload.waterDaily;
+      .addCase(apiGetDailyWater.pending, handlePending)
+      .addCase(apiGetDailyWater.fulfilled, (state, action) => {
+        state.waterDaily = action.payload.waterDaily;
         (state.isError = false), (state.isLoading = false);
       })
-      .addCase(apiGetWater.rejected, handleRejected)
+      .addCase(apiGetDailyWater.rejected, handleRejected)
 
       // ADD WATER  //
 

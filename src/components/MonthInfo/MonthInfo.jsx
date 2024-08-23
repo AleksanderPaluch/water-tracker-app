@@ -7,21 +7,32 @@ import { useState } from "react";
 import { getDateObject } from "../../helpers/getDate";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { apiGetWater } from "../../redux/water/operations";
+import { apiGetDailyWater } from "../../redux/water/operations";
+import { apiGetCurrentUser } from "../../redux/user/operations";
 
 const MonthInfo = ({ date, setDate }) => {
+  const day = date?.day;
+  const month = date?.month;
+  const year = date?.year;
+  const fullDate = date?.fullDate;
+  const formData = {}
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isStatsShown, setIsStatsShown] = useState(false);
   const currentDate = new Date();
 
   // Стан для відображення місяця і року
-  const [displayedMonth, setDisplayedMonth] = useState(currentDate.getMonth() + 1);
+  const [displayedMonth, setDisplayedMonth] = useState(
+    currentDate.getMonth() + 1
+  );
   const [displayedYear, setDisplayedYear] = useState(currentDate.getFullYear());
 
   // Генеруємо кількість днів для відображуваного місяця
   const daysInMonth = new Date(displayedYear, displayedMonth, 0).getDate();
-  const daysArray = Array.from({ length: daysInMonth }, (_, index) => index + 1);
+  const daysArray = Array.from(
+    { length: daysInMonth },
+    (_, index) => index + 1
+  );
 
   const handleClickStats = () => {
     setIsStatsShown(!isStatsShown);
@@ -29,7 +40,10 @@ const MonthInfo = ({ date, setDate }) => {
 
   // Обробник для попереднього місяця
   const handlePrevMonth = () => {
-    const threeMonthsAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - 3);
+    const threeMonthsAgo = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 3
+    );
     const prevMonthDate = new Date(displayedYear, displayedMonth - 2);
 
     if (prevMonthDate >= threeMonthsAgo) {
@@ -60,7 +74,8 @@ const MonthInfo = ({ date, setDate }) => {
     const newDate = new Date(displayedYear, displayedMonth - 1, day);
     setDate(getDateObject(newDate)); // Оновлюємо тільки активну дату
     try {
-      await dispatch(apiGetWater())
+      await dispatch(apiGetDailyWater({ ...formData, day, month, year, fullDate }));
+      await dispatch(apiGetCurrentUser());
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +87,10 @@ const MonthInfo = ({ date, setDate }) => {
         <p className={css.title}>{!isStatsShown ? "Month" : "Statistics"}</p>
         <div className={css.CalendarPaginationBox}>
           <CalendarPagination
-            month={new Date(displayedYear, displayedMonth - 1).toLocaleString("en", { month: "long" })}
+            month={new Date(displayedYear, displayedMonth - 1).toLocaleString(
+              "en",
+              { month: "long" }
+            )}
             handlePrevMonth={handlePrevMonth}
             handleNextMonth={handleNextMonth}
           />

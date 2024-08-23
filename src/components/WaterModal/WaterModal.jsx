@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 import css from "./WaterModal.module.css";
 import Icon from "../Icon/Icon";
@@ -18,10 +17,15 @@ const WaterModal = ({
   editTime,
   editAmount,
   id,
-  date
+  date,
 }) => {
-  const dispatch = useDispatch();
+  // console.log(date);
 
+  const day = date?.day;
+  const month = date?.month;
+  const year = date?.year;
+  const fullDate = date?.fullDate;
+  const dispatch = useDispatch();
   const getCurrentTime = () => {
     const now = new Date();
     return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -30,7 +34,7 @@ const WaterModal = ({
   const handleAddingWater = async (formData, formActions) => {
     if (isEdit) {
       try {
-        await dispatch(apiEditWater({ ...formData, id, date })).unwrap();
+        await dispatch(apiEditWater({ ...formData, id })).unwrap();
         toast.success("Amount of water has been edited", {
           duration: 4000,
         });
@@ -41,7 +45,9 @@ const WaterModal = ({
       }
     } else {
       try {
-        await dispatch(apiAddWater(...formData, date)).unwrap();
+        await dispatch(
+          apiAddWater({ ...formData, day, month, year, fullDate })
+        ).unwrap();
         toast.success("Amount of water has been added", {
           duration: 4000,
         });
@@ -78,7 +84,6 @@ const WaterModal = ({
         }}
         onSubmit={handleAddingWater}
         editAmount={editAmount}
-        date={date}
       />
     </div>
   );
@@ -89,7 +94,8 @@ WaterModal.propTypes = {
   closeModal: PropTypes.func,
   editTime: PropTypes.string,
   editAmount: PropTypes.number,
-  id: PropTypes.any, 
+  id: PropTypes.any,
+  date: PropTypes.object,
 };
 
 export default WaterModal;

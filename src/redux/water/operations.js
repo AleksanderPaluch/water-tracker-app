@@ -6,11 +6,12 @@ import {
   requestGetWater,
 } from "../services/water";
 
-export const apiGetWater = createAsyncThunk(
+export const apiGetDailyWater = createAsyncThunk(
   "water/getWater",
   async (formData, thunkAPI) => {
     try {
-      const data = await requestGetWater();
+    
+      const data = await requestGetWater(formData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -25,6 +26,7 @@ export const apiAddWater = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       console.log(formData);
+     
       const data = await requestAddWater(formData);
       return data;
     } catch (error) {
@@ -50,9 +52,9 @@ export const apiEditWater = createAsyncThunk(
 );
 export const apiDeleteWater = createAsyncThunk(
   "water/removeWater",
-  async (formData, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      const data = await requestDeleteWater(formData);
+      const data = await requestDeleteWater(id);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
