@@ -3,11 +3,11 @@ import WaterItem from "../WaterItem/WaterItem";
 import css from "./WaterList.module.css";
 import { selectWaterDaily } from "../../redux/water/selectors";
 
-const WaterList = () => {
+const WaterList = ({date}) => {
 
   
   const waterList = useSelector(selectWaterDaily);
-  console.log('waterList: ', waterList);
+
 
   return (
     <div className={css.waterListBox}>
@@ -19,6 +19,7 @@ const WaterList = () => {
               time={water.time}
               key={water._id}
               id={water._id}
+              date={date}
             />
           ))}
         </ul>

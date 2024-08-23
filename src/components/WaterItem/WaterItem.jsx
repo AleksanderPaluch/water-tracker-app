@@ -5,7 +5,7 @@ import BaseModal from "../BaseModal/BaseModal";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
-const WaterItem = ({ amount, time, id }) => {
+const WaterItem = ({ amount, time, id, date }) => {
   
   const [deleteModalIsOpen, setdeleteModalIsOpen] = useState(false);
   const [editModalIsOpen, seteditModalIsOpen] = useState(false);
@@ -51,11 +51,12 @@ const WaterItem = ({ amount, time, id }) => {
           editAmount={amount}
           closeModal={closeEditModal}
           id={id}
+          date={date}
         />
       </BaseModal>
 
       <BaseModal isOpen={deleteModalIsOpen} onClose={closeModal}>
-        <DeleteWaterModal closeModal={closeModal} id={id} />
+        <DeleteWaterModal closeModal={closeModal} id={id}    date={date}/>
       </BaseModal>
     </div>
   );

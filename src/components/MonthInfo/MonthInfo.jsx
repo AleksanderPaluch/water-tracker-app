@@ -11,11 +11,11 @@ import { apiGetDailyWater } from "../../redux/water/operations";
 import { apiGetCurrentUser } from "../../redux/user/operations";
 
 const MonthInfo = ({ date, setDate }) => {
-  const day = date?.day;
+ 
   const month = date?.month;
   const year = date?.year;
   const fullDate = date?.fullDate;
-  const formData = {}
+
 
   const dispatch = useDispatch();
   const [isStatsShown, setIsStatsShown] = useState(false);
@@ -74,8 +74,8 @@ const MonthInfo = ({ date, setDate }) => {
     const newDate = new Date(displayedYear, displayedMonth - 1, day);
     setDate(getDateObject(newDate)); // Оновлюємо тільки активну дату
     try {
-      await dispatch(apiGetDailyWater({ ...formData, day, month, year, fullDate }));
-      await dispatch(apiGetCurrentUser());
+      await dispatch(apiGetDailyWater({ day, month, year, fullDate })).unwrap();
+     
     } catch (error) {
       console.log(error);
     }

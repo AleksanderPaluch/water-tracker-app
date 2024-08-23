@@ -13,7 +13,7 @@ const DailyInfo = ({ date }) => {
         </p>
         <AddWaterBtn isBig={false} />
       </div>
-      <WaterList />
+      <WaterList date={date} />
     </>
   );
 };

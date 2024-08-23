@@ -2,14 +2,24 @@ import css from "./Calendar.module.css";
 import PropTypes from "prop-types";
 import CalendarItem from "../CalendarItem/CalendarItem";
 
-const Calendar = ({ daysArray, handleDayClick, activeDate, displayedYear, displayedMonth }) => {
+const Calendar = ({
+  daysArray,
+  handleDayClick,
+  activeDate,
+  displayedYear,
+  displayedMonth,
+}) => {
   const today = new Date(); // Сьогоднішня дата
 
   return (
     <div>
       <ul className={css.calendarList}>
         {daysArray.map((day) => {
-          const currentDayDate = new Date(displayedYear, displayedMonth - 1, day); // Формуємо дату для дня в календарі
+          const currentDayDate = new Date(
+            displayedYear,
+            displayedMonth - 1,
+            day
+          ); // Формуємо дату для дня в календарі
 
           const isToday =
             today.getDate() === currentDayDate.getDate() &&

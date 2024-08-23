@@ -8,6 +8,7 @@ import { getDateObject } from "../../helpers/getDate";
 const TrackerPage = () => {
   const [date, setDate] = useState(getDateObject());
   // console.log('date: ', date);
+  
   return (
     <Page>
       <WaterMainInfo date={date}/>

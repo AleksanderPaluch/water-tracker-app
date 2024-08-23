@@ -3,8 +3,9 @@ import css from "./WaterModal.module.css";
 import Icon from "../Icon/Icon";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { apiAddWater, apiEditWater } from "../../redux/water/operations";
+import { apiAddWater, apiEditWater, apiGetDailyWater } from "../../redux/water/operations";
 import WaterForm from "../WaterForm/WaterForm"; // Імпорт нового компоненту форми
+
 
 const INITIAL_FORM_DATA = {
   time: "",
@@ -19,12 +20,14 @@ const WaterModal = ({
   id,
   date,
 }) => {
-  // console.log(date);
+  
 
   const day = date?.day;
   const month = date?.month;
   const year = date?.year;
   const fullDate = date?.fullDate;
+
+
   const dispatch = useDispatch();
   const getCurrentTime = () => {
     const now = new Date();
@@ -32,9 +35,11 @@ const WaterModal = ({
   };
 
   const handleAddingWater = async (formData, formActions) => {
-    if (isEdit) {
+    if (isEdit ) {
       try {
         await dispatch(apiEditWater({ ...formData, id })).unwrap();
+        await dispatch(apiGetDailyWater({ day, month, year, fullDate })).unwrap();
+
         toast.success("Amount of water has been edited", {
           duration: 4000,
         });
@@ -45,9 +50,10 @@ const WaterModal = ({
       }
     } else {
       try {
-        await dispatch(
-          apiAddWater({ ...formData, day, month, year, fullDate })
-        ).unwrap();
+        
+        await dispatch(apiAddWater({ ...formData, day, month, year, fullDate })).unwrap();
+        await dispatch(apiGetDailyWater({  day, month, year, fullDate })).unwrap();
+      
         toast.success("Amount of water has been added", {
           duration: 4000,
         });
