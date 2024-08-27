@@ -17,43 +17,29 @@ const INITIAL_FORM_DATA = {
 };
 
 const ForgotPasswordForm = () => {
-const dispatch = useDispatch()
-const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSendMail = async (formData, formActions) => {
-
     formActions.resetForm();
 
     try {
       await dispatch(apiSendResetMail(formData)).unwrap();
-      toast.success(
-        "Check your email! We sent you a link to reset your password.",
-        {
-          duration: 5000,
-        
-        }
-      );
-      navigate("/signin");
     } catch (error) {
       if (error.message) {
         // Network error or server is down
         toast.error("Unable to reach the server, please try again later", {
           duration: 4000,
         });
-      } else {
-        // Handle other types of errors (e.g., wrong credentials)
-        toast.error(error || "Failed  sent you a link to reset your password.", {
-          duration: 4000,
-        });
       }
     }
+    toast.success(
+      "Check your email! We sent you a link to reset your password.",
+      {
+        duration: 5000,
+      }
+    );
+    navigate("/signin");
   };
-
-
- 
-
-
-
-
 
   return (
     <div className={css.formBox}>
@@ -81,8 +67,6 @@ const navigate = useNavigate();
                 className={css.errorMessage}
               />
             )}
-
-  
 
             <button
               className={css.formBtn}

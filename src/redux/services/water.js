@@ -1,7 +1,6 @@
 import { instance } from "./instace";
 
 export const requestGetWater = async (formData) => {
-  console.log('formData: ', formData);
   const { data } = await instance.get("/water/get", { params: formData });
   return data;
 };
