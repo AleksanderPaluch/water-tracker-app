@@ -7,11 +7,14 @@ const WaterList = ({ date }) => {
   const waterList = useSelector(selectWaterDaily);
 
   // Сортування waterList за часом
-  const sortedList = waterList && waterList.length > 0 ? [...waterList].sort((a, b) => {
-    const timeA = new Date(`1970-01-01T${a.time}:00`);
-    const timeB = new Date(`1970-01-01T${b.time}:00`);
-    return timeA - timeB;
-  }) : [];
+  const sortedList =
+    waterList && waterList.length > 0
+      ? [...waterList].sort((a, b) => {
+          const timeA = new Date(`1970-01-01T${a.time}:00`);
+          const timeB = new Date(`1970-01-01T${b.time}:00`);
+          return timeA - timeB;
+        })
+      : [];
 
   return (
     <div className={css.waterListBox}>
@@ -27,7 +30,9 @@ const WaterList = ({ date }) => {
             />
           ))}
         </ul>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </div>
   );
 };
