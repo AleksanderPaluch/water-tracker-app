@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
 import { apiGetDailyWaterBtn } from "../../redux/water/operations";
 import { selectWaterDaily } from "../../redux/water/selectors";
-import Icon from "../Icon/Icon";
+
 import CalendarStats from "../CalendarStats/CalendarStats";
 
 const Calendar = ({
@@ -16,6 +16,9 @@ const Calendar = ({
   displayedYear,
   displayedMonth,
   fullDate,
+  date,
+  isStatsShown
+
 }) => {
   const today = new Date();
   const dispatch = useDispatch();
@@ -23,10 +26,7 @@ const Calendar = ({
   const [progressData, setProgressData] = useState({});
   const [waterDailyStats, setWaterDailyStats] = useState([]);
   const waterData = useSelector(selectWaterDaily);
-  const [isStatsShown, setIsStatsShown] = useState(false);
-  const handleClickStats = () => {
-    setIsStatsShown(!isStatsShown);
-  };
+
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -80,13 +80,11 @@ const Calendar = ({
  
 
   return (
-    <div>
-      <button type="button" onClick={handleClickStats} className={css.chartBtn}>
-        <Icon width="24" height="24" iconName="pie-chart" />
-      </button>
+    <div >
+ 
 
       {isStatsShown ? (
-        <CalendarStats waterDailyStats={waterDailyStats}/>
+        <CalendarStats waterDailyStats={waterDailyStats} date={date}/>
       ) : (
         <ul className={css.calendarList}>
           {daysArray.map((day) => {
@@ -133,4 +131,5 @@ Calendar.propTypes = {
   displayedYear: PropTypes.number.isRequired,
   displayedMonth: PropTypes.number.isRequired,
   fullDate: PropTypes.string,
+  date: PropTypes.object
 };

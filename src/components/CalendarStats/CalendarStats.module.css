@@ -1,0 +1,39 @@
+.statBox {
+    position: relative;
+}
+
+.toggleBtn {
+    position: absolute;
+  top: -20px;
+  left: 114px;
+  width: 150px;
+    border: none;
+    background-color: inherit;
+    color: var(--blue);
+    font-size: 16px;
+    /* font-weight: bold; */
+    letter-spacing: -0.1px;
+    padding: 0;
+    cursor: pointer;
+
+  }
+
+
+
+  @media screen and (min-width: 768px) {
+    .toggleBtn {
+        position: absolute;
+      top: -44px;
+      left: 180px;
+      width: 150px;
+        border: none;
+        background-color: inherit;
+        color: var(--blue);
+        font-size: 16px;
+        /* font-weight: bold; */
+        letter-spacing: -0.1px;
+        padding: 0;
+        cursor: pointer;
+    
+      }
+  }

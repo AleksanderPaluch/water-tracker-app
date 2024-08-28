@@ -2,7 +2,7 @@ import css from "./MonthInfo.module.css";
 import CalendarPagination from "../CalendarPagination/CalendarPagination";
 import Calendar from "../Calendar/Calendar";
 
-
+import Icon from "../Icon/Icon";
 import { useState } from "react";
 import { getDateObject } from "../../helpers/getDate";
 import PropTypes from "prop-types";
@@ -13,6 +13,11 @@ const MonthInfo = ({ date, setDate }) => {
   const month = date?.month;
   const year = date?.year;
   const fullDate = date?.fullDate;
+
+  const [isStatsShown, setIsStatsShown] = useState(false);
+  const handleClickStats = () => {
+    setIsStatsShown(!isStatsShown);
+  };
 
   const dispatch = useDispatch();
 
@@ -86,6 +91,11 @@ const MonthInfo = ({ date, setDate }) => {
             handlePrevMonth={handlePrevMonth}
             handleNextMonth={handleNextMonth}
           />
+
+<button type="button" onClick={handleClickStats} className={css.chartBtn}>
+        <Icon width="24" height="24" iconName="pie-chart" />
+      </button>
+
         </div>
       </div>
 
@@ -96,6 +106,8 @@ const MonthInfo = ({ date, setDate }) => {
         displayedYear={displayedYear}
         displayedMonth={displayedMonth}
         fullDate={fullDate}
+        date={date}
+      isStatsShown={isStatsShown}
       />
     </div>
   );
