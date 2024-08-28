@@ -21,7 +21,7 @@ const Calendar = ({
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [progressData, setProgressData] = useState({});
-  const [waterDailyStats, setWaterDailyStats] = useState({});
+  const [waterDailyStats, setWaterDailyStats] = useState([]);
   const waterData = useSelector(selectWaterDaily);
   const [isStatsShown, setIsStatsShown] = useState(false);
   const handleClickStats = () => {
@@ -32,7 +32,7 @@ const Calendar = ({
     const fetchProgress = async () => {
       const userDailyNorma = user?.dailyNorma;
       const updatedProgress = {};
-      const updatedWaterDailyStats = {};
+      const updatedWaterDailyStats = [];
       for (const day of daysArray) {
         try {
           const { waterDaily } = await dispatch(
@@ -52,7 +52,10 @@ const Calendar = ({
             ? Math.min(Math.floor((waterDayAmount / userDailyNorma) * 100), 100)
             : 0;
 
-          updatedWaterDailyStats[day] = waterDayAmount;
+          updatedWaterDailyStats.push({
+            day,
+            amount: waterDayAmount
+          })
           updatedProgress[day] = progress;
         } catch (error) {
           console.log("error: ", error);
