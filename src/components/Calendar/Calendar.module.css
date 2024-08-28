@@ -4,9 +4,22 @@
   gap: 16px;
 }
 
+.chartBtn {
+  bottom: 336px;
+  right: 20px;
+  position: absolute;
+  border: none;
+  background-color: inherit;
+
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   .calendarList {
     grid-template-columns: repeat(8, 1fr);
     gap: 24px;
+  }
+  .chartBtn {
+    bottom: 368px;
   }
 }

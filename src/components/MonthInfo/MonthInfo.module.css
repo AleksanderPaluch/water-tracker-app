@@ -7,21 +7,17 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+   padding-right: 30px;
 }
 
 .CalendarPaginationBox {
-    display: flex;
+  
+    /* display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 16px; */
 }
 
-.chartBtn {
-    border: none;
-    background-color: inherit;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
+
 
 .title {
     color: var(--blue);

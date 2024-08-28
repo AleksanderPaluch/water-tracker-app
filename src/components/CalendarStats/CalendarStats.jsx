@@ -1,6 +1,8 @@
 import css from "./CalendarStats.module.css"
 
-const CalendarStats = () => {
+const CalendarStats = ({waterDailyStats}) => {
+
+  console.log(waterDailyStats);
   return (
     <div>
       <h1>CalendarStats</h1>
