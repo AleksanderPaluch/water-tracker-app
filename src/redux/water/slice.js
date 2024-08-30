@@ -28,7 +28,11 @@ const waterSlice = createSlice({
   // Початковий стан редюсера слайсу
   initialState: INITIAL_STATE,
 
-  reducers: {},
+  reducers: {
+    logOutWaterState: (state) => {
+      state.waterDaily = [];
+    },
+  },
   extraReducers: (builder) =>
     builder
 
@@ -65,6 +69,8 @@ const waterSlice = createSlice({
       })
       .addCase(apiDeleteWater.rejected, handleRejected),
 });
+
+export const { logOutWaterState } = waterReducer.actions;
 
 // Редюсер слайсу
 export const waterReducer = waterSlice.reducer;
