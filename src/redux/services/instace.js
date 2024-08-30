@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://water-tracker-app-3d8d0b109609.herokuapp.com/",
   withCredentials: true,
 });
 

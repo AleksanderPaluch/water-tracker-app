@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./Calendar.module.css";
 import PropTypes from "prop-types";
 import CalendarItem from "../CalendarItem/CalendarItem";
@@ -7,6 +7,8 @@ import { selectUser } from "../../redux/user/selectors";
 import { apiGetDailyWaterBtn } from "../../redux/water/operations";
 import { selectWaterDaily } from "../../redux/water/selectors";
 
+import CalendarStats from "../CalendarStats/CalendarStats";
+
 const Calendar = ({
   daysArray,
   handleDayClick,
@@ -14,22 +16,32 @@ const Calendar = ({
   displayedYear,
   displayedMonth,
   fullDate,
+  date,
+  isStatsShown
+
 }) => {
   const today = new Date();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [progressData, setProgressData] = useState({});
-  const waterData = useSelector(selectWaterDaily)
+  const [waterDailyStats, setWaterDailyStats] = useState([]);
+  const waterData = useSelector(selectWaterDaily);
+
 
   useEffect(() => {
     const fetchProgress = async () => {
       const userDailyNorma = user?.dailyNorma;
       const updatedProgress = {};
-
+      const updatedWaterDailyStats = [];
       for (const day of daysArray) {
         try {
           const { waterDaily } = await dispatch(
-            apiGetDailyWaterBtn({ day, month: displayedMonth, year: displayedYear, fullDate })
+            apiGetDailyWaterBtn({
+              day,
+              month: displayedMonth,
+              year: displayedYear,
+              fullDate,
+            })
           ).unwrap();
 
           const waterDayAmount = waterDaily
@@ -40,48 +52,72 @@ const Calendar = ({
             ? Math.min(Math.floor((waterDayAmount / userDailyNorma) * 100), 100)
             : 0;
 
+          updatedWaterDailyStats.push({
+            day,
+            amount: waterDayAmount
+          })
           updatedProgress[day] = progress;
         } catch (error) {
-          console.log('error: ', error);
-          
+          console.log("error: ", error);
         }
       }
 
       setProgressData(updatedProgress);
+      setWaterDailyStats(updatedWaterDailyStats);
     };
 
     fetchProgress();
-  }, [daysArray, displayedMonth, displayedYear, fullDate, user?.dailyNorma, waterData, dispatch]);
+  }, [
+    daysArray,
+    displayedMonth,
+    displayedYear,
+    fullDate,
+    user?.dailyNorma,
+    waterData,
+    dispatch,
+  ]);
+
+ 
 
   return (
-    <div>
-      <ul className={css.calendarList}>
-        {daysArray.map((day) => {
-          const progress = progressData[day] || 0;
-          const currentDayDate = new Date(displayedYear, displayedMonth - 1, day);
+    <div >
+ 
 
-          const isToday =
-            today.getDate() === currentDayDate.getDate() &&
-            today.getMonth() === currentDayDate.getMonth() &&
-            today.getFullYear() === currentDayDate.getFullYear();
+      {isStatsShown ? (
+        <CalendarStats waterDailyStats={waterDailyStats} date={date}/>
+      ) : (
+        <ul className={css.calendarList}>
+          {daysArray.map((day) => {
+            const progress = progressData[day] || 0;
+            const currentDayDate = new Date(
+              displayedYear,
+              displayedMonth - 1,
+              day
+            );
 
-          const isSelected =
-            activeDate.getDate() === currentDayDate.getDate() &&
-            activeDate.getMonth() === currentDayDate.getMonth() &&
-            activeDate.getFullYear() === currentDayDate.getFullYear();
+            const isToday =
+              today.getDate() === currentDayDate.getDate() &&
+              today.getMonth() === currentDayDate.getMonth() &&
+              today.getFullYear() === currentDayDate.getFullYear();
 
-          return (
-            <CalendarItem
-              day={day}
-              key={day}
-              handleDayClick={handleDayClick}
-              isToday={isToday}
-              isSelected={isSelected}
-              progress={progress}
-            />
-          );
-        })}
-      </ul>
+            const isSelected =
+              activeDate.getDate() === currentDayDate.getDate() &&
+              activeDate.getMonth() === currentDayDate.getMonth() &&
+              activeDate.getFullYear() === currentDayDate.getFullYear();
+
+            return (
+              <CalendarItem
+                day={day}
+                key={day}
+                handleDayClick={handleDayClick}
+                isToday={isToday}
+                isSelected={isSelected}
+                progress={progress}
+              />
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };
@@ -95,4 +131,5 @@ Calendar.propTypes = {
   displayedYear: PropTypes.number.isRequired,
   displayedMonth: PropTypes.number.isRequired,
   fullDate: PropTypes.string,
+  date: PropTypes.object
 };

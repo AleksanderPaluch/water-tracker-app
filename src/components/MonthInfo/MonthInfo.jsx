@@ -1,24 +1,26 @@
 import css from "./MonthInfo.module.css";
 import CalendarPagination from "../CalendarPagination/CalendarPagination";
 import Calendar from "../Calendar/Calendar";
+
 import Icon from "../Icon/Icon";
-import CalendarStats from "../CalendarStats/CalendarStats";
 import { useState } from "react";
 import { getDateObject } from "../../helpers/getDate";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { apiGetDailyWater } from "../../redux/water/operations";
 
-
 const MonthInfo = ({ date, setDate }) => {
- 
   const month = date?.month;
   const year = date?.year;
   const fullDate = date?.fullDate;
 
+  const [isStatsShown, setIsStatsShown] = useState(false);
+  const handleClickStats = () => {
+    setIsStatsShown(!isStatsShown);
+  };
 
   const dispatch = useDispatch();
-  const [isStatsShown, setIsStatsShown] = useState(false);
+
   const currentDate = new Date();
 
   // Стан для відображення місяця і року
@@ -33,10 +35,6 @@ const MonthInfo = ({ date, setDate }) => {
     { length: daysInMonth },
     (_, index) => index + 1
   );
-
-  const handleClickStats = () => {
-    setIsStatsShown(!isStatsShown);
-  };
 
   // Обробник для попереднього місяця
   const handlePrevMonth = () => {
@@ -75,7 +73,6 @@ const MonthInfo = ({ date, setDate }) => {
     setDate(getDateObject(newDate)); // Оновлюємо тільки активну дату
     try {
       await dispatch(apiGetDailyWater({ day, month, year, fullDate })).unwrap();
-     
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +81,7 @@ const MonthInfo = ({ date, setDate }) => {
   return (
     <div className={css.monthInfoBox}>
       <div className={css.calendarHeader}>
-        <p className={css.title}>{!isStatsShown ? "Month" : "Statistics"}</p>
+        <p className={css.title}>Month</p>
         <div className={css.CalendarPaginationBox}>
           <CalendarPagination
             month={new Date(displayedYear, displayedMonth - 1).toLocaleString(
@@ -94,33 +91,24 @@ const MonthInfo = ({ date, setDate }) => {
             handlePrevMonth={handlePrevMonth}
             handleNextMonth={handleNextMonth}
           />
-          <button
-            type="button"
-            onClick={handleClickStats}
-            className={css.chartBtn}
-          >
-            <Icon
-              width="24"
-              height="24"
-              iconName="pie-chart"
-              styles={css.plusIconSmall}
-            />
-          </button>
+
+<button type="button" onClick={handleClickStats} className={css.chartBtn}>
+        <Icon width="24" height="24" iconName="pie-chart" />
+      </button>
+
         </div>
       </div>
 
-      {!isStatsShown && (
-        <Calendar
-          daysArray={daysArray}
-          handleDayClick={handleDayClick}
-          activeDate={new Date(date.year, date.month - 1, date.day)}
-          displayedYear={displayedYear}
-          displayedMonth={displayedMonth}
+      <Calendar
+        daysArray={daysArray}
+        handleDayClick={handleDayClick}
+        activeDate={new Date(date.year, date.month - 1, date.day)}
+        displayedYear={displayedYear}
+        displayedMonth={displayedMonth}
         fullDate={fullDate}
-        />
-      )}
-
-      {isStatsShown && <CalendarStats />}
+        date={date}
+      isStatsShown={isStatsShown}
+      />
     </div>
   );
 };
