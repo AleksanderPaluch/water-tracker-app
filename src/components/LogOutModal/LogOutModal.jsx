@@ -28,7 +28,7 @@ const LogOutModal = ({ closeModal }) => {
       }
     }
     dispatch(logOutUser())
-    dispatch(logOutWaterState)
+    dispatch(logOutWaterState())
     closeModal();
     navigate("/");
     toast.success("You have been signed out. See you next time!", {
