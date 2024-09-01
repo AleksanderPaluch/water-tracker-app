@@ -17,7 +17,7 @@ const CustomToast = (success = true, text) => {
       </div>
     ),
     {
-      duration: 4000,
+      duration: 2000,
     }
   );
 };

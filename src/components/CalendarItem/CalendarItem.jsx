@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+
 import css from "./CalendarItem.module.css";
 import PropTypes from "prop-types";
 
@@ -10,7 +10,7 @@ const CalendarItem = ({
   progress,
   isInFuture,
 }) => {
-  console.log("isInFuture:", isInFuture);
+
 
   const buttonStyle = {
     "--progress-height": `${progress}%`, // Передаємо прогрес у вигляді CSS змінної

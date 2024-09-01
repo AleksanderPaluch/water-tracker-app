@@ -139,7 +139,7 @@ const SignInForm = () => {
       </div>
       <button className={css.GoogleBtn}>
         <FcGoogle className={css.icon} />
-        Sign Up with Google
+        Sign In with Google
       </button>
     </div>
   );

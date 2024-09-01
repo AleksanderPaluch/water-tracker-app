@@ -38,7 +38,7 @@ const Calendar = ({
               day,
               month: displayedMonth,
               year: displayedYear,
-              fullDate,
+              fullDate: fullDate,
             })
           ).unwrap();
 
@@ -66,13 +66,8 @@ const Calendar = ({
 
     fetchProgress();
   }, [
-    daysArray,
-    displayedMonth,
-    displayedYear,
-    fullDate,
+    displayedMonth,   
     user?.dailyNorma,
-    waterData,
-    dispatch,
   ]);
 
   return (
