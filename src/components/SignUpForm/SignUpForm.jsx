@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 import SignUpToast from "../Toasts/SignUpToast/SignUpToast";
 import CustomToast from "../Toasts/CustomToast/CustomToast";
+import { FcGoogle } from "react-icons/fc";
 
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
@@ -175,6 +176,13 @@ const SignUpForm = () => {
           Sign In
         </Link>
       </span>
+      <div className={css.line}>
+        <span>Or</span>
+      </div>
+      <button className={css.GoogleBtn}>
+        <FcGoogle className={css.icon} />
+        Sign Up with Google
+      </button>
     </div>
   );
 };

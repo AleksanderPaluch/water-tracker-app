@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { apiLoginUser } from "../../redux/auth/operations";
 import { apiGetCurrentUser } from "../../redux/user/operations";
 import CustomToast from "../Toasts/CustomToast/CustomToast";
+import { FcGoogle } from "react-icons/fc";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -133,6 +134,13 @@ const SignInForm = () => {
           Sign Up
         </Link>
       </span>
+      <div className={css.line}>
+        <span>Or</span>
+      </div>
+      <button className={css.GoogleBtn}>
+        <FcGoogle className={css.icon} />
+        Sign Up with Google
+      </button>
     </div>
   );
 };
