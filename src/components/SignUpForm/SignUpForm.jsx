@@ -6,9 +6,8 @@ import Icon from "../Icon/Icon";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
-
-import toast from "react-hot-toast";
-import SignUpToast from "../SignUpToast/SignUpToast";
+import SignUpToast from "../Toasts/SignUpToast/SignUpToast";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
 
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
@@ -57,19 +56,17 @@ const SignUpForm = () => {
 
     try {
       await dispatch(apiRegisterUser(formData)).unwrap();
-      SignUpToast()
+      SignUpToast();
       navigate("/signin");
-    }  catch (error) {
+    } catch (error) {
       if (error.message) {
-        // Network error or server is down
-        toast.error("Unable to reach the server, please try again later", {
-          duration: 4000,
-        });
+        CustomToast(
+          false,
+          "Unable to reach the server, please try again later"
+        );
       } else {
+        CustomToast(false, error || "Failed to sign up");
         // Handle other types of errors (e.g., wrong credentials)
-        toast.error(error || "Failed to log in", {
-          duration: 4000,
-        });
       }
     }
   };

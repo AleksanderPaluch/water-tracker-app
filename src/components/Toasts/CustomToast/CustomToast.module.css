@@ -1,0 +1,52 @@
+.toastBox {
+  min-width: 343px;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
+  justify-content: space-between;
+}
+
+.text {
+  height: 12px;
+  color: var(--grey);
+  font-size: 15px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--greenHover);
+}
+.iconX {
+    width: 24px;
+    height: 24px;
+    fill: var(--red);
+  }
+
+
+
+@media screen and (min-width: 768px) {
+  .toastBox {
+    justify-content: space-between;
+    max-width: 704px;
+    gap: 20px;
+  }
+
+  .text {
+    height: 14px;
+    font-size: 18px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+  .iconX {
+    width: 28px;
+    height: 28px;
+  }
+}

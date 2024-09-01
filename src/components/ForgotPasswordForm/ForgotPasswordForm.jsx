@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { apiSendResetMail } from "../../redux/auth/operations";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -32,12 +33,11 @@ const ForgotPasswordForm = () => {
         });
       }
     }
-    toast.success(
-      "Check your email! We sent you a link to reset your password.",
-      {
-        duration: 5000,
-      }
+    CustomToast(
+      true,
+      "Check your email! We sent you a link to reset your password."
     );
+
     navigate("/signin");
   };
 
