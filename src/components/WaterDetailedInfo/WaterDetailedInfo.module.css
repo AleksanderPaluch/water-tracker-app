@@ -2,7 +2,7 @@
     border-radius: 30px;
     background-color: var(--cream);
     width: 343px;
-    min-height: 736px;
+    /* min-height: 736px; */
     padding: 30px 20px;
 }
 
