@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
 
 import toast from "react-hot-toast";
+import SignUpToast from "../SignUpToast/SignUpToast";
 
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
@@ -56,12 +57,7 @@ const SignUpForm = () => {
 
     try {
       await dispatch(apiRegisterUser(formData)).unwrap();
-      toast.success(
-        "Your account has been created! Please check your email and confirm your address to complete the registration process.",
-        {
-          duration: 5000,
-        }
-      );
+      SignUpToast()
       navigate("/signin");
     }  catch (error) {
       if (error.message) {
