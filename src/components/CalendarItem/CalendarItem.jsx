@@ -8,20 +8,29 @@ const CalendarItem = ({
   isToday,
   isSelected,
   progress,
+  isInFuture,
 }) => {
-  // const amount = "100%";
+  console.log("isInFuture:", isInFuture);
+
+  const buttonStyle = {
+    "--progress-height": `${progress}%`, // Передаємо прогрес у вигляді CSS змінної
+  };
 
   return (
     <li className={css.item}>
-      <button
-        onClick={() => handleDayClick(day)}
-        className={`${css.button} ${isToday ? css.isToday : ""}  ${
-          isSelected ? css.isSelected : ""
-        }`}
-      >
-        {day}
-      </button>
-      <p className={css.text}>{progress > 0 ? `${progress}%` : ""}</p>
+      <div className={css.btnBox}>
+        <button
+          onClick={() => handleDayClick(day)}
+          className={`${css.button} ${isToday ? css.isToday : ""} ${
+            isInFuture ? css.isInFuture : ""
+          } ${isSelected ? css.isSelected : ""}`}
+          style={buttonStyle}
+        >
+          {day}
+        </button>
+      </div>
+
+   
     </li>
   );
 };

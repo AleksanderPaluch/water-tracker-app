@@ -17,8 +17,7 @@ const Calendar = ({
   displayedMonth,
   fullDate,
   date,
-  isStatsShown
-
+  isStatsShown,
 }) => {
   const today = new Date();
   const dispatch = useDispatch();
@@ -26,7 +25,6 @@ const Calendar = ({
   const [progressData, setProgressData] = useState({});
   const [waterDailyStats, setWaterDailyStats] = useState([]);
   const waterData = useSelector(selectWaterDaily);
-
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -54,8 +52,8 @@ const Calendar = ({
 
           updatedWaterDailyStats.push({
             day,
-            amount: waterDayAmount
-          })
+            amount: waterDayAmount,
+          });
           updatedProgress[day] = progress;
         } catch (error) {
           console.log("error: ", error);
@@ -77,14 +75,10 @@ const Calendar = ({
     dispatch,
   ]);
 
- 
-
   return (
-    <div >
- 
-
+    <div>
       {isStatsShown ? (
-        <CalendarStats waterDailyStats={waterDailyStats} date={date}/>
+        <CalendarStats waterDailyStats={waterDailyStats} date={date} />
       ) : (
         <ul className={css.calendarList}>
           {daysArray.map((day) => {
@@ -100,6 +94,11 @@ const Calendar = ({
               today.getMonth() === currentDayDate.getMonth() &&
               today.getFullYear() === currentDayDate.getFullYear();
 
+            const isInFuture =
+              today.getDate() < currentDayDate.getDate() &&
+              today.getMonth() <= currentDayDate.getMonth() &&
+              today.getFullYear() <= currentDayDate.getFullYear();
+
             const isSelected =
               activeDate.getDate() === currentDayDate.getDate() &&
               activeDate.getMonth() === currentDayDate.getMonth() &&
@@ -113,6 +112,7 @@ const Calendar = ({
                 isToday={isToday}
                 isSelected={isSelected}
                 progress={progress}
+                isInFuture={isInFuture}
               />
             );
           })}
@@ -131,5 +131,5 @@ Calendar.propTypes = {
   displayedYear: PropTypes.number.isRequired,
   displayedMonth: PropTypes.number.isRequired,
   fullDate: PropTypes.string,
-  date: PropTypes.object
+  date: PropTypes.object,
 };

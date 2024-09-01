@@ -4,19 +4,44 @@
 }
 
 .button {
-  color: var(--blue);
+  position: relative;
+  color:  rgba(15, 9, 47, 0.756);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
-  width: 28px;
-  height: 28px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-radius: 30px;
-  background: rgba(50, 63, 71, 0.2);
+  background: #93939328;
+  overflow: hidden;
 }
 
+.button::before {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Починаємо знизу кнопки */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 136, 255, 0.141); /* Напівпрозорий колір води */
+  z-index: 0; /* Градієнт під текстом */
+  transition: height 0.5s ease; /* Анімація при зміні прогресу */
+  height: var(--progress-height, 0);
+ 
+}
 
+.button[data-progress="0"]::before {
+  height: 0;
+}
 
+.button > * {
+  position: relative;
+  z-index: 3; /* Текст повинен бути над градієнтом */
+}
 .isToday {
   background-color: var(--blue);
   color: var(--greenHover);
@@ -29,6 +54,13 @@
   background-color: var(--cream);
   color: var(--blue);
   
+
+}
+
+.isInFuture {
+  background-color: #dddddd;
+  color: #c0c0c0;
+  pointer-events: none;
 }
 
 .text {
@@ -42,7 +74,7 @@
   .button {
     width: 56px;
     height: 56px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     font-size: 20px;
   }
 
