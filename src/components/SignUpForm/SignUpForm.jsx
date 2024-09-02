@@ -72,6 +72,8 @@ const SignUpForm = () => {
     }
   };
 
+
+
   return (
     <div className={css.formBox}>
       <Formik
@@ -179,10 +181,10 @@ const SignUpForm = () => {
       <div className={css.line}>
         <span>Or</span>
       </div>
-      <button className={css.GoogleBtn}>
+      <a href="http://localhost:3000/users/google" className={css.GoogleBtn}>
         <FcGoogle className={css.icon} />
         Sign Up with Google
-      </button>
+      </a>
     </div>
   );
 };
