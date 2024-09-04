@@ -3,11 +3,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaExclamation } from "react-icons/fa";
 import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
 import { apiGetCurrentUser, apiUpdateUser } from "../../redux/user/operations";
 import UserAvatar from "../UserAvatar/UserAvatar";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
 
 const validationSchema = Yup.object({
   gender: Yup.string().required("Please pick one"),
@@ -63,16 +64,12 @@ const UserSettingsForm = ({ closeModal }) => {
     try {
       await dispatch(apiUpdateUser(formData)).unwrap();
       await dispatch(apiGetCurrentUser()).unwrap();
-      toast.success(
-        "Profile Updated! Your changes have been saved successfully.",
-        {
-          duration: 4000,
-        }
+      CustomToast(
+        true,
+        "Profile Updated! Your changes have been saved successfully."
       );
     } catch (error) {
-      toast.error("Failed to update profile", {
-        duration: 4000,
-      });
+      CustomToast(false, "Failed to update profile");
     }
 
     formActions.resetForm();

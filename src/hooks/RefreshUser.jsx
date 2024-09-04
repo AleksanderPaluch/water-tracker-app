@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsSignedIn } from "../redux/auth/selectors";
-import { apiTokenRefresh } from "../redux/auth/operations";
-
-// import { userInfo } from '../redux/user/operations';
-// import { tokenRefresh } from '../redux/auth/operations';
-// import { useSearchParams } from 'react-router-dom';
-import { jwtDecode } from "jwt-decode";
+import { apiAuthGoogle, apiTokenRefresh } from "../redux/auth/operations";
 import { apiGetCurrentUser } from "../redux/user/operations";
+import { useSearchParams } from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 const isTokenValid = (token) => {
   if (!token) return false;
@@ -24,8 +21,26 @@ const isTokenValid = (token) => {
 };
 
 export const useRefreshUser = () => {
+  const [searchParams] = useSearchParams();
+  const gToken = searchParams.get("token");
   const dispatch = useDispatch();
   const isSignedIn = useSelector(selectIsSignedIn);
+
+  // Викликаємо apiAuthGoogle тільки один раз при наявності gToken
+  useEffect(() => {
+    const handleGoogleAuth = async () => {
+      if (gToken) {
+        try {
+          await dispatch(apiAuthGoogle()).unwrap();
+          await dispatch(apiGetCurrentUser()).unwrap();
+        } catch (error) {
+          console.error("Error during Google authentication:", error);
+        }
+      }
+    };
+
+    handleGoogleAuth();
+  }, [gToken, dispatch]);  // Викликаємо ефект тільки при зміні gToken або dispatch
 
   useEffect(() => {
     const persistedState = localStorage.getItem("persist:root");
@@ -55,3 +70,4 @@ export const useRefreshUser = () => {
 
   return [isSignedIn];
 };
+

@@ -1,7 +1,7 @@
 .calendarList {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 16px;
+  gap: 4px;
 }
 
 .chartBtn {
@@ -17,7 +17,7 @@
 @media screen and (min-width: 768px) {
   .calendarList {
     grid-template-columns: repeat(8, 1fr);
-    gap: 24px;
+    gap: 16px;
   }
   .chartBtn {
     bottom: 376px;

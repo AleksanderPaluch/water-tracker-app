@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Icon from "../Icon/Icon";
 import { useState } from "react";
 import { apiResetPassword } from "../../redux/auth/operations";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -43,21 +44,19 @@ const ResetPasswordForm = () => {
   };
   const { verificationToken } = useParams();
 
-
   const handleResetPassword = async (formData, formActions) => {
     try {
       await dispatch(
         apiResetPassword({ ...formData, verificationToken })
       ).unwrap();
+      CustomToast(true, "Your password has been successfully updated!");
 
-      toast.success("Your password has been successfully updated!", {
-        duration: 5000,
-      });
       navigate("/signin");
     } catch (error) {
-      toast.error(error || "Failed  sent you a link to reset your password.", {
-        duration: 5000,
-      });
+      CustomToast(
+        false,
+        error || "Failed  sent you a link to reset your password."
+      );
     } finally {
       formActions.resetForm();
       formActions.setSubmitting(false);

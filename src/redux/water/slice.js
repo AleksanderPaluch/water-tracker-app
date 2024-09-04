@@ -29,9 +29,9 @@ const waterSlice = createSlice({
   initialState: INITIAL_STATE,
 
   reducers: {
-    // logOutWaterState: (state) => {
-    //   state.waterDaily = [];
-    // },
+    logOutWaterState: (state) => {
+      state.waterDaily = [];
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -48,7 +48,7 @@ const waterSlice = createSlice({
       // ADD WATER  //
 
       .addCase(apiAddWater.pending, handlePending)
-      .addCase(apiAddWater.fulfilled, (state, action) => {
+      .addCase(apiAddWater.fulfilled, (state) => {
         (state.isError = false), (state.isLoading = false);
       })
       .addCase(apiAddWater.rejected, handleRejected)
@@ -56,7 +56,7 @@ const waterSlice = createSlice({
       // EDIT WATER  //
 
       .addCase(apiEditWater.pending, handlePending)
-      .addCase(apiEditWater.fulfilled, (state, action) => {
+      .addCase(apiEditWater.fulfilled, (state) => {
         (state.isError = false), (state.isLoading = false);
       })
       .addCase(apiEditWater.rejected, handleRejected)
@@ -64,13 +64,13 @@ const waterSlice = createSlice({
       // REMOVE WATER  //
 
       .addCase(apiDeleteWater.pending, handlePending)
-      .addCase(apiDeleteWater.fulfilled, (state, action) => {
+      .addCase(apiDeleteWater.fulfilled, (state) => {
         (state.isError = false), (state.isLoading = false);
       })
       .addCase(apiDeleteWater.rejected, handleRejected),
 });
 
-// export const { logOutWaterState } = waterReducer.actions;
+export const { logOutWaterState } = waterSlice.actions;
 
 // Редюсер слайсу
 export const waterReducer = waterSlice.reducer;

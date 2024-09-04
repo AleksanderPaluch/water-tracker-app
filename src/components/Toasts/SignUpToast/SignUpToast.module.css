@@ -1,0 +1,62 @@
+.toastBox {
+  width: 343px;
+  background-color: var(--white);
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
+}
+
+.title {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+.text {
+  color: var(--grey);
+
+  font-size: 13px;
+  margin-bottom: 12px;
+  margin-left: 12px;
+}
+
+.btn {
+  height: 100%;
+  border: none;
+  background-color: inherit;
+  color: var(--grey);
+  font-size: 16px;
+  /* font-weight: bold; */
+  letter-spacing: -0.3px;
+  cursor: pointer;
+  padding: 0 10px;
+  border-left: 1px solid #e0e0e0;
+}
+
+@media screen and (min-width: 768px) {
+  .toastBox {
+    justify-content: space-between;
+    width: 704px;
+  }
+  .title {
+
+    font-size: 22px;
+    margin-bottom: 12px;
+    margin-top: 18px;
+    margin-left: 18px;
+  }
+  .text {
+    font-size: 18px;
+    margin-bottom: 18px;
+    margin-left: 18px;
+  }
+
+  .btn {
+    font-size: 18px;
+    padding: 0 24px;
+  }
+
+}

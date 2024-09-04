@@ -6,8 +6,9 @@ import Icon from "../Icon/Icon";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiRegisterUser } from "../../redux/auth/operations";
-
-import toast from "react-hot-toast";
+import SignUpToast from "../Toasts/SignUpToast/SignUpToast";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
+import { FcGoogle } from "react-icons/fc";
 
 // import { useDispatch } from "react-redux";
 // import { apiLoginUser } from "../../redux/auth/operations";
@@ -56,27 +57,22 @@ const SignUpForm = () => {
 
     try {
       await dispatch(apiRegisterUser(formData)).unwrap();
-      toast.success(
-        "Your account has been created! Please check your email and confirm your address to complete the registration process.",
-        {
-          duration: 5000,
-        }
-      );
+      SignUpToast();
       navigate("/signin");
-    }  catch (error) {
+    } catch (error) {
       if (error.message) {
-        // Network error or server is down
-        toast.error("Unable to reach the server, please try again later", {
-          duration: 4000,
-        });
+        CustomToast(
+          false,
+          "Unable to reach the server, please try again later"
+        );
       } else {
+        CustomToast(false, error || "Failed to sign up");
         // Handle other types of errors (e.g., wrong credentials)
-        toast.error(error || "Failed to log in", {
-          duration: 4000,
-        });
       }
     }
   };
+
+
 
   return (
     <div className={css.formBox}>
@@ -182,6 +178,13 @@ const SignUpForm = () => {
           Sign In
         </Link>
       </span>
+      <div className={css.line}>
+        <span>Or</span>
+      </div>
+      <a href="http://localhost:3000/users/google" className={css.GoogleBtn}>
+        <FcGoogle className={css.icon} />
+        Sign Up with Google
+      </a>
     </div>
   );
 };

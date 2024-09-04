@@ -7,7 +7,8 @@ import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 import { logOutUserLocally } from "../../redux/auth/slice";
 import { logOutUser } from "../../redux/user/slice";
-// import { logOutWaterState } from "../../redux/water/slice";
+import { logOutWaterState } from "../../redux/water/slice";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
 
 const LogOutModal = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -21,19 +22,16 @@ const LogOutModal = ({ closeModal }) => {
       try {
         await dispatch(logOutUserLocally());
         console.log("local Log-Out");
-
       } catch (error) {
         console.log(error);
         console.log("failed to logout locally");
       }
     }
-    dispatch(logOutUser())
-    // dispatch(logOutWaterState())
+    dispatch(logOutUser());
+    dispatch(logOutWaterState());
     closeModal();
     navigate("/");
-    toast.success("You have been signed out. See you next time!", {
-      duration: 4000,
-    });
+    CustomToast(true, "You have been signed out. See you next time!");
   };
 
   return (

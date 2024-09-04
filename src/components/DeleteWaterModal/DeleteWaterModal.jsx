@@ -2,11 +2,11 @@ import { useDispatch } from "react-redux";
 import Icon from "../Icon/Icon";
 import css from "./DeleteWaterModal.module.css";
 import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+
 import { apiDeleteWater, apiGetDailyWater } from "../../redux/water/operations";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
 
 const DeleteWaterModal = ({ closeModal, id, date }) => {
-
   const day = date?.day;
   const month = date?.month;
   const year = date?.year;
@@ -18,15 +18,11 @@ const DeleteWaterModal = ({ closeModal, id, date }) => {
     try {
       await dispatch(apiDeleteWater(id)).unwrap();
       await dispatch(apiGetDailyWater({ day, month, year, fullDate })).unwrap();
-      toast.success("Amount of water has been removed", {
-        duration: 4000,
-      });
+      CustomToast(true, "Amount of water has been removed");
     } catch (error) {
-      toast.error(
-        "There was an issue processing your request. Please try again later",
-        {
-          duration: 4000,
-        }
+      CustomToast(
+        false,
+        "There was an issue processing your request. Please try again later"
       );
     }
     closeModal();

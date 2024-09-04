@@ -6,15 +6,15 @@ import Icon from "../Icon/Icon";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { apiLoginUser } from "../../redux/auth/operations";
-import toast from "react-hot-toast";
 import { apiGetCurrentUser } from "../../redux/user/operations";
+import CustomToast from "../Toasts/CustomToast/CustomToast";
+import { FcGoogle } from "react-icons/fc";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: Yup.string().min(8)
-  .required("Password is required"),
+  password: Yup.string().min(8).required("Password is required"),
 });
 
 const INITIAL_FORM_DATA = {
@@ -32,37 +32,27 @@ const SignInForm = () => {
   const dispatch = useDispatch();
 
   const loginUser = async (formData, formActions) => {
-   
-   
     formActions.setSubmitting(false);
     formActions.resetForm();
 
-
     try {
-      await  dispatch(apiLoginUser(formData)).unwrap();
+      await dispatch(apiLoginUser(formData)).unwrap();
       await dispatch(apiGetCurrentUser()).unwrap();
-      toast.success(
-        "Great to see you! You’ve successfully signed in",
-        {
-          duration: 4000,
-        }
-      );
-    }   catch (error) {
 
+      CustomToast(true, "Great to see you! You’ve successfully signed in");
+    } catch (error) {
       if (error.message) {
+        CustomToast(
+          false,
+          "Unable to reach the server, please try again later"
+        );
         // Network error or server is down
-        toast.error("Unable to reach the server, please try again later", {
-          duration: 4000,
-        });
-      } else  {
+      } else {
+        CustomToast(false, error || "Failed to log in");
         // Handle other types of errors (e.g., wrong credentials)
-        toast.error(error || "Failed to log in", {
-          duration: 4000,
-        });
       }
     }
   };
-
 
   return (
     <div className={css.formBox}>
@@ -82,15 +72,15 @@ const SignInForm = () => {
                 name="email"
                 placeholder="Enter your email"
               />
-               {submitCount > 0 && (
-              <ErrorMessage
-                name="email"
-                component="span"
-                className={css.errorMessage}
-              />
-            )}
+              {submitCount > 0 && (
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className={css.errorMessage}
+                />
+              )}
             </label>
-           
+
             <label className={css.label}>
               <span className={css.labelText}>Password</span>
               <Field
@@ -113,14 +103,14 @@ const SignInForm = () => {
                 />
               </button>
               {submitCount > 0 && (
-              <ErrorMessage
-                name="password"
-                component="span"
-                className={css.errorMessage}
-              />
-            )}
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className={css.errorMessage}
+                />
+              )}
             </label>
-            
+
             <p className={css.forgotLink}>
               <Link className={css.forgotLink} to="/reset-password">
                 Forgot password?
@@ -144,6 +134,13 @@ const SignInForm = () => {
           Sign Up
         </Link>
       </span>
+      <div className={css.line}>
+        <span>Or</span>
+      </div>
+      <a href="http://localhost:3000/users/google" className={css.GoogleBtn}>
+        <FcGoogle className={css.icon} />
+        Sign Up with Google
+      </a>
     </div>
   );
 };

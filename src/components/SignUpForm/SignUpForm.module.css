@@ -37,7 +37,6 @@
 }
 
 .formInput {
- 
   padding: 16px;
   border-radius: 15px;
   outline: none;
@@ -61,14 +60,69 @@
   border: none;
   cursor: pointer;
   padding: 16px;
-  border-radius: 15px;
-  margin-top: 16px;
+  border-radius: 30px;
+  /* margin-top: 16px; */
   margin-bottom: 16px;
   transition: var(--animation);
 }
 
 .formBtn:hover {
   background-color: var(--greenHover);
+}
+
+.GoogleBtn {
+  text-decoration: none;
+  width: 311px;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  background-color: var(--cream);
+  border: none;
+  cursor: pointer;
+  padding: 11px 16px;
+  border-radius: 30px;
+  margin-top: 8px;
+  transition: var(--animation);
+  border: 1px solid #2f2f2f33;
+}
+
+.GoogleBtn:hover {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2f2f2f7a;
+  width: 311px;
+}
+
+.line::before,
+.line::after {
+  content: "";
+  flex-grow: 1;
+  height: 1px;
+  background-color: #2f2f2f33;
+}
+
+.line::before {
+  margin-right: 10px;
+}
+
+.line::after {
+  margin-left: 10px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
 }
 
 .iconBtn {
@@ -97,7 +151,6 @@
   color: var(--red);
   font-size: 0.875em;
   font-size: 14px;
-
 }
 @media screen and (min-width: 768px) {
   .form {
@@ -113,6 +166,21 @@
   .formBtn {
     font-size: 16px;
   }
+
+  .GoogleBtn {
+    font-size: 16px;
+    width: 436px;
+  }
+  .line {
+    width: 436px;
+    font-size: 16px;
+  }
+  
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+
   .redirectText {
     font-size: 16px;
   }
