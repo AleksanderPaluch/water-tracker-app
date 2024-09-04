@@ -181,7 +181,7 @@ const SignUpForm = () => {
       <div className={css.line}>
         <span>Or</span>
       </div>
-      <a href="http://localhost:3000/users/google" className={css.GoogleBtn}>
+      <a href="https://water-tracker-app-3d8d0b109609.herokuapp.com/users/google" className={css.GoogleBtn}>
         <FcGoogle className={css.icon} />
         Sign Up with Google
       </a>
