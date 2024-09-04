@@ -139,7 +139,7 @@ const SignInForm = () => {
       </div>
       <a href="http://localhost:3000/users/google" className={css.GoogleBtn}>
         <FcGoogle className={css.icon} />
-        Sign Up with Google
+        Sign In with Google
       </a>
     </div>
   );

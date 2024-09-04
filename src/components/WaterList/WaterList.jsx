@@ -53,7 +53,7 @@ const WaterList = ({ date }) => {
           ))}
         </ul>
       ) : (
-        <p>No water records available for today.</p>
+        <p>No water records available</p>
       )}
     </div>
   );
