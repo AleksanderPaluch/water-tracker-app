@@ -71,7 +71,7 @@
 }
 
 .GoogleBtn {
-  width: 311px;
+  text-decoration: none;
   color: var(--blue);
   display: flex;
   align-items: center;

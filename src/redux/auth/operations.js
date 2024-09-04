@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
  
+  requestAuthGoogle,
   requestChangePassword,
   requestLogIn,
   requestLogOut,
@@ -97,3 +98,18 @@ export const apiTokenRefresh = createAsyncThunk(
   }
 );
 
+
+export const apiAuthGoogle = createAsyncThunk(
+  "auth/authGoogle",
+  async (formData, thunkAPI) => {
+    try {
+      const data = await requestAuthGoogle();
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response.data.message || error.message
+      );
+    }
+  }
+);

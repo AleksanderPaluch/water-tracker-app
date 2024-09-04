@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  apiAuthGoogle,
   apiLoginUser,
   apiLogOutUser,
   apiRegisterUser,
@@ -88,7 +89,22 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(apiTokenRefresh.rejected, handleRejected),
+      .addCase(apiTokenRefresh.rejected, handleRejected)
+
+  // GOOGLE LOGIN //
+
+  .addCase(apiAuthGoogle.pending, handlePending)
+  .addCase(apiAuthGoogle.fulfilled, (state, action) => {
+    state.user = action.payload.user;
+    state.token = action.payload.token;
+    state.isSignedIn = true;
+    state.isLoading = false;
+    state.isError = false;
+    state.error = null;
+  })
+  .addCase(apiAuthGoogle.rejected, handleRejected),
+
+      
 });
 export const { logOutUserLocally } = authSlice.actions;
 // Редюсер слайсу

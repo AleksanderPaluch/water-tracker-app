@@ -3,7 +3,14 @@ import SignInForm from "../../components/SignInForm/SignInForm";
 import css from "./SignInPage.module.css"
 import { AdvantagesSection } from "../../components/AdvantagesSection/AdvantagesSection";
 
-const SignInPage = () => {
+
+
+
+const SignInPage =  () => {
+
+
+
+
   return (
     <Page>
       <SignInForm />

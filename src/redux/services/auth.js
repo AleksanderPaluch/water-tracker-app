@@ -27,3 +27,10 @@ export const requestTokenRefresh = async () => {
   const { data } = await instance.post("/users/token-refresh");
   return data;
 };
+
+export const requestAuthGoogle = async () => {
+  const { data } = await instance.post("/users/google-auth");
+  return data;
+};
+
+

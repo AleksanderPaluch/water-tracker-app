@@ -137,10 +137,10 @@ const SignInForm = () => {
       <div className={css.line}>
         <span>Or</span>
       </div>
-      <button className={css.GoogleBtn}>
+      <a href="http://localhost:3000/users/google" className={css.GoogleBtn}>
         <FcGoogle className={css.icon} />
-        Sign In with Google
-      </button>
+        Sign Up with Google
+      </a>
     </div>
   );
 };
