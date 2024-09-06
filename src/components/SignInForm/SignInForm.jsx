@@ -139,7 +139,7 @@ const SignInForm = () => {
       </div>
       <a href="https://water-tracker-app-3d8d0b109609.herokuapp.com/users/google" className={css.GoogleBtn}>
         <FcGoogle className={css.icon} />
-        Sign IN with Google
+        Sign In with Google
       </a>
     </div>
   );
