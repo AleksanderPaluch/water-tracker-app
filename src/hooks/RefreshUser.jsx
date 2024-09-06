@@ -31,7 +31,7 @@ export const useRefreshUser = () => {
     const handleGoogleAuth = async () => {
       if (gToken) {
         try {
-          await dispatch(apiAuthGoogle()).unwrap();
+          await dispatch(apiAuthGoogle({gToken})).unwrap();
           await dispatch(apiGetCurrentUser()).unwrap();
         } catch (error) {
           console.error("Error during Google authentication:", error);
