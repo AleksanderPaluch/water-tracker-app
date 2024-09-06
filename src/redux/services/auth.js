@@ -28,8 +28,9 @@ export const requestTokenRefresh = async () => {
   return data;
 };
 
-export const requestAuthGoogle = async () => {
-  const { data } = await instance.post("/users/google-auth");
+export const requestAuthGoogle = async (formData) => {
+  console.log(formData);
+  const { data } = await instance.post("/users/google-auth", formData);
   return data;
 };
 

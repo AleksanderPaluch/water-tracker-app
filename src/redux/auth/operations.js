@@ -103,7 +103,8 @@ export const apiAuthGoogle = createAsyncThunk(
   "auth/authGoogle",
   async (formData, thunkAPI) => {
     try {
-      const data = await requestAuthGoogle();
+      console.log(formData);
+      const data = await requestAuthGoogle(formData);
 
       return data;
     } catch (error) {
